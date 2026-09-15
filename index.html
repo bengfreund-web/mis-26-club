@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 26 Club — Montana Institute of Sport</title>
+<meta name="description" content="Members' hub for The 26 Club — impact updates, videos, and news from the Montana Institute of Sport.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="images/logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked" id="top">
+
+<!-- ============================ LOGIN GATE ============================ -->
+<div class="gate" id="gate">
+  <svg class="gate-watermark" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 30 L370 350 L30 350 Z" stroke="#122049" stroke-width="6"/>
+    <path d="M145 150 L285 350 L5 350 Z" stroke="#122049" stroke-width="6"/>
+  </svg>
+  <div class="gate-card">
+    <div class="gate-topbar"></div>
+    <img class="gate-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
+    <div class="gate-kicker">Members Only</div>
+    <h1>The 26 Club</h1>
+    <p class="lead">Welcome back. Enter the club password to view the latest impact, videos, and updates.</p>
+    <form class="gate-form" id="gate-form" autocomplete="off">
+      <input type="password" id="gate-password" placeholder="Club password" aria-label="Club password" autofocus>
+      <div class="gate-error" id="gate-error" role="alert"></div>
+      <button type="submit" class="btn btn-navy no-arrow">Enter the Club</button>
+    </form>
+    <div class="gate-foot">Montana Institute of Sport &middot; Bozeman, Montana</div>
+  </div>
+</div>
+
+<!-- ============================ THE SITE ============================ -->
+<div class="site">
+
+  <!-- NAV -->
+  <header class="siteheader">
+    <nav class="nav">
+      <a class="brand" href="#top">
+        <img src="images/logo-icon.png" alt="Montana Institute of Sport">
+        <span class="brand-name">THE <b>26</b> CLUB<br>MONTANA INSTITUTE OF SPORT</span>
+      </a>
+      <div class="navlinks">
+        <a href="#latest">Latest</a>
+        <a href="#impact">Impact</a>
+        <a href="#videos">Videos</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-ctas">
+        <button class="signout" type="button" data-signout>Sign out</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="mhero">
+    <svg class="watermark" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M200 30 L370 350 L30 350 Z" stroke="#122049" stroke-width="5"/>
+      <path d="M145 150 L285 350 L5 350 Z" stroke="#122049" stroke-width="5"/>
+    </svg>
+    <div class="mhero-inner">
+      <div class="kicker">Members' Hub &middot; Est. 2022</div>
+      <h1>What we've been up to, and the impact we're making together.</h1>
+      <p>The private home for The 26 Club. A running newsletter of our progress across Montana, videos from the field, and the numbers behind the mission.</p>
+      <div class="hero-meta">
+        <div><div class="n">100+</div><div class="l">Schools reached</div></div>
+        <div><div class="n">50,000</div><div class="l">Students</div></div>
+        <div><div class="n">26</div><div class="l">Founding members</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section" id="impact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Our Impact</div>
+        <div class="h2">The difference we're making</div>
+        <p>A snapshot of what the Montana Institute of Sport has achieved with the support of the 26 Club.</p>
+      </div>
+      <div class="impact-grid reveal" id="impact-grid"><!-- filled by js/site.js from content/content.js --></div>
+    </div>
+  </section>
+
+  <!-- LATEST / NEWSLETTER -->
+  <section class="section offwhite" id="latest">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Latest</div>
+        <div class="h2">Club newsletter</div>
+        <p>The newest updates first — programs, milestones, and moments from the field.</p>
+      </div>
+      <div class="feed reveal" id="feed"><!-- filled by js/site.js from content/content.js --></div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="section" id="videos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">From the Field</div>
+        <div class="h2">Video gallery</div>
+        <p>Click any video to play. New clips are added as we capture them.</p>
+      </div>
+      <div class="video-grid reveal" id="video-grid"><!-- filled by js/site.js from content/content.js --></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section offwhite" id="about">
+    <div class="wrap">
+      <div class="about-split">
+        <div class="about-img reveal"><img src="images/team-huddle.jpg" alt="Team huddle, hands stacked together"></div>
+        <div class="about-copy reveal">
+          <div class="eyebrow">About</div>
+          <h2 class="h2">The 26 Club</h2>
+          <p>The Montana Institute of Sport is a 501(c)(3) nonprofit dedicated to bettering young Montanans through physical education — curriculum support, teaching grants, and professional development for the state's public schools.</p>
+          <p>The 26 Club is our circle of founding partners. This members' hub is where we share exactly how your support is translating into impact on the ground, month after month.</p>
+          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-navy-outline">Visit the main site</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/logo-icon.png" alt="Montana Institute of Sport">
+          <span>THE 26 CLUB<br>MONTANA INSTITUTE OF SPORT</span>
+        </div>
+        <div class="footer-links">
+          <a href="#latest">Latest</a>
+          <a href="#impact">Impact</a>
+          <a href="#videos">Videos</a>
+          <a href="#about">About</a>
+          <a href="#" data-signout>Sign out</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Montana Institute of Sport &middot; Private members' site</span>
+        <a class="back-to-top" href="#top">Back to top <span>&#8593;</span></a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="enc/payload.js"></script>
+<script src="js/gate.js" defer></script>
+</body>
+</html>

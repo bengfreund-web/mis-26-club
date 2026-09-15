@@ -1,0 +1,8 @@
+# The editable plaintext content lives here and must NEVER be published.
+# Only the encrypted enc/payload.js is committed.
+src/
+
+# Local env / notes
+.env
+*.local
+.DS_Store
