@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 26 Club — Montana Institute of Sport</title>
-<meta name="description" content="Members' hub for The 26 Club — impact updates, videos, and news from the Montana Institute of Sport.">
+<meta name="description" content="Members' hub for The 26 Club — impact, membership, videos, and news from the Montana Institute of Sport.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
     <img class="gate-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
     <div class="gate-kicker">Members Only</div>
     <h1>The 26 Club</h1>
-    <p class="lead">Welcome back. Enter the club password to view the latest impact, videos, and updates.</p>
+    <p class="lead">Welcome back. Enter the club password to view the latest impact, membership perks, videos, and updates.</p>
     <form class="gate-form" id="gate-form" autocomplete="off">
       <input type="password" id="gate-password" placeholder="Club password" aria-label="Club password" autofocus>
       <div class="gate-error" id="gate-error" role="alert"></div>
@@ -46,10 +46,10 @@
         <span class="brand-name">THE <b>26</b> CLUB<br>MONTANA INSTITUTE OF SPORT</span>
       </a>
       <div class="navlinks">
-        <a href="#latest">Latest</a>
-        <a href="#impact">Impact</a>
-        <a href="#videos">Videos</a>
         <a href="#about">About</a>
+        <a href="#membership">What You Get</a>
+        <a href="#latest">Latest</a>
+        <a href="#videos">Videos</a>
       </div>
       <div class="nav-ctas">
         <button class="signout" type="button" data-signout>Sign out</button>
@@ -66,11 +66,11 @@
     <div class="mhero-inner">
       <div class="kicker">Members' Hub &middot; Est. 2022</div>
       <h1>What we've been up to, and the impact we're making together.</h1>
-      <p>The private home for The 26 Club. A running newsletter of our progress across Montana, videos from the field, and the numbers behind the mission.</p>
+      <p>The private home for The 26 Club. Our mission, your membership, a running newsletter of our progress across Montana, and videos from the field.</p>
       <div class="hero-meta">
         <div><div class="n">100+</div><div class="l">Schools reached</div></div>
         <div><div class="n">50,000</div><div class="l">Students</div></div>
-        <div><div class="n">26</div><div class="l">Founding members</div></div>
+        <div><div class="n">26</div><div class="l">Member cap</div></div>
       </div>
     </div>
   </section>
@@ -83,47 +83,98 @@
         <div class="h2">The difference we're making</div>
         <p>A snapshot of what the Montana Institute of Sport has achieved with the support of the 26 Club.</p>
       </div>
-      <div class="impact-grid reveal" id="impact-grid"><!-- filled by js/site.js from content/content.js --></div>
+      <div class="impact-grid reveal" id="impact-grid"><!-- filled from content/content.js --></div>
+    </div>
+  </section>
+
+  <!-- ABOUT: What we're about -->
+  <section class="section offwhite" id="about">
+    <div class="wrap">
+      <div class="about-split">
+        <div class="about-img reveal"><img src="images/team-huddle.jpg" alt="Team huddle, hands stacked together"></div>
+        <div class="about-copy reveal">
+          <div class="eyebrow">What We're About</div>
+          <h2 class="h2">Better young Montanans through physical education</h2>
+          <p>The Montana Institute of Sport is a 501(c)(3) nonprofit dedicated to improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. It was founded in 2022 by Ali Behnam and JD Stephenson.</p>
+          <p>The 26 Club takes its name from a hard truth: only <strong>26%</strong> of young people get the recommended daily amount of physical activity. It's an exclusive, invite-only community of up to 26 members who believe that number can change — starting in Montana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT SUPPORTS -->
+  <section class="section" id="supports">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">What It Supports</div>
+        <div class="h2">Where your membership goes</div>
+        <p>Membership powers the <strong>TRY Sport</strong> initiative — introducing Montana kids to new and popular sports, and giving their teachers the curriculum and tools to keep them moving.</p>
+      </div>
+      <div class="problem-list reveal">
+        <div class="support-row">
+          <div class="ghost-num">01</div>
+          <div>
+            <div class="p-title">Montana's public schools need help</div>
+            <div class="p-body">Facing tight budgets, schools are struggling to fund physical education and engage students in healthy, active habits.</div>
+          </div>
+        </div>
+        <div class="support-row">
+          <div class="ghost-num">02</div>
+          <div>
+            <div class="p-title">Teachers deserve better support</div>
+            <div class="p-body">Montana sits below the national average for teacher compensation and public-school support. We provide curriculum, equipment, clinics, and professional development.</div>
+          </div>
+        </div>
+        <div class="support-row">
+          <div class="ghost-num">03</div>
+          <div>
+            <div class="p-title">Kids need to move</div>
+            <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport brings new sports and lasting habits into classrooms across the state.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP: What you get -->
+  <section class="section offwhite" id="membership">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Membership</div>
+        <div class="h2">What you get</div>
+        <p>The 26 Club is about impact first — but membership opens doors to trips, experiences, and events you won't find anywhere else.</p>
+      </div>
+      <div class="benefit-grid reveal" id="benefit-grid"><!-- filled from content/content.js --></div>
+
+      <div class="events-head reveal">
+        <div class="eyebrow">Trips &amp; Events</div>
+        <div class="h2">Where the club has been — and where we're headed</div>
+      </div>
+      <div class="events reveal" id="events"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
   <!-- LATEST / NEWSLETTER -->
-  <section class="section offwhite" id="latest">
+  <section class="section" id="latest">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Latest</div>
         <div class="h2">Club newsletter</div>
         <p>The newest updates first — programs, milestones, and moments from the field.</p>
       </div>
-      <div class="feed reveal" id="feed"><!-- filled by js/site.js from content/content.js --></div>
+      <div class="feed reveal" id="feed"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
   <!-- VIDEOS -->
-  <section class="section" id="videos">
+  <section class="section offwhite" id="videos">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">From the Field</div>
         <div class="h2">Video gallery</div>
         <p>Click any video to play. New clips are added as we capture them.</p>
       </div>
-      <div class="video-grid reveal" id="video-grid"><!-- filled by js/site.js from content/content.js --></div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section offwhite" id="about">
-    <div class="wrap">
-      <div class="about-split">
-        <div class="about-img reveal"><img src="images/team-huddle.jpg" alt="Team huddle, hands stacked together"></div>
-        <div class="about-copy reveal">
-          <div class="eyebrow">About</div>
-          <h2 class="h2">The 26 Club</h2>
-          <p>The Montana Institute of Sport is a 501(c)(3) nonprofit dedicated to bettering young Montanans through physical education — curriculum support, teaching grants, and professional development for the state's public schools.</p>
-          <p>The 26 Club is our circle of founding partners. This members' hub is where we share exactly how your support is translating into impact on the ground, month after month.</p>
-          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-navy-outline">Visit the main site</a>
-        </div>
-      </div>
+      <div class="video-grid reveal" id="video-grid"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
@@ -136,10 +187,11 @@
           <span>THE 26 CLUB<br>MONTANA INSTITUTE OF SPORT</span>
         </div>
         <div class="footer-links">
-          <a href="#latest">Latest</a>
-          <a href="#impact">Impact</a>
-          <a href="#videos">Videos</a>
           <a href="#about">About</a>
+          <a href="#membership">What You Get</a>
+          <a href="#latest">Latest</a>
+          <a href="#videos">Videos</a>
+          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener">Main site</a>
           <a href="#" data-signout>Sign out</a>
         </div>
       </div>
@@ -152,7 +204,8 @@
 
 </div>
 
-<script src="enc/payload.js"></script>
-<script src="js/gate.js" defer></script>
+<script src="js/config.js"></script>
+<script src="content/content.js"></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>

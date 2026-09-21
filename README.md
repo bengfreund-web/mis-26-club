@@ -1,87 +1,79 @@
-# The 26 Club — Members Site (encrypted)
+# The 26 Club — Members Site
 
-A private members' hub for the **Montana Institute of Sport 26 Club** — a living
-newsletter with impact numbers, updates, and a video gallery.
+A private, password-protected members' hub for the **Montana Institute of Sport
+26 Club**: mission, membership perks, a living newsletter, and a video gallery.
 
-It's a plain static site (HTML/CSS/JS, no framework) that matches the main
-Montana Institute of Sport site: white theme, navy-blue + yellow accents.
+Plain static site (HTML/CSS/JS, no build step) matching the main Montana
+Institute of Sport site. White theme, navy-blue + yellow accents.
 
-## How the password protection works
+Live: https://the26club.org (and https://bengfreund-web.github.io/mis-26-club/)
 
-The club content (posts, videos, impact numbers) is **AES-256-GCM encrypted**.
-The published site ships only the encrypted blob (`enc/payload.js`). When a
-member enters the password, the browser derives the decryption key (PBKDF2) and
-decrypts the content locally. **Without the password the content is unreadable** —
-there is no plaintext copy anywhere on the server, and the password itself is
-never stored or published.
-
-That means the page can live on a **public** GitHub Pages URL (reachable by
-anyone with the link) while the actual content stays genuinely protected.
-
-> The photos in `images/` are served normally (not encrypted). Keep anything
-> truly private out of that folder.
+## Sections
+- **Impact** — headline stats
+- **About / What We're About** — the mission (from the MIS site)
+- **What It Supports** — where membership goes (the TRY Sport initiative)
+- **Membership / What You Get** — trips, experiences, events + a trips & events list
+- **Latest** — the club newsletter feed
+- **Videos** — YouTube/Vimeo gallery
 
 ---
 
-## Updating the content (the important part)
+## Everyday tasks (no coding needed)
 
-The editable content lives in **`src/content.json`** — this file is **NOT
-published** (it's gitignored). You edit it, then re-encrypt.
+### Change the password
+Open **`js/config.js`** and edit the `password` line:
+```js
+password: "TryRugby-26Club-2026",   // <-- your shared club password
+```
+Save. That's the single shared password every member types to get in.
 
-1. Edit `src/content.json`:
-   - `impact` — the four stat tiles
-   - `posts` — newsletter updates (put the newest first). Each has a `date`,
-     `tag`, `title`, `body`, optional `image` (`"images/your-photo.jpg"`), and
-     optional `link`.
-   - `videos` — `title`, `desc`, and a YouTube/Vimeo `url`. Thumbnails are
-     pulled in automatically.
-2. Re-encrypt with your club password:
-   ```bash
-   CLUB_PASSWORD="your-club-password" node scripts/build.js
-   ```
-   This regenerates `enc/payload.js`.
-3. Commit and push (see below). GitHub Pages updates in a minute or two.
+### Edit content
+Open **`content/content.js`** — everything is plain, labelled lists:
+- `CLUB_IMPACT` — the four stat tiles
+- `CLUB_POSTS` — newsletter updates (newest first): `date`, `tag`, `title`,
+  `body`, optional `image` (`"images/your-photo.jpg"`), optional `link`
+- `CLUB_BENEFITS` — the "What You Get" cards (`icon`, `title`, `desc`)
+- `CLUB_EVENTS` — trips & events (`date`, `status` "Upcoming"/"Past", `title`, `place`)
+- `CLUB_VIDEOS` — `title`, `desc`, and a YouTube/Vimeo `url` (thumbnail is automatic)
 
-> In practice, just send the updates to Claude Code and it will edit, re-encrypt,
-> and push for you.
+Copy an existing `{ ... }` block, change the text between the quotes, keep the
+punctuation, save, and refresh. To use your own photo, drop it in `images/` and
+point at it.
 
-### Changing the password
+> In practice, just send the updates to Claude Code and it will make the edits
+> and push them for you.
 
-The password isn't stored in a file — it's whatever you pass to the build step.
-To change it, re-run `scripts/build.js` with the new `CLUB_PASSWORD`, commit, and
-push. Share the new password with members. (Anything encrypted with the old
-password stays readable only with the old password until you rebuild.)
+---
+
+## A note on the password
+This is **light, front-end-only protection**: it keeps the page private and out
+of search results, but the password lives in the site's code, so a technical
+person could find it. Fine for a members' newsletter; not for anything truly
+sensitive. Real per-member sign-in (Google / Cloudflare Access) can be added
+later if needed.
 
 ---
 
 ## Running locally
-
 ```bash
 cd mis-26-club && python3 -m http.server 8080
 ```
-Then open http://localhost:8080 and enter the club password.
+Then open http://localhost:8080
 
-## Publishing (GitHub Pages)
-
-The repo is public (required for free Pages) but safe — only encrypted content
-is committed. To push an update:
-
+## Publishing
+Hosted on GitHub Pages from `main` (root), custom domain `the26club.org` via the
+`CNAME` file. Set to `noindex`. To push an update:
 ```bash
-git add -A && git commit -m "Update newsletter" && git push
+git add -A && git commit -m "Update site" && git push
 ```
 
-The site is set to `noindex`, so search engines won't list it.
-
----
-
 ## File map
-
-| File | Published? | What it's for |
-|------|-----------|----------------|
-| `src/content.json` | **No (gitignored)** | **Your editable content** |
-| `scripts/build.js` | yes | Encrypts content → `enc/payload.js` |
-| `enc/payload.js` | yes | The encrypted content blob (safe) |
-| `js/gate.js` | yes | Password prompt, decrypt, render |
-| `index.html` | yes | Page shell + login gate |
-| `css/style.css` | yes | Brand styling |
-| `images/` | yes | Logos and photos |
+| File | What it's for |
+|------|----------------|
+| `index.html` | Page structure + login gate |
+| `css/style.css` | Brand styling |
+| `js/config.js` | **Password** and site title |
+| `content/content.js` | **Your content** — impact, posts, benefits, events, videos |
+| `js/site.js` | Behavior (login, rendering) — no need to edit |
+| `images/` | Logos and photos |
+| `CNAME` | Custom domain (the26club.org) |
