@@ -4,36 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 26 Club — Montana Institute of Sport</title>
-<meta name="description" content="The 26 Club — an invitation-only brotherhood. A private members' hub for the Montana Institute of Sport.">
+<meta name="description" content="The 26 Club — the members' home of the Montana Institute of Sport.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body class="locked" id="top">
 
 <!-- ============================ LOGIN GATE ============================ -->
 <div class="gate" id="gate">
   <div class="gate-card">
-    <span class="gate-crest crest" aria-hidden="true">
-      <svg width="76" height="76" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="1.2"/>
-        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.6" opacity="0.5"/>
-        <path d="M30 60 L42 40 L50 52 L58 36 L70 60 Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-        <text x="50" y="80" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="18" font-weight="500" fill="currentColor">26</text>
-      </svg>
-    </span>
-    <div class="gate-kicker">By Invitation Only</div>
+    <img class="gate-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
     <h1>The 26 Club</h1>
-    <p class="lead">Welcome back to the brotherhood. Enter your key to step inside.</p>
+    <div class="gate-tag">Montana Institute of Sport</div>
+    <p class="lead">Welcome back. Enter your password to continue.</p>
     <form class="gate-form" id="gate-form" autocomplete="off">
-      <input type="password" id="gate-password" placeholder="Members' key" aria-label="Members' key" autofocus>
+      <input type="password" id="gate-password" placeholder="Password" aria-label="Password" autofocus>
       <div class="gate-error" id="gate-error" role="alert"></div>
       <button type="submit" class="btn btn-gold no-arrow">Enter</button>
     </form>
-    <div class="gate-foot">Twenty-six seats &middot; Bozeman, Montana</div>
+    <div class="gate-foot">Members Only &middot; Bozeman, Montana</div>
   </div>
 </div>
 
@@ -44,164 +37,116 @@
   <header class="siteheader">
     <nav class="nav">
       <a class="brand" href="#top">
-        <span class="crest" aria-hidden="true">
-          <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="2"/>
-            <path d="M30 60 L42 40 L50 52 L58 36 L70 60 Z" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="brand-name">The 26 Club<small>Montana Institute of Sport</small></span>
+        <img src="images/logo-icon.png" alt="Montana Institute of Sport">
+        <span class="brand-name">The 26 Club</span>
       </a>
       <div class="navlinks">
-        <a href="#creed">The Creed</a>
-        <a href="#about">The Club</a>
-        <a href="#membership">Membership</a>
-        <a href="#gallery">The Brotherhood</a>
+        <a href="#featured">Watch</a>
+        <a href="#mission">Mission</a>
+        <a href="#calendar">Calendar</a>
+        <a href="#gallery">Gallery</a>
         <a href="#latest">Dispatches</a>
       </div>
-      <div class="nav-ctas">
-        <button class="signout" type="button" data-signout>Sign out</button>
-      </div>
+      <button class="signout" type="button" data-signout>Sign out</button>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO — centered on the MIS logo -->
   <section class="mhero">
     <div class="mhero-inner">
-      <span class="crest" aria-hidden="true">
-        <svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="1.4"/>
-          <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
-          <path d="M30 60 L42 40 L50 52 L58 36 L70 60 Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
-          <text x="50" y="80" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" font-weight="500" fill="currentColor">26</text>
-        </svg>
-      </span>
-      <div class="kicker">An Invitation-Only Brotherhood</div>
-      <h1>Twenty-six men. <em>One</em> shared purpose.</h1>
-      <p>A private circle bound by brotherhood, built on giving Montana's kids a better shot, and lived out through experiences most people only dream of. This is home for the twenty-six.</p>
+      <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
+      <h1>The 26 Club</h1>
+      <div class="tag">Montana Institute of Sport</div>
+      <p>The members' home of the Institute — the field we're building, the trips we take together, and the fifty thousand Montana kids we're putting in motion.</p>
       <div class="hero-meta">
-        <div><div class="n">26</div><div class="l">Seats, no more</div></div>
+        <div><div class="n">26</div><div class="l">Members</div></div>
         <div><div class="n">100+</div><div class="l">Schools reached</div></div>
         <div><div class="n">50,000</div><div class="l">Kids moving</div></div>
       </div>
     </div>
   </section>
 
-  <!-- THE CREED -->
-  <section class="section navy" id="creed">
+  <!-- FEATURED — front and center -->
+  <section class="section tight" id="featured">
     <div class="wrap">
       <div class="section-head center reveal">
-        <div class="eyebrow center">The Creed</div>
-        <div class="h2">What binds the twenty-six</div>
+        <div class="mono-label center">Featured</div>
+        <div class="h2">Watch, recap, revisit</div>
       </div>
-      <div class="creed-grid reveal">
-        <div class="creed-item">
-          <div class="creed-num">I.</div>
-          <div class="creed-title">Brotherhood</div>
-          <div class="creed-body">We show up for one another. The 26 is a circle of trust, loyalty, and lifelong friendship — men who have each other's backs on and off the field.</div>
-        </div>
-        <div class="creed-item">
-          <div class="creed-num">II.</div>
-          <div class="creed-title">Purpose</div>
-          <div class="creed-body">Every seat funds something bigger than us: getting Montana's kids moving through the TRY Sport initiative. We measure success in lives changed.</div>
-        </div>
-        <div class="creed-item">
-          <div class="creed-num">III.</div>
-          <div class="creed-title">Adventure</div>
-          <div class="creed-body">We chase the extraordinary together — global sporting events, once-in-a-lifetime access, and the kind of memories you can only make with your brothers.</div>
-        </div>
-      </div>
+      <div class="featured-grid reveal" id="featured-grid"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
-  <!-- THE CLUB / ABOUT -->
-  <section class="section" id="about">
+  <!-- MISSION -->
+  <section class="section offwhite" id="mission">
     <div class="wrap">
-      <div class="about-split">
-        <div class="about-img reveal"><img src="images/team-huddle.jpg" alt="The brotherhood together"></div>
-        <div class="about-copy reveal">
-          <div class="eyebrow">The Club</div>
-          <h2 class="h2">An exclusive circle, by design</h2>
-          <p>The 26 Club is an <strong>invitation-only community</strong> of like-minded men who believe in the power of sport. Its name comes from a hard truth: only <strong>26%</strong> of young people get the daily activity they need. Membership is deliberately capped at twenty-six.</p>
-          <div class="pull">"Twenty-six seats. When they're full, they're full."</div>
-          <p>Founded within the Montana Institute of Sport in 2022, the club channels the energy, generosity, and reach of its members into real change for kids across the state — while giving those members a brotherhood, and a calendar, unlike any other.</p>
+      <div class="mission-split">
+        <div class="mission-img reveal"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
+        <div class="mission-copy reveal">
+          <div class="mono-label">The Mission</div>
+          <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
+          <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
+          <p>The name comes from a simple statistic — only <strong>26%</strong> of young people get the daily activity they need. Every membership helps change it, and brings the members along for the ride.</p>
           <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-navy-outline">The wider mission</a>
         </div>
       </div>
+      <div class="impact-grid reveal" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
-  <!-- IMPACT -->
-  <section class="section offwhite" id="impact">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow center">Our Mark</div>
-        <div class="h2">What the twenty-six have built</div>
-        <p>Behind the trips and the brotherhood is the reason it all exists — and the numbers are real.</p>
-      </div>
-      <div class="impact-grid reveal" id="impact-grid"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
-
-  <!-- WHAT IT SUPPORTS -->
-  <section class="section" id="supports">
+  <!-- WHERE IT GOES -->
+  <section class="section" id="purpose">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">The Purpose</div>
-        <div class="h2">Where your seat goes</div>
-        <p>Membership powers the <strong>TRY Sport</strong> initiative — introducing Montana kids to new sports and giving their teachers the tools to keep them moving.</p>
+        <div class="mono-label">Where It Goes</div>
+        <div class="h2">Every membership powers TRY Sport</div>
+        <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
       </div>
       <div class="problem-list reveal">
         <div class="support-row">
-          <div class="ghost-num">01</div>
+          <div class="ghost-num">01 /</div>
           <div>
-            <div class="p-title">Montana's schools need help</div>
+            <div class="p-title">Schools need help</div>
             <div class="p-body">Tight budgets have left physical education underfunded, and too many kids without the chance to fall in love with a sport.</div>
           </div>
         </div>
         <div class="support-row">
-          <div class="ghost-num">02</div>
+          <div class="ghost-num">02 /</div>
           <div>
-            <div class="p-title">Teachers deserve backing</div>
-            <div class="p-body">We provide curriculum, equipment, clinics, and professional development so the people in the gym have what they need to succeed.</div>
+            <div class="p-title">Teachers need backing</div>
+            <div class="p-body">We provide curriculum, equipment, clinics, and professional development so the people in the gym have what they need.</div>
           </div>
         </div>
         <div class="support-row">
-          <div class="ghost-num">03</div>
+          <div class="ghost-num">03 /</div>
           <div>
             <div class="p-title">Kids need to move</div>
-            <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport builds new sports and lasting habits into classrooms across the state.</div>
+            <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport builds new sports and lasting habits into classrooms statewide.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MEMBERSHIP: What you get -->
-  <section class="section offwhite" id="membership">
+  <!-- CALENDAR -->
+  <section class="section offwhite" id="calendar">
     <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow center">Membership</div>
-        <div class="h2">The privileges of the twenty-six</div>
-        <p>Impact comes first. But a seat at this table opens doors to trips, access, and a brotherhood you won't find anywhere else.</p>
-      </div>
-      <div class="benefit-grid reveal" id="benefit-grid"><!-- filled from content/content.js --></div>
-
-      <div class="events-head reveal">
-        <div class="eyebrow">The Calendar</div>
-        <div class="h2">Where the brotherhood has been — and where we're headed</div>
+      <div class="section-head reveal">
+        <div class="mono-label">Calendar</div>
+        <div class="h2">Where we've been, where we're headed</div>
+        <p>Membership opens the door to the world's great sporting occasions — taken on together.</p>
       </div>
       <div class="events reveal" id="events"><!-- filled from content/content.js --></div>
     </div>
   </section>
 
-  <!-- THE BROTHERHOOD / GALLERY -->
+  <!-- GALLERY -->
   <section class="section" id="gallery">
     <div class="wrap">
       <div class="section-head center reveal">
-        <div class="eyebrow center">The Brotherhood</div>
+        <div class="mono-label center">Gallery</div>
         <div class="h2" id="gallery-title">Chicago Weekend</div>
-        <p id="gallery-caption">Ireland vs New Zealand — a weekend with The 26 Club in Chicago.</p>
+        <p id="gallery-caption">Ireland vs New Zealand — a weekend on the road.</p>
       </div>
       <div class="gallery reveal" id="gallery-grid"><!-- filled from content/content.js --></div>
     </div>
@@ -215,11 +160,11 @@
     <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next">&#8250;</button>
   </div>
 
-  <!-- DISPATCHES / NEWSLETTER -->
+  <!-- DISPATCHES -->
   <section class="section offwhite" id="latest">
     <div class="wrap">
       <div class="section-head center reveal">
-        <div class="eyebrow center">Dispatches</div>
+        <div class="mono-label center">Dispatches</div>
         <div class="h2">Notes from the club</div>
         <p>The newest first — what we've been up to, on the field and off.</p>
       </div>
@@ -232,34 +177,29 @@
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="crest" aria-hidden="true">
-            <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="2"/>
-              <path d="M30 60 L42 40 L50 52 L58 36 L70 60 Z" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span>The 26 Club<small>Montana Institute of Sport</small></span>
+          <img src="images/logo-icon.png" alt="Montana Institute of Sport">
+          <span>The 26 Club</span>
         </div>
         <div class="footer-links">
-          <a href="#creed">The Creed</a>
-          <a href="#about">The Club</a>
-          <a href="#membership">Membership</a>
-          <a href="#gallery">The Brotherhood</a>
+          <a href="#featured">Watch</a>
+          <a href="#mission">Mission</a>
+          <a href="#calendar">Calendar</a>
+          <a href="#gallery">Gallery</a>
           <a href="#latest">Dispatches</a>
           <a href="#" data-signout>Sign out</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 The 26 Club &middot; By invitation only</span>
-        <a class="back-to-top" href="#top">Back to top <span>&#8593;</span></a>
+        <span>&copy; 2026 Montana Institute of Sport</span>
+        <a class="back-to-top" href="#top">Back to top &#8593;</a>
       </div>
     </div>
   </footer>
 
 </div>
 
-<script src="js/config.js?v=6"></script>
-<script src="content/content.js?v=6"></script>
-<script src="js/site.js?v=6" defer></script>
+<script src="js/config.js?v=8"></script>
+<script src="content/content.js?v=8"></script>
+<script src="js/site.js?v=8" defer></script>
 </body>
 </html>

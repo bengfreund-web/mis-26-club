@@ -83,6 +83,7 @@
 
   /* ------------------------------------------------------- RENDER SITE */
   function buildSite() {
+    renderFeatured();
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
     renderList("benefit-grid", typeof CLUB_BENEFITS !== "undefined" ? CLUB_BENEFITS : [], benefitCard);
     renderList("events", typeof CLUB_EVENTS !== "undefined" ? CLUB_EVENTS : [], eventRow);
@@ -90,6 +91,26 @@
     renderVideos();
     renderGallery();
     wireReveals();
+  }
+
+  /* ------------------------------------------------------- FEATURED */
+  function renderFeatured() {
+    var el = document.getElementById("featured-grid");
+    if (!el || typeof CLUB_FEATURED === "undefined") return;
+    el.innerHTML = CLUB_FEATURED.map(function (f) {
+      var poster = f.poster ? '<img loading="lazy" src="' + esc(f.poster) + '" alt="">' : '';
+      var play = f.video ? '<span class="feat-play" aria-hidden="true">&#9654;</span>' : '';
+      var cta = f.video ? '' : '<span class="go">Open</span>';
+      var body = '<span class="feat-body">' +
+          '<span class="feat-kicker">' + esc(f.kicker || "") + '</span>' +
+          '<span class="feat-title">' + esc(f.title || "") + '</span>' +
+          (f.desc ? '<span class="feat-desc">' + esc(f.desc) + '</span>' : '') + cta +
+        '</span>';
+      if (f.video) {
+        return '<button class="feat-item" type="button" data-video="' + esc(f.video) + '">' + poster + play + body + '</button>';
+      }
+      return '<a class="feat-item" href="' + esc(f.href || "#") + '">' + poster + body + '</a>';
+    }).join("");
   }
 
   /* ------------------------------------------------------- GALLERY + LIGHTBOX */
@@ -113,20 +134,36 @@
     }).join("");
   }
 
-  function openLightbox(i) {
+  function setNav(show) {
+    var p = document.getElementById("lb-prev"), n = document.getElementById("lb-next");
+    if (p) p.hidden = !show;
+    if (n) n.hidden = !show;
+  }
+  function showStage(html) {
     var lb = document.getElementById("lightbox");
     var stage = document.getElementById("lb-stage");
-    if (!lb || !stage || !galleryItems[i]) return;
-    lbIndex = i;
-    var it = galleryItems[i];
-    if (it.type === "video") {
-      stage.innerHTML = '<video src="' + esc(it.src) + '" controls autoplay playsinline preload="metadata"' +
-        (it.poster ? ' poster="' + esc(it.poster) + '"' : '') + '></video>';
-    } else {
-      stage.innerHTML = '<img src="' + esc(it.src) + '" alt="">';
-    }
+    if (!lb || !stage) return;
+    stage.innerHTML = html;
     lb.hidden = false;
     document.body.style.overflow = "hidden";
+  }
+  function openLightbox(i) {
+    if (!galleryItems[i]) return;
+    lbIndex = i;
+    var it = galleryItems[i];
+    setNav(galleryItems.length > 1);
+    if (it.type === "video") {
+      showStage('<video src="' + esc(it.src) + '" controls autoplay playsinline preload="metadata"' +
+        (it.poster ? ' poster="' + esc(it.poster) + '"' : '') + '></video>');
+    } else {
+      showStage('<img src="' + esc(it.src) + '" alt="">');
+    }
+  }
+  function openSingleVideo(src, poster) {
+    lbIndex = -1;
+    setNav(false);
+    showStage('<video src="' + esc(src) + '" controls autoplay playsinline preload="metadata"' +
+      (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>');
   }
   function closeLightbox() {
     var lb = document.getElementById("lightbox");
@@ -145,6 +182,8 @@
     if (e.target.closest("#lb-close")) { closeLightbox(); return; }
     if (e.target.closest("#lb-prev")) { e.stopPropagation(); stepLightbox(-1); return; }
     if (e.target.closest("#lb-next")) { e.stopPropagation(); stepLightbox(1); return; }
+    var feat = e.target.closest(".feat-item[data-video]");
+    if (feat) { e.preventDefault(); openSingleVideo(feat.getAttribute("data-video")); return; }
     var gitem = e.target.closest(".g-item");
     if (gitem) { openLightbox(parseInt(gitem.getAttribute("data-i"), 10)); return; }
     var lb = document.getElementById("lightbox");

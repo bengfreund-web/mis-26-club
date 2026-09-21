@@ -14,6 +14,40 @@
    The four impact numbers at the top of the page live in CLUB_IMPACT.
    ========================================================================== */
 
+/* -------------------- FEATURED (front and center) -------------------- */
+/* Each tile either plays a "video" in the lightbox, or links via "href".
+   "wide" makes a tile span two columns. Edit freely. */
+var CLUB_FEATURED = [
+  {
+    kicker: "Film",
+    title:  "The New Field",
+    desc:   "A first look at our new turf.",
+    poster: "images/featured/new-field.jpg",
+    video:  "media/mis-new-field.mp4",
+  },
+  {
+    kicker: "Trip Recap",
+    title:  "Chicago Weekend",
+    desc:   "Ireland vs New Zealand.",
+    poster: "images/gallery/chicago/img_5660.jpg",
+    href:   "#gallery"
+  },
+  {
+    kicker: "Recap",
+    title:  "Great Northwest Challenge",
+    desc:   "2026 highlights.",
+    poster: "images/featured/gnc.jpg",
+    video:  "media/gnc-2026-reel.mp4"
+  },
+  {
+    kicker: "Gallery",
+    title:  "From the Road",
+    desc:   "Moments from the weekend.",
+    poster: "images/gallery/chicago/img_5674.jpg",
+    href:   "#gallery"
+  },
+];
+
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */
 var CLUB_IMPACT = [
   { num: "100+",   label: "Schools Reached",  sub: "Montana public schools supported to date" },
