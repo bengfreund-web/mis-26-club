@@ -42,9 +42,9 @@ var CLUB_POSTS = [
   },
   {
     date:  "July 2026",
-    tag:   "Club News",
-    title: "Welcome to the 26 Club members' hub",
-    body:  "This is your private home for everything the Montana Institute of Sport is up to — impact updates, videos from the field, and a running newsletter of our progress. Bookmark it and check back often.",
+    tag:   "From the Club",
+    title: "Welcome home, brothers",
+    body:  "This is the private home of The 26 Club — your dispatches, the calendar of trips and events, the brotherhood in pictures, and the impact your seat makes possible. Bookmark it, and check back often.",
     image: "",
     link:  ""
   },
@@ -53,19 +53,19 @@ var CLUB_POSTS = [
 /* -------------------- WHAT YOU GET (membership benefits) -------------------- */
 var CLUB_BENEFITS = [
   {
-    icon:  "✈️",   // plane
-    title: "Exclusive Trips",
-    desc:  "Invitations to high-level professional sporting events around the world — recent trips have included USA vs Canada rugby in Los Angeles and a visit to Edinburgh with Scottish international players."
+    icon:  "✦",
+    title: "Extraordinary Trips",
+    desc:  "The club travels together to the world's great sporting occasions. Recent journeys: USA vs Canada rugby in Los Angeles and a weekend in Edinburgh with Scottish international players."
   },
   {
-    icon:  "⭐",          // star
-    title: "Once-in-a-lifetime Experiences",
-    desc:  "Access to athletes, coaches, and behind-the-scenes moments you can't buy — including time with the USA Rugby National Team Head Coach on the road."
+    icon:  "✦",
+    title: "Access You Can't Buy",
+    desc:  "Behind-the-ropes moments with athletes and coaches — including time on the road with the USA Rugby National Team Head Coach. The kind of access reserved for the few."
   },
   {
-    icon:  "🤝",   // handshake
-    title: "Members' Events & Community",
-    desc:  "A like-minded community of 26, brought together by a shared belief in getting Montana kids moving. Gatherings, dinners, and match days throughout the year."
+    icon:  "✦",
+    title: "A True Brotherhood",
+    desc:  "Twenty-six men who show up for one another. Dinners, match days, and gatherings through the year — a circle of trust that lasts well beyond any single season."
   },
 ];
 

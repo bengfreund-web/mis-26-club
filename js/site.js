@@ -100,7 +100,8 @@
     var c = document.getElementById("gallery-caption");
     if (t && CLUB_GALLERY.title) t.textContent = CLUB_GALLERY.title;
     if (c && CLUB_GALLERY.caption) c.textContent = CLUB_GALLERY.caption;
-    galleryItems = (CLUB_GALLERY.items || []).slice();
+    // Videos held back for now — photos only. (Video items stay in the data.)
+    galleryItems = (CLUB_GALLERY.items || []).filter(function (it) { return it.type === "photo"; });
     el.innerHTML = galleryItems.map(function (it, i) {
       if (it.type === "video") {
         var bg = it.poster ? '<img loading="lazy" src="' + esc(it.poster) + '" alt="">' : '';
