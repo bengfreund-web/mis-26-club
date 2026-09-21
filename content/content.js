@@ -127,3 +127,47 @@ var CLUB_VIDEOS = [
     poster: ""
   },
 ];
+
+/* -------------------- CHICAGO WEEKEND GALLERY (auto-generated) --------------------
+   Photos + clips from the Chicago trip. To remove an item, delete its line. */
+var CLUB_GALLERY = {
+  title: "Chicago Weekend",
+  caption: "Ireland vs New Zealand — a weekend with The 26 Club in Chicago.",
+  items: [
+    { type: "photo", src: "images/gallery/chicago/img_5660.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5661.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5662.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5664.jpg" },
+    { type: "video", src: "media/chicago/img_5666.mp4", poster: "images/gallery/chicago/posters/img_5666.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5674.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5675.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5675b.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5676.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5677.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5694.jpg" },
+    { type: "video", src: "media/chicago/img_5695.mp4", poster: "images/gallery/chicago/posters/img_5695.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5696.jpg" },
+    { type: "video", src: "media/chicago/img_5697.mp4", poster: "images/gallery/chicago/posters/img_5697.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5701.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5702.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5703.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5704.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5709.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
+    { type: "video", src: "media/chicago/img_5711.mp4", poster: "images/gallery/chicago/posters/img_5711.jpg" },
+    { type: "video", src: "media/chicago/img_5712.mp4", poster: "images/gallery/chicago/posters/img_5712.jpg" },
+    { type: "video", src: "media/chicago/img_5716.mp4", poster: "images/gallery/chicago/posters/img_5716.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5741.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5742.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5759.jpg" },
+    { type: "video", src: "media/chicago/img_5760.mp4", poster: "images/gallery/chicago/posters/img_5760.jpg" },
+    { type: "video", src: "media/chicago/img_5761.mp4", poster: "images/gallery/chicago/posters/img_5761.jpg" },
+    { type: "video", src: "media/chicago/img_5762.mp4", poster: "images/gallery/chicago/posters/img_5762.jpg" },
+    { type: "video", src: "media/chicago/img_5763.mp4", poster: "images/gallery/chicago/posters/img_5763.jpg" },
+    { type: "video", src: "media/chicago/img_5764.mp4", poster: "images/gallery/chicago/posters/img_5764.jpg" },
+    { type: "video", src: "media/chicago/img_5765.mp4", poster: "images/gallery/chicago/posters/img_5765.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5766.jpg" },
+    { type: "photo", src: "images/gallery/chicago/img_5778.jpg" },
+  ]
+};

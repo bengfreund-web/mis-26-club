@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body class="locked" id="top">
 
@@ -48,6 +48,7 @@
       <div class="navlinks">
         <a href="#about">About</a>
         <a href="#membership">What You Get</a>
+        <a href="#gallery">Gallery</a>
         <a href="#latest">Latest</a>
         <a href="#videos">Videos</a>
       </div>
@@ -154,8 +155,28 @@
     </div>
   </section>
 
+  <!-- CHICAGO WEEKEND GALLERY -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Trip Gallery</div>
+        <div class="h2" id="gallery-title">Chicago Weekend</div>
+        <p id="gallery-caption">Ireland vs New Zealand — a weekend with The 26 Club in Chicago.</p>
+      </div>
+      <div class="gallery reveal" id="gallery-grid"><!-- filled from content/content.js --></div>
+    </div>
+  </section>
+
+  <!-- Lightbox (shared) -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lb-close" type="button" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous">&#8249;</button>
+    <div class="lb-stage" id="lb-stage"></div>
+    <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next">&#8250;</button>
+  </div>
+
   <!-- LATEST / NEWSLETTER -->
-  <section class="section" id="latest">
+  <section class="section offwhite" id="latest">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Latest</div>
@@ -167,7 +188,7 @@
   </section>
 
   <!-- VIDEOS -->
-  <section class="section offwhite" id="videos">
+  <section class="section" id="videos">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">From the Field</div>
@@ -204,8 +225,8 @@
 
 </div>
 
-<script src="js/config.js"></script>
-<script src="content/content.js"></script>
-<script src="js/site.js" defer></script>
+<script src="js/config.js?v=5"></script>
+<script src="content/content.js?v=5"></script>
+<script src="js/site.js?v=5" defer></script>
 </body>
 </html>

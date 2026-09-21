@@ -6,6 +6,12 @@
 (function () {
   "use strict";
 
+  // Declared up top: unlock() (cached-session path below) calls buildSite ->
+  // renderGallery before top-level execution reaches these lines, so a `var x = []`
+  // initializer further down would reset them AFTER they were populated.
+  var galleryItems = [];
+  var lbIndex = -1;
+
   var STORAGE_KEY = "club26_unlocked";
   var body = document.body;
   var gate = document.getElementById("gate");
@@ -82,8 +88,74 @@
     renderList("events", typeof CLUB_EVENTS !== "undefined" ? CLUB_EVENTS : [], eventRow);
     renderPosts();
     renderVideos();
+    renderGallery();
     wireReveals();
   }
+
+  /* ------------------------------------------------------- GALLERY + LIGHTBOX */
+  function renderGallery() {
+    var el = document.getElementById("gallery-grid");
+    if (!el || typeof CLUB_GALLERY === "undefined") return;
+    var t = document.getElementById("gallery-title");
+    var c = document.getElementById("gallery-caption");
+    if (t && CLUB_GALLERY.title) t.textContent = CLUB_GALLERY.title;
+    if (c && CLUB_GALLERY.caption) c.textContent = CLUB_GALLERY.caption;
+    galleryItems = (CLUB_GALLERY.items || []).slice();
+    el.innerHTML = galleryItems.map(function (it, i) {
+      if (it.type === "video") {
+        var bg = it.poster ? '<img loading="lazy" src="' + esc(it.poster) + '" alt="">' : '';
+        return '<button class="g-item g-video" data-i="' + i + '" type="button" aria-label="Play video">' +
+          bg + '<span class="g-play"><span>&#9654;</span></span></button>';
+      }
+      return '<button class="g-item" data-i="' + i + '" type="button" aria-label="Open photo">' +
+        '<img loading="lazy" src="' + esc(it.src) + '" alt=""></button>';
+    }).join("");
+  }
+
+  function openLightbox(i) {
+    var lb = document.getElementById("lightbox");
+    var stage = document.getElementById("lb-stage");
+    if (!lb || !stage || !galleryItems[i]) return;
+    lbIndex = i;
+    var it = galleryItems[i];
+    if (it.type === "video") {
+      stage.innerHTML = '<video src="' + esc(it.src) + '" controls autoplay playsinline preload="metadata"' +
+        (it.poster ? ' poster="' + esc(it.poster) + '"' : '') + '></video>';
+    } else {
+      stage.innerHTML = '<img src="' + esc(it.src) + '" alt="">';
+    }
+    lb.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox() {
+    var lb = document.getElementById("lightbox");
+    var stage = document.getElementById("lb-stage");
+    if (lb) lb.hidden = true;
+    if (stage) stage.innerHTML = "";
+    document.body.style.overflow = "";
+    lbIndex = -1;
+  }
+  function stepLightbox(dir) {
+    if (lbIndex < 0 || !galleryItems.length) return;
+    var n = (lbIndex + dir + galleryItems.length) % galleryItems.length;
+    openLightbox(n);
+  }
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("#lb-close")) { closeLightbox(); return; }
+    if (e.target.closest("#lb-prev")) { e.stopPropagation(); stepLightbox(-1); return; }
+    if (e.target.closest("#lb-next")) { e.stopPropagation(); stepLightbox(1); return; }
+    var gitem = e.target.closest(".g-item");
+    if (gitem) { openLightbox(parseInt(gitem.getAttribute("data-i"), 10)); return; }
+    var lb = document.getElementById("lightbox");
+    if (lb && !lb.hidden && e.target === lb) closeLightbox(); // click backdrop
+  });
+  document.addEventListener("keydown", function (e) {
+    var lb = document.getElementById("lightbox");
+    if (!lb || lb.hidden) return;
+    if (e.key === "Escape") closeLightbox();
+    else if (e.key === "ArrowLeft") stepLightbox(-1);
+    else if (e.key === "ArrowRight") stepLightbox(1);
+  });
 
   function renderList(id, items, tpl) {
     var el = document.getElementById(id);
