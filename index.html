@@ -9,8 +9,8 @@
 <link rel="icon" href="images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body class="locked" id="top">
 
@@ -24,7 +24,7 @@
     <form class="gate-form" id="gate-form" autocomplete="off">
       <input type="password" id="gate-password" placeholder="Password" aria-label="Password" autofocus>
       <div class="gate-error" id="gate-error" role="alert"></div>
-      <button type="submit" class="btn btn-gold no-arrow">Enter</button>
+      <button type="submit" class="btn btn-yellow no-arrow">Enter</button>
     </form>
     <div class="gate-foot">Members Only &middot; Bozeman, Montana</div>
   </div>
@@ -51,12 +51,13 @@
     </nav>
   </header>
 
-  <!-- HERO — centered on the MIS logo -->
+  <!-- HERO — dark, cinematic -->
   <section class="mhero">
+    <img class="mhero-bg" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
     <div class="mhero-inner">
       <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
-      <h1>The 26 Club</h1>
-      <div class="tag">Montana Institute of Sport</div>
+      <div class="kicker">Members &middot; Montana Institute of Sport</div>
+      <h1>The <span class="y">26</span> Club</h1>
       <p>The members' home of the Institute — the field we're building, the trips we take together, and the fifty thousand Montana kids we're putting in motion.</p>
       <div class="hero-meta">
         <div><div class="n">26</div><div class="l">Members</div></div>
@@ -78,7 +79,7 @@
   </section>
 
   <!-- MISSION -->
-  <section class="section offwhite" id="mission">
+  <section class="section elev" id="mission">
     <div class="wrap">
       <div class="mission-split">
         <div class="mission-img reveal"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
@@ -87,7 +88,7 @@
           <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
           <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
           <p>The name comes from a simple statistic — only <strong>26%</strong> of young people get the daily activity they need. Every membership helps change it, and brings the members along for the ride.</p>
-          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-navy-outline">The wider mission</a>
+          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-line">The wider mission</a>
         </div>
       </div>
       <div class="impact-grid reveal" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
@@ -129,7 +130,7 @@
   </section>
 
   <!-- CALENDAR -->
-  <section class="section offwhite" id="calendar">
+  <section class="section elev" id="calendar">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="mono-label">Calendar</div>
@@ -161,7 +162,7 @@
   </div>
 
   <!-- DISPATCHES -->
-  <section class="section offwhite" id="latest">
+  <section class="section elev" id="latest">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="mono-label center">Dispatches</div>
@@ -198,8 +199,8 @@
 
 </div>
 
-<script src="js/config.js?v=8"></script>
-<script src="content/content.js?v=8"></script>
-<script src="js/site.js?v=8" defer></script>
+<script src="js/config.js?v=9"></script>
+<script src="content/content.js?v=9"></script>
+<script src="js/site.js?v=9" defer></script>
 </body>
 </html>
