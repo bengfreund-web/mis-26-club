@@ -10,9 +10,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body class="locked" id="top">
+
+<div class="grain" aria-hidden="true"></div>
 
 <!-- ============================ LOGIN GATE ============================ -->
 <div class="gate" id="gate">
@@ -61,6 +63,7 @@
         <div class="kicker">Montana Institute of Sport</div>
         <h1>The <span class="y">26</span> Club</h1>
       </div>
+      <div class="scroll-cue" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
     </section>
 
     <section class="section tight">
@@ -162,6 +165,14 @@
     <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next">&#8250;</button>
   </div>
 
+  <!-- MOBILE TAB BAR -->
+  <nav class="mobile-tabs" aria-label="Sections">
+    <a href="#featured" data-tab="featured">Featured</a>
+    <a href="#mission" data-tab="mission">Mission</a>
+    <a href="#calendar" data-tab="calendar">Calendar</a>
+    <a href="#gallery" data-tab="gallery">Gallery</a>
+  </nav>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap">
@@ -187,8 +198,8 @@
 
 </div>
 
-<script src="js/config.js?v=11"></script>
-<script src="content/content.js?v=11"></script>
-<script src="js/site.js?v=11" defer></script>
+<script src="js/config.js?v=12"></script>
+<script src="content/content.js?v=12"></script>
+<script src="js/site.js?v=12" defer></script>
 </body>
 </html>

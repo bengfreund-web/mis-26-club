@@ -108,7 +108,7 @@
       p.classList.toggle("active", on);
       if (on) active = p;
     });
-    document.querySelectorAll(".navlinks a[data-tab]").forEach(function (a) {
+    document.querySelectorAll(".navlinks a[data-tab], .mobile-tabs a[data-tab]").forEach(function (a) {
       a.classList.toggle("active", a.getAttribute("data-tab") === name);
     });
     window.scrollTo(0, 0);
@@ -133,8 +133,9 @@
   function renderFeatured() {
     var el = document.getElementById("featured-grid");
     if (!el || typeof CLUB_FEATURED === "undefined") return;
-    el.innerHTML = CLUB_FEATURED.map(function (f) {
+    el.innerHTML = CLUB_FEATURED.map(function (f, i) {
       var poster = f.poster ? '<img loading="lazy" src="' + esc(f.poster) + '" alt="">' : '';
+      var idx = '<span class="feat-index">' + ("0" + (i + 1)).slice(-2) + '</span>';
       var play = f.video ? '<span class="feat-play" aria-hidden="true">&#9654;</span>' : '';
       var cta = f.video ? '' : '<span class="go">Open</span>';
       var body = '<span class="feat-body">' +
@@ -143,9 +144,9 @@
           (f.desc ? '<span class="feat-desc">' + esc(f.desc) + '</span>' : '') + cta +
         '</span>';
       if (f.video) {
-        return '<button class="feat-item" type="button" data-video="' + esc(f.video) + '">' + poster + play + body + '</button>';
+        return '<button class="feat-item" type="button" data-video="' + esc(f.video) + '">' + poster + idx + play + body + '</button>';
       }
-      return '<a class="feat-item" href="' + esc(f.href || "#") + '">' + poster + body + '</a>';
+      return '<a class="feat-item" href="' + esc(f.href || "#") + '">' + poster + idx + body + '</a>';
     }).join("");
   }
 
