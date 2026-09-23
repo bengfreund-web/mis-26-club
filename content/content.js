@@ -41,6 +41,17 @@ var CLUB_FEATURED = [
     video:  "https://www.youtube.com/watch?v=gUOQj7AJZYA"   // YouTube — plays in the lightbox
   },
   {
+    kicker: "Trip Recap",
+    title:  "Chicago Weekend",
+    desc:   "Ireland vs New Zealand, on the road.",
+    poster: "images/gallery/chicago/img_5674.jpg",   // local fallback (YouTube thumb still processing)
+    video:  "https://www.youtube.com/watch?v=we0WXbpOuCU"
+  },
+];
+
+/* -------------------- FILMS (the Films tab — everything else) -------------------- */
+var CLUB_FILMS = [
+  {
     kicker: "Film",
     title:  "GNC Fly By",
     desc:   "A flight over the tournament.",
@@ -53,13 +64,6 @@ var CLUB_FEATURED = [
     desc:   "An evening with the club.",
     poster: "https://img.youtube.com/vi/7tqhkdoTkx8/maxresdefault.jpg",
     video:  "https://www.youtube.com/watch?v=7tqhkdoTkx8"
-  },
-  {
-    kicker: "Trip Recap",
-    title:  "Chicago Weekend",
-    desc:   "Ireland vs New Zealand, on the road.",
-    poster: "images/gallery/chicago/img_5674.jpg",   // local fallback (YouTube thumb unavailable)
-    video:  "https://www.youtube.com/watch?v=we0WXbpOuCU"
   },
 ];
 
@@ -177,46 +181,82 @@ var CLUB_VIDEOS = [
   },
 ];
 
-/* -------------------- CHICAGO WEEKEND GALLERY (auto-generated) --------------------
-   Photos + clips from the Chicago trip. To remove an item, delete its line. */
-var CLUB_GALLERY = {
-  title: "Chicago Weekend",
-  caption: "Ireland vs New Zealand — a weekend with The 26 Club in Chicago.",
-  items: [
+/* -------------------- TRIP GALLERIES (photos + clips per trip) -------------------- */
+var CLUB_GALLERIES = [
+  {
+    title: "Chicago Weekend",
+    caption: "Ireland vs New Zealand — a weekend on the road.",
+    items: [
     { type: "photo", src: "images/gallery/chicago/img_5660.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5661.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5662.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5664.jpg" },
-    { type: "video", src: "media/chicago/img_5666.mp4", poster: "images/gallery/chicago/posters/img_5666.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5674.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5675.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5675b.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5676.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5677.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5694.jpg" },
-    { type: "video", src: "media/chicago/img_5695.mp4", poster: "images/gallery/chicago/posters/img_5695.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5696.jpg" },
-    { type: "video", src: "media/chicago/img_5697.mp4", poster: "images/gallery/chicago/posters/img_5697.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5701.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5702.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5703.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5704.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5709.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
-    { type: "video", src: "media/chicago/img_5711.mp4", poster: "images/gallery/chicago/posters/img_5711.jpg" },
-    { type: "video", src: "media/chicago/img_5712.mp4", poster: "images/gallery/chicago/posters/img_5712.jpg" },
-    { type: "video", src: "media/chicago/img_5716.mp4", poster: "images/gallery/chicago/posters/img_5716.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5741.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5742.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5759.jpg" },
-    { type: "video", src: "media/chicago/img_5760.mp4", poster: "images/gallery/chicago/posters/img_5760.jpg" },
-    { type: "video", src: "media/chicago/img_5761.mp4", poster: "images/gallery/chicago/posters/img_5761.jpg" },
-    { type: "video", src: "media/chicago/img_5762.mp4", poster: "images/gallery/chicago/posters/img_5762.jpg" },
-    { type: "video", src: "media/chicago/img_5763.mp4", poster: "images/gallery/chicago/posters/img_5763.jpg" },
-    { type: "video", src: "media/chicago/img_5764.mp4", poster: "images/gallery/chicago/posters/img_5764.jpg" },
-    { type: "video", src: "media/chicago/img_5765.mp4", poster: "images/gallery/chicago/posters/img_5765.jpg" },
     { type: "photo", src: "images/gallery/chicago/img_5766.jpg" },
-    { type: "photo", src: "images/gallery/chicago/img_5778.jpg" },
-  ]
-};
+    { type: "photo", src: "images/gallery/chicago/img_5778.jpg" }
+    ]
+  },
+  {
+    title: "Baltimore",
+    caption: "Rugby's Greatest Rivalry — Springboks vs All Blacks at M&T Bank Stadium.",
+    items: [
+    { type: "photo", src: "images/gallery/baltimore/img_1938.jpg" },
+    { type: "photo", src: "images/gallery/baltimore/img_1956.jpg" },
+    { type: "photo", src: "images/gallery/baltimore/img_1982.jpg" },
+    { type: "video", src: "media/baltimore/img_2006.mp4", poster: "images/gallery/baltimore/posters/img_2006.jpg" },
+    { type: "photo", src: "images/gallery/baltimore/img_2010.jpg" },
+    { type: "photo", src: "images/gallery/baltimore/img_2015.jpg" }
+    ]
+  },
+  {
+    title: "Los Angeles",
+    caption: "USA vs Canada — a weekend in LA with the club.",
+    items: [
+    { type: "photo", src: "images/gallery/la/img_9539.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9545.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9546.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9547.jpg" },
+    { type: "video", src: "media/la/img_9548.mp4", poster: "images/gallery/la/posters/img_9548.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9549.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9551.jpg" },
+    { type: "video", src: "media/la/img_9552.mp4", poster: "images/gallery/la/posters/img_9552.jpg" },
+    { type: "video", src: "media/la/img_9553.mp4", poster: "images/gallery/la/posters/img_9553.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9554.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9555.jpg" },
+    { type: "video", src: "media/la/img_9558.mp4", poster: "images/gallery/la/posters/img_9558.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9561.jpg" },
+    { type: "video", src: "media/la/img_9562.mp4", poster: "images/gallery/la/posters/img_9562.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9565.jpg" },
+    { type: "video", src: "media/la/img_9566.mp4", poster: "images/gallery/la/posters/img_9566.jpg" },
+    { type: "video", src: "media/la/img_9568.mp4", poster: "images/gallery/la/posters/img_9568.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9574.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9577.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9579.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9580.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9581.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9582.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9583.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9584.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9586.jpg" },
+    { type: "video", src: "media/la/img_9587.mp4", poster: "images/gallery/la/posters/img_9587.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9588.jpg" },
+    { type: "photo", src: "images/gallery/la/img_9588b.jpg" }
+    ]
+  }
+];

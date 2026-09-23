@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body class="locked" id="top">
 
@@ -46,6 +46,7 @@
       </a>
       <div class="navlinks">
         <a href="#featured" data-tab="featured">Featured</a>
+        <a href="#films" data-tab="films">Films</a>
         <a href="#mission" data-tab="mission">Mission</a>
         <a href="#calendar" data-tab="calendar">Calendar</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
@@ -73,6 +74,19 @@
           <div class="h2">Watch, recap, revisit</div>
         </div>
         <div class="featured-grid reveal stagger" id="featured-grid"><!-- filled from content/content.js --></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: FILMS ===================== -->
+  <div class="tab-panel" id="films">
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">Films</div>
+          <div class="h2">More from the club</div>
+        </div>
+        <div class="featured-grid reveal stagger" id="films-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -143,16 +157,11 @@
     </section>
   </div>
 
-  <!-- ===================== TAB: GALLERY ===================== -->
+  <!-- ===================== TAB: GALLERY (multiple trips) ===================== -->
   <div class="tab-panel" id="gallery">
     <section class="section">
       <div class="wrap">
-        <div class="section-head center reveal">
-          <div class="mono-label center">Gallery</div>
-          <div class="h2" id="gallery-title">Chicago Weekend</div>
-          <p id="gallery-caption">Ireland vs New Zealand — a weekend on the road.</p>
-        </div>
-        <div class="gallery reveal stagger" id="gallery-grid"><!-- filled from content/content.js --></div>
+        <div id="galleries"><!-- one block per trip, filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -168,6 +177,7 @@
   <!-- MOBILE TAB BAR -->
   <nav class="mobile-tabs" aria-label="Sections">
     <a href="#featured" data-tab="featured">Featured</a>
+    <a href="#films" data-tab="films">Films</a>
     <a href="#mission" data-tab="mission">Mission</a>
     <a href="#calendar" data-tab="calendar">Calendar</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
@@ -183,6 +193,7 @@
         </div>
         <div class="footer-links">
           <a href="#featured" data-tab="featured">Featured</a>
+          <a href="#films" data-tab="films">Films</a>
           <a href="#mission" data-tab="mission">Mission</a>
           <a href="#calendar" data-tab="calendar">Calendar</a>
           <a href="#gallery" data-tab="gallery">Gallery</a>
@@ -198,8 +209,8 @@
 
 </div>
 
-<script src="js/config.js?v=16"></script>
-<script src="content/content.js?v=16"></script>
-<script src="js/site.js?v=16" defer></script>
+<script src="js/config.js?v=17"></script>
+<script src="content/content.js?v=17"></script>
+<script src="js/site.js?v=17" defer></script>
 </body>
 </html>

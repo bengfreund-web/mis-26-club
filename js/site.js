@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["featured", "mission", "calendar", "gallery"];
+  var TABS = ["featured", "films", "mission", "calendar", "gallery"];
   var tabsReady = false;
   var revealIO = null;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -131,9 +131,13 @@
 
   /* ------------------------------------------------------- FEATURED */
   function renderFeatured() {
-    var el = document.getElementById("featured-grid");
-    if (!el || typeof CLUB_FEATURED === "undefined") return;
-    el.innerHTML = CLUB_FEATURED.map(function (f, i) {
+    renderTiles("featured-grid", typeof CLUB_FEATURED !== "undefined" ? CLUB_FEATURED : []);
+    renderTiles("films-grid", typeof CLUB_FILMS !== "undefined" ? CLUB_FILMS : []);
+  }
+  function renderTiles(gridId, arr) {
+    var el = document.getElementById(gridId);
+    if (!el || !arr) return;
+    el.innerHTML = arr.map(function (f, i) {
       var poster = f.poster ? '<img loading="lazy" src="' + esc(f.poster) + '" alt="">' : '';
       var idx = '<span class="feat-index">' + ("0" + (i + 1)).slice(-2) + '</span>';
       var play = f.video ? '<span class="feat-play" aria-hidden="true">&#9654;</span>' : '';
@@ -152,23 +156,31 @@
   }
 
   /* ------------------------------------------------------- GALLERY + LIGHTBOX */
+  function galleryTile(it, i) {
+    if (it.type === "video") {
+      var bg = it.poster ? '<img loading="lazy" src="' + esc(it.poster) + '" alt="">' : '';
+      return '<button class="g-item g-video" data-i="' + i + '" type="button" aria-label="Play video">' +
+        bg + '<span class="g-play"><span>&#9654;</span></span></button>';
+    }
+    return '<button class="g-item" data-i="' + i + '" type="button" aria-label="Open photo">' +
+      '<img loading="lazy" src="' + esc(it.src) + '" alt=""></button>';
+  }
   function renderGallery() {
-    var el = document.getElementById("gallery-grid");
-    if (!el || typeof CLUB_GALLERY === "undefined") return;
-    var t = document.getElementById("gallery-title");
-    var c = document.getElementById("gallery-caption");
-    if (t && CLUB_GALLERY.title) t.textContent = CLUB_GALLERY.title;
-    if (c && CLUB_GALLERY.caption) c.textContent = CLUB_GALLERY.caption;
-    // Videos held back for now — photos only. (Video items stay in the data.)
-    galleryItems = (CLUB_GALLERY.items || []).filter(function (it) { return it.type === "photo"; });
-    el.innerHTML = galleryItems.map(function (it, i) {
-      if (it.type === "video") {
-        var bg = it.poster ? '<img loading="lazy" src="' + esc(it.poster) + '" alt="">' : '';
-        return '<button class="g-item g-video" data-i="' + i + '" type="button" aria-label="Play video">' +
-          bg + '<span class="g-play"><span>&#9654;</span></span></button>';
-      }
-      return '<button class="g-item" data-i="' + i + '" type="button" aria-label="Open photo">' +
-        '<img loading="lazy" src="' + esc(it.src) + '" alt=""></button>';
+    var host = document.getElementById("galleries");
+    if (!host || typeof CLUB_GALLERIES === "undefined") return;
+    galleryItems = [];
+    host.innerHTML = CLUB_GALLERIES.map(function (g) {
+      var tiles = (g.items || []).map(function (it) {
+        var i = galleryItems.length;
+        galleryItems.push(it);
+        return galleryTile(it, i);
+      }).join("");
+      return '<div class="gallery-block">' +
+        '<div class="section-head center reveal"><div class="mono-label center">Trip</div>' +
+          '<div class="h2">' + esc(g.title) + '</div>' +
+          (g.caption ? '<p>' + esc(g.caption) + '</p>' : '') + '</div>' +
+        '<div class="gallery reveal stagger">' + tiles + '</div>' +
+      '</div>';
     }).join("");
   }
 
