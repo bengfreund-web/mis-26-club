@@ -144,7 +144,7 @@
     var side = (i % 2 === 0) ? "left" : "right";
     var logos = (r.logos || []).map(function (name) {
       return '<span class="rm-logo" data-name="' + esc(name) + '">' +
-        '<img src="images/logos/' + esc(name) + '.png" alt="' + esc(name) + '" ' +
+        '<img src="images/logos/' + esc(name) + '.svg" alt="' + esc(name) + '" ' +
         'onerror="this.style.display=\'none\';this.parentNode.classList.add(\'ph\')"></span>';
     }).join("");
     return '<div class="rm-item ' + side + " " + esc(r.phase) + '">' +
