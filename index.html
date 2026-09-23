@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=10">
 </head>
 <body class="locked" id="top">
 
@@ -33,120 +33,125 @@
 <!-- ============================ THE SITE ============================ -->
 <div class="site">
 
-  <!-- NAV -->
+  <!-- NAV / TABS -->
   <header class="siteheader">
     <nav class="nav">
-      <a class="brand" href="#top">
+      <a class="brand" href="#featured" data-tab="featured">
         <img src="images/logo-icon.png" alt="Montana Institute of Sport">
         <span class="brand-name">The 26 Club</span>
       </a>
       <div class="navlinks">
-        <a href="#featured">Watch</a>
-        <a href="#mission">Mission</a>
-        <a href="#calendar">Calendar</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#latest">Dispatches</a>
+        <a href="#featured" data-tab="featured">Featured</a>
+        <a href="#mission" data-tab="mission">Mission</a>
+        <a href="#calendar" data-tab="calendar">Calendar</a>
+        <a href="#gallery" data-tab="gallery">Gallery</a>
       </div>
       <button class="signout" type="button" data-signout>Sign out</button>
     </nav>
   </header>
 
-  <!-- HERO — dark, cinematic -->
-  <section class="mhero">
-    <img class="mhero-bg" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
-    <div class="mhero-inner">
-      <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
-      <div class="kicker">Members &middot; Montana Institute of Sport</div>
-      <h1>The <span class="y">26</span> Club</h1>
-      <p>The members' home of the Institute — the field we're building, the trips we take together, and the fifty thousand Montana kids we're putting in motion.</p>
-    </div>
-  </section>
-
-  <!-- FEATURED — front and center -->
-  <section class="section tight" id="featured">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="mono-label center">Featured</div>
-        <div class="h2">Watch, recap, revisit</div>
+  <!-- ===================== TAB: FEATURED (home) ===================== -->
+  <div class="tab-panel" id="featured">
+    <section class="mhero">
+      <img class="mhero-bg" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
+      <div class="mhero-inner">
+        <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
+        <div class="kicker">Members &middot; Montana Institute of Sport</div>
+        <h1>The <span class="y">26</span> Club</h1>
+        <p>The members' home of the Institute — the field we're building, the trips we take together, and the fifty thousand Montana kids we're putting in motion.</p>
       </div>
-      <div class="featured-grid reveal" id="featured-grid"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MISSION -->
-  <section class="section elev" id="mission">
-    <div class="wrap">
-      <div class="mission-split">
-        <div class="mission-img reveal"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
-        <div class="mission-copy reveal">
-          <div class="mono-label">The Mission</div>
-          <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
-          <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
-          <p>The name comes from a simple statistic — only <strong>26%</strong> of young people get the daily activity they need. Every membership helps change it, and brings the members along for the ride.</p>
-          <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-line">The wider mission</a>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">Featured</div>
+          <div class="h2">Watch, recap, revisit</div>
         </div>
+        <div class="featured-grid reveal" id="featured-grid"><!-- filled from content/content.js --></div>
       </div>
-      <div class="impact-grid reveal" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- WHERE IT GOES -->
-  <section class="section" id="purpose">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="mono-label">Where It Goes</div>
-        <div class="h2">Every membership powers TRY Sport</div>
-        <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
-      </div>
-      <div class="problem-list reveal">
-        <div class="support-row">
-          <div class="ghost-num">01 /</div>
-          <div>
-            <div class="p-title">Schools need help</div>
-            <div class="p-body">Tight budgets have left physical education underfunded, and too many kids without the chance to fall in love with a sport.</div>
+  <!-- ===================== TAB: MISSION ===================== -->
+  <div class="tab-panel" id="mission">
+    <section class="section">
+      <div class="wrap">
+        <div class="mission-split">
+          <div class="mission-img reveal"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
+          <div class="mission-copy reveal">
+            <div class="mono-label">The Mission</div>
+            <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
+            <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
+            <p>The name comes from a simple statistic — only <strong>26%</strong> of young people get the daily activity they need. Every membership helps change it, and brings the members along for the ride.</p>
+            <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-line">The wider mission</a>
           </div>
         </div>
-        <div class="support-row">
-          <div class="ghost-num">02 /</div>
-          <div>
-            <div class="p-title">Teachers need backing</div>
-            <div class="p-body">We provide curriculum, equipment, clinics, and professional development so the people in the gym have what they need.</div>
+        <div class="impact-grid reveal" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="mono-label">Where It Goes</div>
+          <div class="h2">Every membership powers TRY Sport</div>
+          <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
+        </div>
+        <div class="problem-list reveal">
+          <div class="support-row">
+            <div class="ghost-num">01 /</div>
+            <div>
+              <div class="p-title">Schools need help</div>
+              <div class="p-body">Tight budgets have left physical education underfunded, and too many kids without the chance to fall in love with a sport.</div>
+            </div>
+          </div>
+          <div class="support-row">
+            <div class="ghost-num">02 /</div>
+            <div>
+              <div class="p-title">Teachers need backing</div>
+              <div class="p-body">We provide curriculum, equipment, clinics, and professional development so the people in the gym have what they need.</div>
+            </div>
+          </div>
+          <div class="support-row">
+            <div class="ghost-num">03 /</div>
+            <div>
+              <div class="p-title">Kids need to move</div>
+              <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport builds new sports and lasting habits into classrooms statewide.</div>
+            </div>
           </div>
         </div>
-        <div class="support-row">
-          <div class="ghost-num">03 /</div>
-          <div>
-            <div class="p-title">Kids need to move</div>
-            <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport builds new sports and lasting habits into classrooms statewide.</div>
-          </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: CALENDAR ===================== -->
+  <div class="tab-panel" id="calendar">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="mono-label">Calendar</div>
+          <div class="h2">Where we've been, where we're headed</div>
+          <p>Membership opens the door to the world's great sporting occasions — taken on together.</p>
         </div>
+        <div class="events reveal" id="events"><!-- filled from content/content.js --></div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- CALENDAR -->
-  <section class="section elev" id="calendar">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="mono-label">Calendar</div>
-        <div class="h2">Where we've been, where we're headed</div>
-        <p>Membership opens the door to the world's great sporting occasions — taken on together.</p>
+  <!-- ===================== TAB: GALLERY ===================== -->
+  <div class="tab-panel" id="gallery">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">Gallery</div>
+          <div class="h2" id="gallery-title">Chicago Weekend</div>
+          <p id="gallery-caption">Ireland vs New Zealand — a weekend on the road.</p>
+        </div>
+        <div class="gallery reveal" id="gallery-grid"><!-- filled from content/content.js --></div>
       </div>
-      <div class="events reveal" id="events"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="section" id="gallery">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="mono-label center">Gallery</div>
-        <div class="h2" id="gallery-title">Chicago Weekend</div>
-        <p id="gallery-caption">Ireland vs New Zealand — a weekend on the road.</p>
-      </div>
-      <div class="gallery reveal" id="gallery-grid"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- Lightbox (shared) -->
   <div class="lightbox" id="lightbox" hidden>
@@ -155,18 +160,6 @@
     <div class="lb-stage" id="lb-stage"></div>
     <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next">&#8250;</button>
   </div>
-
-  <!-- DISPATCHES -->
-  <section class="section elev" id="latest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="mono-label center">Dispatches</div>
-        <div class="h2">Notes from the club</div>
-        <p>The newest first — what we've been up to, on the field and off.</p>
-      </div>
-      <div class="feed reveal" id="feed"><!-- filled from content/content.js --></div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -177,25 +170,24 @@
           <span>The 26 Club</span>
         </div>
         <div class="footer-links">
-          <a href="#featured">Watch</a>
-          <a href="#mission">Mission</a>
-          <a href="#calendar">Calendar</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#latest">Dispatches</a>
+          <a href="#featured" data-tab="featured">Featured</a>
+          <a href="#mission" data-tab="mission">Mission</a>
+          <a href="#calendar" data-tab="calendar">Calendar</a>
+          <a href="#gallery" data-tab="gallery">Gallery</a>
           <a href="#" data-signout>Sign out</a>
         </div>
       </div>
       <div class="footer-bottom">
         <span>&copy; 2026 Montana Institute of Sport</span>
-        <a class="back-to-top" href="#top">Back to top &#8593;</a>
+        <button class="back-to-top" type="button" data-top>Back to top &#8593;</button>
       </div>
     </div>
   </footer>
 
 </div>
 
-<script src="js/config.js?v=9"></script>
-<script src="content/content.js?v=9"></script>
-<script src="js/site.js?v=9" defer></script>
+<script src="js/config.js?v=10"></script>
+<script src="content/content.js?v=10"></script>
+<script src="js/site.js?v=10" defer></script>
 </body>
 </html>

@@ -11,6 +11,8 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
+  var TABS = ["featured", "mission", "calendar", "gallery"];
+  var tabsReady = false;
 
   var STORAGE_KEY = "club26_unlocked";
   var body = document.body;
@@ -83,6 +85,7 @@
 
   /* ------------------------------------------------------- RENDER SITE */
   function buildSite() {
+    initTabs();
     renderFeatured();
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
     renderList("benefit-grid", typeof CLUB_BENEFITS !== "undefined" ? CLUB_BENEFITS : [], benefitCard);
@@ -92,6 +95,32 @@
     renderGallery();
     wireReveals();
   }
+
+  /* ------------------------------------------------------- TABS */
+  function showTab(name) {
+    if (TABS.indexOf(name) === -1) name = "featured";
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+      p.classList.toggle("active", p.id === name);
+    });
+    document.querySelectorAll(".navlinks a[data-tab]").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-tab") === name);
+    });
+    window.scrollTo(0, 0);
+  }
+  function tabFromHash() {
+    showTab((location.hash || "").replace("#", "") || "featured");
+  }
+  function initTabs() {
+    if (tabsReady) { tabFromHash(); return; }
+    tabsReady = true;
+    window.addEventListener("hashchange", tabFromHash);
+    tabFromHash();
+  }
+
+  /* Scroll to top (footer control) without changing the tab */
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-top]")) { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  });
 
   /* ------------------------------------------------------- FEATURED */
   function renderFeatured() {

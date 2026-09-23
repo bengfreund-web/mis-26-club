@@ -97,6 +97,11 @@ body.locked .site{display:none;}
 .navlinks{display:flex; align-items:center; gap:30px;}
 .navlinks a{font-family:var(--mono); color:var(--muted); font-size:11px; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding-bottom:4px; border-bottom:1px solid transparent; cursor:pointer;}
 .navlinks a:hover{color:var(--ink); border-bottom-color:var(--yellow);}
+.navlinks a.active{color:var(--ink); border-bottom-color:var(--yellow);}
+
+/* Tabs */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 .signout{background:none; border:1px solid var(--line-2); color:var(--muted); font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; padding:9px 16px; border-radius:var(--radius);}
 .signout:hover{color:var(--ink); border-color:var(--yellow);}
 
