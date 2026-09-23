@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=10">
+<link rel="stylesheet" href="css/style.css?v=11">
 </head>
 <body class="locked" id="top">
 
@@ -32,6 +32,8 @@
 
 <!-- ============================ THE SITE ============================ -->
 <div class="site">
+
+  <div class="scroll-progress" id="scroll-progress"></div>
 
   <!-- NAV / TABS -->
   <header class="siteheader">
@@ -67,7 +69,7 @@
           <div class="mono-label center">Featured</div>
           <div class="h2">Watch, recap, revisit</div>
         </div>
-        <div class="featured-grid reveal" id="featured-grid"><!-- filled from content/content.js --></div>
+        <div class="featured-grid reveal stagger" id="featured-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -77,8 +79,8 @@
     <section class="section">
       <div class="wrap">
         <div class="mission-split">
-          <div class="mission-img reveal"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
-          <div class="mission-copy reveal">
+          <div class="mission-img reveal reveal-l reveal-img"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
+          <div class="mission-copy reveal reveal-r">
             <div class="mono-label">The Mission</div>
             <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
             <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
@@ -86,7 +88,7 @@
             <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-line">The wider mission</a>
           </div>
         </div>
-        <div class="impact-grid reveal" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
+        <div class="impact-grid reveal stagger" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
       </div>
     </section>
 
@@ -97,7 +99,7 @@
           <div class="h2">Every membership powers TRY Sport</div>
           <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
         </div>
-        <div class="problem-list reveal">
+        <div class="problem-list reveal stagger">
           <div class="support-row">
             <div class="ghost-num">01 /</div>
             <div>
@@ -133,7 +135,7 @@
           <div class="h2">Where we've been, where we're headed</div>
           <p>Membership opens the door to the world's great sporting occasions — taken on together.</p>
         </div>
-        <div class="events reveal" id="events"><!-- filled from content/content.js --></div>
+        <div class="events reveal stagger" id="events"><!-- filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -147,7 +149,7 @@
           <div class="h2" id="gallery-title">Chicago Weekend</div>
           <p id="gallery-caption">Ireland vs New Zealand — a weekend on the road.</p>
         </div>
-        <div class="gallery reveal" id="gallery-grid"><!-- filled from content/content.js --></div>
+        <div class="gallery reveal stagger" id="gallery-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -185,8 +187,8 @@
 
 </div>
 
-<script src="js/config.js?v=10"></script>
-<script src="content/content.js?v=10"></script>
-<script src="js/site.js?v=10" defer></script>
+<script src="js/config.js?v=11"></script>
+<script src="content/content.js?v=11"></script>
+<script src="js/site.js?v=11" defer></script>
 </body>
 </html>
