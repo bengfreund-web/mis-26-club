@@ -14,6 +14,33 @@
    The four impact numbers at the top of the page live in CLUB_IMPACT.
    ========================================================================== */
 
+/* -------------------- HOMEPAGE HERO MONTAGE (loops) --------------------
+   Quick-cut cinematic loop, city to city. Each segment plays from "start"
+   for "seconds", then cuts to the next and loops. Uses existing clips. */
+var CLUB_HERO = {
+  segments: [
+    { src: "media/la/img_9587.mp4",        city: "Los Angeles", start: 1, seconds: 6 },
+    { src: "media/chicago/img_5697.mp4",   city: "Chicago",     start: 1, seconds: 5 },
+    { src: "media/chicago/img_5760.mp4",   city: "Chicago",     start: 1, seconds: 5 },
+    { src: "media/baltimore/img_2006.mp4", city: "Baltimore",   start: 1, seconds: 6 }
+  ]
+};
+
+/* -------------------- WHAT'S NEXT — ROADMAP --------------------
+   A timeline: past above "now", future below. Each stop shows date + logo(s).
+   Drop real logo files in images/logos/ named to match "logos" below
+   (e.g. england.png); until then a labelled placeholder shows.
+   "phase" is "past" or "future". */
+var CLUB_ROADMAP = [
+  { when: "2025",          place: "Chicago",     title: "Ireland vs New Zealand",     logos: ["ireland","all-blacks"],      phase: "past" },
+  { when: "2025",          place: "Baltimore",   title: "Springboks vs All Blacks",   logos: ["springboks","all-blacks"],   phase: "past" },
+  { when: "2025",          place: "Los Angeles", title: "USA vs Canada",              logos: ["usa","canada"],              phase: "past" },
+  { when: "Nov 2026",      place: "London",      title: "Wallabies vs England",       logos: ["wallabies","england"],       phase: "future" },
+  { when: "Mar / Apr 2027", place: "",           title: "Six Nations",                logos: ["six-nations"],               phase: "future" },
+  { when: "Nov 2027",      place: "",            title: "Rugby World Cup",            logos: ["rugby-world-cup"],           phase: "future" },
+  { when: "Jul 2028",      place: "",            title: "Olympic Games",              logos: ["olympics"],                  phase: "future" }
+];
+
 /* -------------------- FEATURED (front and center) -------------------- */
 /* Each tile either plays a "video" in the lightbox, or links via "href".
    "wide" makes a tile span two columns. Edit freely. */

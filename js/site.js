@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["featured", "films", "mission", "calendar", "gallery"];
+  var TABS = ["home", "whatsnext", "gallery"];
   var tabsReady = false;
   var revealIO = null;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -87,16 +87,85 @@
 
   /* ------------------------------------------------------- RENDER SITE */
   function buildSite() {
-    renderFeatured();
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
-    renderList("benefit-grid", typeof CLUB_BENEFITS !== "undefined" ? CLUB_BENEFITS : [], benefitCard);
-    renderList("events", typeof CLUB_EVENTS !== "undefined" ? CLUB_EVENTS : [], eventRow);
-    renderPosts();
-    renderVideos();
+    renderRoadmap();
     renderGallery();
     initReveals();
     initScrollFx();
+    initHero();
     initTabs();
+  }
+
+  /* ------------------------------------------------------- HERO MONTAGE */
+  function initHero() {
+    var v = document.getElementById("hero-video");
+    var cityEl = document.getElementById("hero-city");
+    var fb = document.getElementById("hero-fallback");
+    if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.segments || !CLUB_HERO.segments.length) return;
+    if (reduceMotion) return; // respect reduced motion: keep the still fallback
+    var segs = CLUB_HERO.segments, i = 0, timer = null;
+    function load(idx) {
+      var s = segs[idx];
+      v.classList.remove("show");
+      if (cityEl) cityEl.classList.remove("show");
+      v.src = s.src;
+      v.load();
+    }
+    v.addEventListener("loadedmetadata", function () {
+      var s = segs[i];
+      try { v.currentTime = s.start || 0; } catch (e) {}
+    });
+    v.addEventListener("playing", function () {
+      v.classList.add("show");
+      if (fb) fb.classList.add("hide");
+      if (cityEl) { cityEl.textContent = segs[i].city || ""; cityEl.classList.add("show"); }
+      clearTimeout(timer);
+      timer = setTimeout(next, (segs[i].seconds || 6) * 1000);
+    });
+    v.addEventListener("ended", next);
+    v.addEventListener("error", next);
+    function next() {
+      clearTimeout(timer);
+      i = (i + 1) % segs.length;
+      load(i);
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    load(0);
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    // If autoplay is blocked, kick it off on the first interaction.
+    var kick = function () { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); };
+    ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+      window.addEventListener(ev, kick, { once: true, passive: true });
+    });
+  }
+
+  /* ------------------------------------------------------- ROADMAP */
+  function rmItem(r, i) {
+    var side = (i % 2 === 0) ? "left" : "right";
+    var logos = (r.logos || []).map(function (name) {
+      return '<span class="rm-logo" data-name="' + esc(name) + '">' +
+        '<img src="images/logos/' + esc(name) + '.png" alt="' + esc(name) + '" ' +
+        'onerror="this.style.display=\'none\';this.parentNode.classList.add(\'ph\')"></span>';
+    }).join("");
+    return '<div class="rm-item ' + side + " " + esc(r.phase) + '">' +
+      '<span class="rm-node"></span>' +
+      '<div class="rm-card">' +
+        '<div class="rm-when">' + esc(r.when) + (r.place ? ' &middot; ' + esc(r.place) : "") + '</div>' +
+        (logos ? '<div class="rm-logos">' + logos + '</div>' : '') +
+        '<div class="rm-title">' + esc(r.title) + '</div>' +
+      '</div>' +
+    '</div>';
+  }
+  function renderRoadmap() {
+    var el = document.getElementById("roadmap");
+    if (!el || typeof CLUB_ROADMAP === "undefined") return;
+    var past = CLUB_ROADMAP.filter(function (r) { return r.phase === "past"; });
+    var future = CLUB_ROADMAP.filter(function (r) { return r.phase !== "past"; });
+    var html = "", idx = 0;
+    past.forEach(function (r) { html += rmItem(r, idx++); });
+    html += '<div class="rm-now" id="rm-now"><span class="rm-now-dot"></span><span class="rm-now-label">You are here</span></div>';
+    future.forEach(function (r) { html += rmItem(r, idx++); });
+    el.innerHTML = html;
   }
 
   /* ------------------------------------------------------- TABS */
@@ -111,7 +180,20 @@
     document.querySelectorAll(".navlinks a[data-tab], .mobile-tabs a[data-tab]").forEach(function (a) {
       a.classList.toggle("active", a.getAttribute("data-tab") === name);
     });
-    window.scrollTo(0, 0);
+    if (name === "whatsnext") {
+      // land "frozen" on NOW — history above (scroll up), future below (scroll down).
+      // Defer past the browser's native hash jump with a double rAF.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          var now = document.getElementById("rm-now");
+          if (!now) { window.scrollTo(0, 0); return; }
+          var y = now.getBoundingClientRect().top + window.scrollY - 120;
+          window.scrollTo(0, Math.max(0, y));
+        });
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
     rearmReveals(active);
   }
   function tabFromHash() {

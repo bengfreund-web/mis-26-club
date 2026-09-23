@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=19">
+<link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body class="locked" id="top">
 
@@ -40,79 +40,53 @@
   <!-- NAV / TABS -->
   <header class="siteheader">
     <nav class="nav">
-      <a class="brand" href="#featured" data-tab="featured">
+      <a class="brand" href="#home" data-tab="home">
         <img src="images/logo-icon.png" alt="Montana Institute of Sport">
         <span class="brand-name">The 26 Club</span>
       </a>
       <div class="navlinks">
-        <a href="#featured" data-tab="featured">Featured</a>
-        <a href="#films" data-tab="films">Films</a>
-        <a href="#mission" data-tab="mission">Mission</a>
-        <a href="#calendar" data-tab="calendar">Calendar</a>
+        <a href="#home" data-tab="home">Home</a>
+        <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
       </div>
       <button class="signout" type="button" data-signout>Sign out</button>
     </nav>
   </header>
 
-  <!-- ===================== TAB: FEATURED (home) ===================== -->
-  <div class="tab-panel" id="featured">
-    <section class="mhero">
-      <img class="mhero-bg" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
+  <!-- ===================== TAB: HOME ===================== -->
+  <div class="tab-panel" id="home">
+
+    <!-- Cinematic looping video hero -->
+    <section class="mhero" id="hero">
+      <video class="hero-video" id="hero-video" muted playsinline preload="auto" aria-hidden="true"></video>
+      <img class="hero-fallback" id="hero-fallback" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
+      <div class="hero-overlay"></div>
       <div class="mhero-inner">
         <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
         <div class="kicker">Montana Institute of Sport</div>
         <h1>The <span class="y">26</span> Club</h1>
+        <div class="hero-city" id="hero-city" aria-hidden="true"></div>
       </div>
       <div class="scroll-cue" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
     </section>
 
-    <section class="section tight">
+    <!-- IMPACT — what we've done -->
+    <section class="section" id="impact">
       <div class="wrap">
         <div class="section-head center reveal">
-          <div class="mono-label center">Featured</div>
-          <div class="h2">Watch, recap, revisit</div>
+          <div class="mono-label center">Our Impact</div>
+          <div class="h2">What we've built together</div>
+          <p>The 26 Club is the inner circle of the Montana Institute of Sport — members whose support puts kids in motion across the state.</p>
         </div>
-        <div class="featured-grid reveal stagger" id="featured-grid"><!-- filled from content/content.js --></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ===================== TAB: FILMS ===================== -->
-  <div class="tab-panel" id="films">
-    <section class="section tight">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <div class="mono-label center">Films</div>
-          <div class="h2">More from the club</div>
-        </div>
-        <div class="featured-grid reveal stagger" id="films-grid"><!-- filled from content/content.js --></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ===================== TAB: MISSION ===================== -->
-  <div class="tab-panel" id="mission">
-    <section class="section">
-      <div class="wrap">
-        <div class="mission-split">
-          <div class="mission-img reveal reveal-l reveal-img"><img src="images/team-huddle.jpg" alt="On the field with the Montana Institute of Sport"></div>
-          <div class="mission-copy reveal reveal-r">
-            <div class="mono-label">The Mission</div>
-            <h2 class="h2" style="margin:16px 0 22px;">Better young Montanans through physical education</h2>
-            <p>The Montana Institute of Sport is a <strong>501(c)(3) nonprofit</strong> improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. The 26 Club is its inner circle: a small group of members who put their energy and generosity behind that work.</p>
-            <p>The name comes from a simple statistic — only <strong>26%</strong> of young people get the daily activity they need. Every membership helps change it, and brings the members along for the ride.</p>
-            <a href="https://www.montanainstituteofsport.org" target="_blank" rel="noopener" class="btn btn-line">The wider mission</a>
-          </div>
-        </div>
-        <div class="impact-grid reveal stagger" id="impact-grid" style="margin-top:70px;"><!-- filled from content/content.js --></div>
+        <div class="impact-grid reveal stagger" id="impact-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
 
-    <section class="section" style="padding-top:0;">
+    <!-- WHERE YOUR DOLLARS GO -->
+    <section class="section elev" id="dollars">
       <div class="wrap">
         <div class="section-head reveal">
-          <div class="mono-label">Where It Goes</div>
+          <div class="mono-label">Where Your Dollars Go</div>
           <div class="h2">Every membership powers TRY Sport</div>
           <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
         </div>
@@ -120,22 +94,22 @@
           <div class="support-row">
             <div class="ghost-num">01 /</div>
             <div>
-              <div class="p-title">Schools need help</div>
-              <div class="p-body">Tight budgets have left physical education underfunded, and too many kids without the chance to fall in love with a sport.</div>
+              <div class="p-title">Into the schools</div>
+              <div class="p-body">Curriculum, equipment, and on-site clinics land directly in Montana's public schools — where physical education has been underfunded for years.</div>
             </div>
           </div>
           <div class="support-row">
             <div class="ghost-num">02 /</div>
             <div>
-              <div class="p-title">Teachers need backing</div>
-              <div class="p-body">We provide curriculum, equipment, clinics, and professional development so the people in the gym have what they need.</div>
+              <div class="p-title">Behind the teachers</div>
+              <div class="p-body">Teaching grants and professional development back the people in the gym, so the impact outlasts any single season.</div>
             </div>
           </div>
           <div class="support-row">
             <div class="ghost-num">03 /</div>
             <div>
-              <div class="p-title">Kids need to move</div>
-              <div class="p-body">With only 26% of students meeting daily activity guidelines, TRY Sport builds new sports and lasting habits into classrooms statewide.</div>
+              <div class="p-title">Onto the kids</div>
+              <div class="p-body">Only 26% of young people get the daily activity they need. Every membership helps move that number — one classroom at a time.</div>
             </div>
           </div>
         </div>
@@ -143,16 +117,16 @@
     </section>
   </div>
 
-  <!-- ===================== TAB: CALENDAR ===================== -->
-  <div class="tab-panel" id="calendar">
+  <!-- ===================== TAB: WHAT'S NEXT (roadmap) ===================== -->
+  <div class="tab-panel" id="whatsnext">
     <section class="section">
       <div class="wrap">
-        <div class="section-head reveal">
-          <div class="mono-label">Calendar</div>
-          <div class="h2">Where we've been, where we're headed</div>
-          <p>Membership opens the door to the world's great sporting occasions — taken on together.</p>
+        <div class="section-head center reveal">
+          <div class="mono-label center">What's Next</div>
+          <div class="h2">The road ahead</div>
+          <p>Where the club has been, and the run of the world's great sporting occasions still to come.</p>
         </div>
-        <div class="events reveal stagger" id="events"><!-- filled from content/content.js --></div>
+        <div class="roadmap" id="roadmap"><!-- filled from content/content.js --></div>
       </div>
     </section>
   </div>
@@ -176,10 +150,8 @@
 
   <!-- MOBILE TAB BAR -->
   <nav class="mobile-tabs" aria-label="Sections">
-    <a href="#featured" data-tab="featured">Featured</a>
-    <a href="#films" data-tab="films">Films</a>
-    <a href="#mission" data-tab="mission">Mission</a>
-    <a href="#calendar" data-tab="calendar">Calendar</a>
+    <a href="#home" data-tab="home">Home</a>
+    <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
   </nav>
 
@@ -192,10 +164,8 @@
           <span>The 26 Club</span>
         </div>
         <div class="footer-links">
-          <a href="#featured" data-tab="featured">Featured</a>
-          <a href="#films" data-tab="films">Films</a>
-          <a href="#mission" data-tab="mission">Mission</a>
-          <a href="#calendar" data-tab="calendar">Calendar</a>
+          <a href="#home" data-tab="home">Home</a>
+          <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
           <a href="#gallery" data-tab="gallery">Gallery</a>
           <a href="#" data-signout>Sign out</a>
         </div>
@@ -209,8 +179,8 @@
 
 </div>
 
-<script src="js/config.js?v=19"></script>
-<script src="content/content.js?v=19"></script>
-<script src="js/site.js?v=19" defer></script>
+<script src="js/config.js?v=20"></script>
+<script src="content/content.js?v=20"></script>
+<script src="js/site.js?v=20" defer></script>
 </body>
 </html>
