@@ -48,11 +48,11 @@ var CLUB_FEATURED = [
     video:  "https://www.youtube.com/watch?v=J6nZikzYOsY"
   },
   {
-    kicker: "Gallery",
-    title:  "Chicago Weekend",
-    desc:   "Ireland vs New Zealand — on the road.",
-    poster: "images/gallery/chicago/img_5660.jpg",
-    href:   "#gallery"
+    kicker: "Members' Night",
+    title:  "Wine Dinner",
+    desc:   "An evening with the club.",
+    poster: "https://img.youtube.com/vi/7tqhkdoTkx8/maxresdefault.jpg",
+    video:  "https://www.youtube.com/watch?v=7tqhkdoTkx8"
   },
 ];
 

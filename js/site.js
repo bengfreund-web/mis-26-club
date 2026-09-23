@@ -69,7 +69,7 @@
   }
   function parseVideo(url) {
     if (!url) return null;
-    var m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+    var m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
     if (m) return { provider: "youtube", id: m[1] };
     m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
     if (m) return { provider: "vimeo", id: m[1] };
