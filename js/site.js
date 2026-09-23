@@ -15,6 +15,9 @@
   var tabsReady = false;
   var revealIO = null;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // We drive scroll ourselves (tab switches, roadmap "now") — stop the browser
+  // from restoring/overriding scroll on reload or hash navigation.
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
 
   var STORAGE_KEY = "club26_unlocked";
   var body = document.body;
@@ -147,7 +150,7 @@
         '<img src="images/logos/' + esc(name) + '.svg" alt="' + esc(name) + '" ' +
         'onerror="this.style.display=\'none\';this.parentNode.classList.add(\'ph\')"></span>';
     }).join("");
-    return '<div class="rm-item ' + side + " " + esc(r.phase) + '">' +
+    return '<div class="rm-item ' + side + " " + esc(r.phase) + " reveal " + (side === "left" ? "reveal-l" : "reveal-r") + '">' +
       '<span class="rm-node"></span>' +
       '<div class="rm-card">' +
         '<div class="rm-when">' + esc(r.when) + (r.place ? ' &middot; ' + esc(r.place) : "") + '</div>' +

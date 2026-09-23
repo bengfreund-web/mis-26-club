@@ -283,6 +283,7 @@ body.locked .site{display:none;}
 .rm-item.left .rm-node{right:-7px;}
 .rm-item.right .rm-node{left:-7px;}
 .rm-item.past .rm-node{border-color:var(--line-2);}
+.rm-item.future .rm-node{background:var(--yellow); border-color:var(--yellow); box-shadow:0 0 12px rgba(242,194,48,0.4);}
 .rm-card{display:inline-block; text-align:left; background:var(--bg-3); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; max-width:360px; transition:border-color .25s var(--ease), transform .25s var(--ease);}
 .rm-item:hover .rm-card{border-color:var(--line-2); transform:translateY(-2px);}
 .rm-item.past .rm-card{opacity:0.7;}
