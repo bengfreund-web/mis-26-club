@@ -282,6 +282,11 @@ body.locked .site{display:none;}
 .rm-node{position:absolute; top:32px; width:14px; height:14px; border-radius:50%; background:var(--bg); border:2px solid var(--yellow); z-index:2;}
 .rm-item.left .rm-node{right:-7px;}
 .rm-item.right .rm-node{left:-7px;}
+/* connector stub from the centre line to each card */
+.rm-item::after{content:""; position:absolute; top:38px; width:34px; height:2px; background:var(--line-2);}
+.rm-item.left::after{right:0;}
+.rm-item.right::after{left:0;}
+.rm-item.future::after{background:var(--yellow); opacity:.5;}
 .rm-item.past .rm-node{border-color:var(--line-2);}
 .rm-item.future .rm-node{background:var(--yellow); border-color:var(--yellow); box-shadow:0 0 12px rgba(242,194,48,0.4);}
 .rm-card{display:inline-block; text-align:left; background:var(--bg-3); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; max-width:360px; transition:border-color .25s var(--ease), transform .25s var(--ease);}
@@ -337,6 +342,7 @@ body.locked .site{display:none;}
   .rm-item, .rm-item.left, .rm-item.right{width:100%; left:0; text-align:left; padding:16px 0 16px 52px;}
   .rm-item.left .rm-logos{justify-content:flex-start;}
   .rm-item.left .rm-node, .rm-item.right .rm-node{left:13px; right:auto;}
+  .rm-item::after{display:none;}
   .rm-now{align-items:flex-start; padding-left:8px;}
   .hero-meta > div{padding:10px 22px;}
   .hero-meta > div + div::before{display:none;}
