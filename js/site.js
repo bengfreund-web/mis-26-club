@@ -143,10 +143,11 @@
           '<span class="feat-title">' + esc(f.title || "") + '</span>' +
           (f.desc ? '<span class="feat-desc">' + esc(f.desc) + '</span>' : '') + cta +
         '</span>';
+      var cls = "feat-item" + (f.primary ? " feat-primary" : "");
       if (f.video) {
-        return '<button class="feat-item" type="button" data-video="' + esc(f.video) + '">' + poster + idx + play + body + '</button>';
+        return '<button class="' + cls + '" type="button" data-video="' + esc(f.video) + '">' + poster + idx + play + body + '</button>';
       }
-      return '<a class="feat-item" href="' + esc(f.href || "#") + '">' + poster + idx + body + '</a>';
+      return '<a class="' + cls + '" href="' + esc(f.href || "#") + '">' + poster + idx + body + '</a>';
     }).join("");
   }
 
@@ -199,8 +200,13 @@
   function openSingleVideo(src, poster) {
     lbIndex = -1;
     setNav(false);
-    showStage('<video src="' + esc(src) + '" controls autoplay playsinline preload="metadata"' +
-      (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>');
+    var parsed = parseVideo(src); // YouTube / Vimeo?
+    if (parsed) {
+      showStage('<iframe src="' + embedSrc(parsed) + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>');
+    } else {
+      showStage('<video src="' + esc(src) + '" controls autoplay playsinline preload="metadata"' +
+        (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>');
+    }
   }
   function closeLightbox() {
     var lb = document.getElementById("lightbox");

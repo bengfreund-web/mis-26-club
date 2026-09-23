@@ -19,31 +19,39 @@
    "wide" makes a tile span two columns. Edit freely. */
 var CLUB_FEATURED = [
   {
+    kicker:  "The Film",
+    title:   "Montana Institute of Sport",
+    desc:    "Who we are, and the work behind The 26 Club.",
+    poster:  "https://img.youtube.com/vi/mIXb6OomPBo/maxresdefault.jpg",
+    video:   "https://www.youtube.com/watch?v=mIXb6OomPBo",
+    primary: true
+  },
+  {
     kicker: "Film",
     title:  "The New Field",
     desc:   "A first look at our new turf.",
     poster: "images/featured/new-field.jpg",
-    video:  "media/mis-new-field.mp4",
-  },
-  {
-    kicker: "Trip Recap",
-    title:  "Chicago Weekend",
-    desc:   "Ireland vs New Zealand.",
-    poster: "images/gallery/chicago/img_5660.jpg",
-    href:   "#gallery"
+    video:  "media/mis-new-field.mp4"        // self-hosted file
   },
   {
     kicker: "Recap",
     title:  "Great Northwest Challenge",
-    desc:   "2026 highlights.",
+    desc:   "2026 tournament recap.",
     poster: "images/featured/gnc.jpg",
-    video:  "media/gnc-2026-reel.mp4"
+    video:  "https://www.youtube.com/watch?v=gUOQj7AJZYA"   // YouTube — plays in the lightbox
+  },
+  {
+    kicker: "Film",
+    title:  "GNC Fly By",
+    desc:   "A flight over the tournament.",
+    poster: "https://img.youtube.com/vi/J6nZikzYOsY/maxresdefault.jpg",
+    video:  "https://www.youtube.com/watch?v=J6nZikzYOsY"
   },
   {
     kicker: "Gallery",
-    title:  "From the Road",
-    desc:   "Moments from the weekend.",
-    poster: "images/gallery/chicago/img_5674.jpg",
+    title:  "Chicago Weekend",
+    desc:   "Ireland vs New Zealand — on the road.",
+    poster: "images/gallery/chicago/img_5660.jpg",
     href:   "#gallery"
   },
 ];
