@@ -54,6 +54,13 @@ var CLUB_FEATURED = [
     poster: "https://img.youtube.com/vi/7tqhkdoTkx8/maxresdefault.jpg",
     video:  "https://www.youtube.com/watch?v=7tqhkdoTkx8"
   },
+  {
+    kicker: "Trip Recap",
+    title:  "Chicago Weekend",
+    desc:   "Ireland vs New Zealand, on the road.",
+    poster: "images/gallery/chicago/img_5674.jpg",   // local fallback (YouTube thumb unavailable)
+    video:  "https://www.youtube.com/watch?v=we0WXbpOuCU"
+  },
 ];
 
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */

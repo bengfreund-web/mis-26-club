@@ -163,7 +163,7 @@ body.locked .site{display:none;}
 .section-head p{font-size:16px; color:var(--muted); line-height:1.8; margin-top:16px;}
 
 /* ---------- FEATURED (the reference vibe) ---------- */
-.featured-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.featured-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;}
 .feat-item{position:relative; display:block; border:1px solid var(--line); padding:0; margin:0; text-align:left; cursor:pointer; text-decoration:none; border-radius:var(--radius); overflow:hidden; background:var(--bg-3); aspect-ratio:4/5; color:#fff; transition:border-color .25s var(--ease), transform .25s var(--ease);}
 .feat-item.feat-primary{grid-column:1 / -1; aspect-ratio:21/9;}
 .feat-primary .feat-body{padding:34px;}
