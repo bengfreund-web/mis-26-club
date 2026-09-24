@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["home", "whatsnext", "gallery"];
+  var TABS = ["home", "impact", "whatsnext", "gallery"];
   var tabsReady = false;
   var revealIO = null;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -134,6 +134,9 @@
       var p = v.play(); if (p && p.catch) p.catch(function () {});
     }
     load(0);
+    // Show the first city immediately (so the giant text is visible even before
+    // the video starts / if autoplay is briefly blocked).
+    if (cityEl) { cityEl.textContent = segs[0].city || ""; cityEl.classList.add("show"); }
     var p = v.play(); if (p && p.catch) p.catch(function () {});
     // If autoplay is blocked, kick it off on the first interaction.
     var kick = function () { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); };
