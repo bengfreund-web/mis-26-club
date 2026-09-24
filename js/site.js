@@ -103,15 +103,18 @@
   function initHero() {
     var v = document.getElementById("hero-video");
     var cityEl = document.getElementById("hero-city");
+    var noteEl = document.getElementById("hero-note");
     var fb = document.getElementById("hero-fallback");
     if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.segments || !CLUB_HERO.segments.length) return;
+    if (noteEl && reduceMotion) { noteEl.textContent = segs0note(); }
     if (reduceMotion) return; // respect reduced motion: keep the still fallback
+    function segs0note(){ return (CLUB_HERO.segments[0] && CLUB_HERO.segments[0].note) || ""; }
     var segs = CLUB_HERO.segments, i = 0, timer = null;
     function load(idx) {
-      var s = segs[idx];
       v.classList.remove("show");
       if (cityEl) cityEl.classList.remove("show");
-      v.src = s.src;
+      if (noteEl) noteEl.classList.remove("show");
+      v.src = segs[idx].src;
       v.load();
     }
     v.addEventListener("loadedmetadata", function () {
@@ -122,6 +125,7 @@
       v.classList.add("show");
       if (fb) fb.classList.add("hide");
       if (cityEl) { cityEl.textContent = segs[i].city || ""; cityEl.classList.add("show"); }
+      if (noteEl) { noteEl.textContent = segs[i].note || ""; noteEl.classList.add("show"); }
       clearTimeout(timer);
       timer = setTimeout(next, (segs[i].seconds || 6) * 1000);
     });
@@ -137,6 +141,7 @@
     // Show the first city immediately (so the giant text is visible even before
     // the video starts / if autoplay is briefly blocked).
     if (cityEl) { cityEl.textContent = segs[0].city || ""; cityEl.classList.add("show"); }
+    if (noteEl) { noteEl.textContent = segs[0].note || ""; noteEl.classList.add("show"); }
     var p = v.play(); if (p && p.catch) p.catch(function () {});
     // If autoplay is blocked, kick it off on the first interaction.
     var kick = function () { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); };

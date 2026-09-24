@@ -19,10 +19,10 @@
    for "seconds", then cuts to the next and loops. Uses existing clips. */
 var CLUB_HERO = {
   segments: [
-    { src: "media/la/img_9587.mp4",        city: "Los Angeles", start: 1, seconds: 6 },
-    { src: "media/chicago/img_5697.mp4",   city: "Chicago",     start: 1, seconds: 5 },
-    { src: "media/chicago/img_5760.mp4",   city: "Chicago",     start: 1, seconds: 5 },
-    { src: "media/baltimore/img_2006.mp4", city: "Baltimore",   start: 1, seconds: 6 }
+    { src: "media/la/img_9587.mp4",        city: "Los Angeles", note: "USA vs Canada",            start: 1, seconds: 6 },
+    { src: "media/chicago/img_5697.mp4",   city: "Chicago",     note: "Ireland vs New Zealand",   start: 1, seconds: 5 },
+    { src: "media/chicago/img_5760.mp4",   city: "Chicago",     note: "Soldier Field",            start: 1, seconds: 5 },
+    { src: "media/baltimore/img_2006.mp4", city: "Baltimore",   note: "Springboks vs All Blacks", start: 1, seconds: 6 }
   ]
 };
 
