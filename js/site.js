@@ -111,7 +111,6 @@
           (s.poster ? '<img class="scene-poster" src="' + esc(s.poster) + '" alt="" aria-hidden="true">' : '') +
           '<video class="scene-video" muted loop playsinline preload="none" aria-hidden="true"' + (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '></video>' +
           '<div class="scene-dim"></div>' +
-          '<div class="scene-black"></div>' +
           '<div class="scene-cap">' +
             '<div class="scene-note">' + esc(s.note || "") + '</div>' +
             '<h2 class="scene-city">' + esc(s.city || "") + '</h2>' +
@@ -121,13 +120,13 @@
     }).join("");
 
     var data = [].slice.call(host.querySelectorAll(".scene")).map(function (el, idx) {
-      return { el: el, video: el.querySelector(".scene-video"), black: el.querySelector(".scene-black"),
+      return { el: el, video: el.querySelector(".scene-video"),
                cap: el.querySelector(".scene-cap"), src: CLUB_HERO.scenes[idx].src, loaded: false };
     });
     var hint = document.getElementById("scroll-hint");
 
     if (reduceMotion) {
-      data.forEach(function (d) { d.black.style.opacity = 0; d.cap.style.opacity = 1; });
+      data.forEach(function (d) { d.cap.style.opacity = 1; });
       return;
     }
 
@@ -137,21 +136,15 @@
         var r = d.el.getBoundingClientRect();
         var total = r.height - vh;
         var p = total > 0 ? clampN(-r.top / total, 0, 1) : (r.top <= 0 ? 1 : 0);
-        var B;
-        if (p < 0.10) B = 1;
-        else if (p < 0.24) B = 1 - (p - 0.10) / 0.14;
-        else if (p < 0.70) B = 0;
-        else if (p < 0.92) B = (p - 0.70) / 0.22;
-        else B = 1;
-        d.black.style.opacity = B.toFixed(3);
-        var ei = clampN((p - 0.10) / 0.16, 0, 1);
-        var xo = clampN((p - 0.64) / 0.30, 0, 1);
-        var ty = (7 * (1 - ei)) - (44 * xo);            // vh
-        var sc = (1.14 - 0.14 * ei) - (0.5 * xo); if (sc < 0.4) sc = 0.4;
+        // No black between scenes: title is visible from the start of each scene,
+        // then rides up + fades near the end to hand off directly to the next city.
+        var xo = clampN((p - 0.72) / 0.24, 0, 1);
+        var ty = -(38 * xo);                 // vh — minimize up
+        var sc = 1 - 0.42 * xo;              // shrink
         d.cap.style.transform = "translateY(" + ty.toFixed(2) + "vh) scale(" + sc.toFixed(3) + ")";
-        d.cap.style.opacity = (ei * (1 - clampN((p - 0.9) / 0.08, 0, 1))).toFixed(3);
+        d.cap.style.opacity = (1 - clampN((p - 0.80) / 0.18, 0, 1)).toFixed(3);
         var onscreen = r.bottom > 0 && r.top < vh;
-        if (onscreen && B < 0.85) {
+        if (onscreen) {
           if (!d.loaded) { d.video.src = d.src; d.loaded = true; }
           if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
         } else if (!d.video.paused) { d.video.pause(); }
