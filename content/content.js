@@ -97,10 +97,10 @@ var CLUB_FILMS = [
 
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */
 var CLUB_IMPACT = [
-  { num: "100+",   label: "Schools Reached",  sub: "Montana public schools supported to date" },
-  { num: "50,000", label: "Students",         sub: "Young Montanans touched by our programs" },
-  { num: "26",     label: "Founding Members", sub: "The 26 Club — partners powering the mission" },
-  { num: "2022",   label: "Established",       sub: "Founded in Bozeman, Montana" },
+  { num: "252",    label: "Schools Reached",    sub: "of 812 tracked Montana schools (31%)" },
+  { num: "89,115", label: "Students Reached",   sub: "59% of the 151,580 students we track" },
+  { num: "150",    label: "Coached In-Person",  sub: "schools coached in PE — 55,066 students" },
+  { num: "81",     label: "Communities",        sub: "Montana towns reached, of 241" },
 ];
 
 /* -------------------- NEWSLETTER UPDATES (newest first) -------------------- */
