@@ -175,7 +175,7 @@ body.locked .site{display:none;}
 .scene-cap{position:absolute; inset:0; z-index:4; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; will-change:transform,opacity; transform-origin:center;}
 .scene-note{font-family:var(--mono); font-size:12.5px; letter-spacing:0.34em; text-transform:uppercase; color:rgba(255,255,255,0.9); margin-bottom:20px;}
 .scene-note::before{content:"— "; color:var(--yellow);}
-.scene-city{font-family:var(--display); color:#fff; font-weight:900; font-size:clamp(3.6rem, 16vw, 13rem); line-height:0.84; letter-spacing:-0.05em; text-transform:uppercase; margin:0; text-shadow:0 2px 4px rgba(0,0,0,0.5), 0 14px 60px rgba(0,0,0,0.6);}
+.scene-city{font-family:var(--display); color:#fff; font-weight:900; font-size:clamp(2.6rem, 10.5vw, 8rem); line-height:0.88; letter-spacing:-0.04em; text-transform:uppercase; margin:0; text-shadow:0 2px 4px rgba(0,0,0,0.5), 0 14px 60px rgba(0,0,0,0.6);}
 .scroll-hint{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); z-index:20; display:flex; flex-direction:column; align-items:center; gap:9px; transition:opacity .4s var(--ease); pointer-events:none;}
 .scroll-hint .lbl{font-family:var(--mono); font-size:9px; letter-spacing:0.24em; text-transform:uppercase; color:rgba(255,255,255,0.7);}
 .scroll-hint .ln{width:1px; height:40px; background:rgba(255,255,255,0.25); position:relative; overflow:hidden;}
