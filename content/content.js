@@ -17,12 +17,13 @@
 /* -------------------- HOMEPAGE HERO MONTAGE (loops) --------------------
    Quick-cut cinematic loop, city to city. Each segment plays from "start"
    for "seconds", then cuts to the next and loops. Uses existing clips. */
+/* Scroll-driven hero: each scene goes black -> city title + video -> up & black -> next.
+   "poster" is the still shown before/behind the video. One scene per city. */
 var CLUB_HERO = {
-  segments: [
-    { src: "media/la/img_9587.mp4",        city: "Los Angeles", note: "USA vs Canada",            start: 1, seconds: 6 },
-    { src: "media/chicago/img_5697.mp4",   city: "Chicago",     note: "Ireland vs New Zealand",   start: 1, seconds: 5 },
-    { src: "media/chicago/img_5760.mp4",   city: "Chicago",     note: "Soldier Field",            start: 1, seconds: 5 },
-    { src: "media/baltimore/img_2006.mp4", city: "Baltimore",   note: "Springboks vs All Blacks", start: 1, seconds: 6 }
+  scenes: [
+    { src: "media/la/img_9587.mp4",        poster: "images/gallery/la/img_9549.jpg",        city: "Los Angeles", note: "USA vs Canada" },
+    { src: "media/chicago/img_5697.mp4",   poster: "images/gallery/chicago/img_5694.jpg",   city: "Chicago",     note: "Ireland vs New Zealand" },
+    { src: "media/baltimore/img_2006.mp4", poster: "images/gallery/baltimore/img_2010.jpg", city: "Baltimore",   note: "Springboks vs All Blacks" }
   ]
 };
 

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=27">
+<link rel="stylesheet" href="css/style.css?v=28">
 </head>
 <body class="locked" id="top">
 
@@ -54,21 +54,10 @@
     </nav>
   </header>
 
-  <!-- ===================== TAB: HOME (full-screen video hero only) ===================== -->
+  <!-- ===================== TAB: HOME (scroll-driven cinematic scenes) ===================== -->
   <div class="tab-panel" id="home">
-    <section class="mhero mhero-full" id="hero">
-      <video class="hero-video" id="hero-video" muted playsinline preload="auto" poster="images/gallery/chicago/img_5660.jpg" aria-hidden="true"></video>
-      <img class="hero-fallback" id="hero-fallback" src="images/gallery/chicago/img_5660.jpg" alt="" aria-hidden="true">
-      <div class="hero-overlay"></div>
-      <div class="mhero-inner">
-        <img class="mhero-logo" src="images/logo-icon.png" alt="Montana Institute of Sport">
-        <div class="kicker">The 26 Club &middot; Montana Institute of Sport</div>
-        <h1 class="hero-city" id="hero-city">Los Angeles</h1>
-        <div class="hero-note" id="hero-note" aria-hidden="true"></div>
-      </div>
-      <div class="cine-bar cine-top" aria-hidden="true"></div>
-      <div class="cine-bar cine-bot" aria-hidden="true"></div>
-    </section>
+    <div class="scenes" id="scenes"><!-- one scene per city, built from content/content.js --></div>
+    <div class="scroll-hint" id="scroll-hint" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
   </div>
 
   <!-- ===================== TAB: IMPACT ===================== -->
@@ -184,8 +173,8 @@
 
 </div>
 
-<script src="js/config.js?v=27"></script>
-<script src="content/content.js?v=27"></script>
-<script src="js/site.js?v=27" defer></script>
+<script src="js/config.js?v=28"></script>
+<script src="content/content.js?v=28"></script>
+<script src="js/site.js?v=28" defer></script>
 </body>
 </html>

@@ -14,6 +14,7 @@
   var TABS = ["home", "impact", "whatsnext", "gallery"];
   var tabsReady = false;
   var revealIO = null;
+  var scenesUpdate = null;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // We drive scroll ourselves (tab switches, roadmap "now") — stop the browser
   // from restoring/overriding scroll on reload or hash navigation.
@@ -95,59 +96,75 @@
     renderGallery();
     initReveals();
     initScrollFx();
-    initHero();
+    initScenes();
     initTabs();
   }
 
   /* ------------------------------------------------------- HERO MONTAGE */
-  function initHero() {
-    var v = document.getElementById("hero-video");
-    var cityEl = document.getElementById("hero-city");
-    var noteEl = document.getElementById("hero-note");
-    var fb = document.getElementById("hero-fallback");
-    if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.segments || !CLUB_HERO.segments.length) return;
-    if (noteEl && reduceMotion) { noteEl.textContent = segs0note(); }
-    if (reduceMotion) return; // respect reduced motion: keep the still fallback
-    function segs0note(){ return (CLUB_HERO.segments[0] && CLUB_HERO.segments[0].note) || ""; }
-    var segs = CLUB_HERO.segments, i = 0, timer = null;
-    function load(idx) {
-      v.classList.remove("show");
-      if (cityEl) cityEl.classList.remove("show");
-      if (noteEl) noteEl.classList.remove("show");
-      v.src = segs[idx].src;
-      v.load();
+  function clampN(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function initScenes() {
+    var host = document.getElementById("scenes");
+    if (!host || typeof CLUB_HERO === "undefined" || !CLUB_HERO.scenes || !CLUB_HERO.scenes.length) return;
+    host.innerHTML = CLUB_HERO.scenes.map(function (s) {
+      return '<section class="scene">' +
+        '<div class="scene-stage">' +
+          (s.poster ? '<img class="scene-poster" src="' + esc(s.poster) + '" alt="" aria-hidden="true">' : '') +
+          '<video class="scene-video" muted loop playsinline preload="none" aria-hidden="true"' + (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '></video>' +
+          '<div class="scene-dim"></div>' +
+          '<div class="scene-black"></div>' +
+          '<div class="scene-cap">' +
+            '<div class="scene-note">' + esc(s.note || "") + '</div>' +
+            '<h2 class="scene-city">' + esc(s.city || "") + '</h2>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+    }).join("");
+
+    var data = [].slice.call(host.querySelectorAll(".scene")).map(function (el, idx) {
+      return { el: el, video: el.querySelector(".scene-video"), black: el.querySelector(".scene-black"),
+               cap: el.querySelector(".scene-cap"), src: CLUB_HERO.scenes[idx].src, loaded: false };
+    });
+    var hint = document.getElementById("scroll-hint");
+
+    if (reduceMotion) {
+      data.forEach(function (d) { d.black.style.opacity = 0; d.cap.style.opacity = 1; });
+      return;
     }
-    v.addEventListener("loadedmetadata", function () {
-      var s = segs[i];
-      try { v.currentTime = s.start || 0; } catch (e) {}
-    });
-    v.addEventListener("playing", function () {
-      v.classList.add("show");
-      if (fb) fb.classList.add("hide");
-      if (cityEl) { cityEl.textContent = segs[i].city || ""; cityEl.classList.add("show"); }
-      if (noteEl) { noteEl.textContent = segs[i].note || ""; noteEl.classList.add("show"); }
-      clearTimeout(timer);
-      timer = setTimeout(next, (segs[i].seconds || 6) * 1000);
-    });
-    v.addEventListener("ended", next);
-    v.addEventListener("error", next);
-    function next() {
-      clearTimeout(timer);
-      i = (i + 1) % segs.length;
-      load(i);
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+
+    function update() {
+      var vh = window.innerHeight || 1;
+      data.forEach(function (d) {
+        var r = d.el.getBoundingClientRect();
+        var total = r.height - vh;
+        var p = total > 0 ? clampN(-r.top / total, 0, 1) : (r.top <= 0 ? 1 : 0);
+        var B;
+        if (p < 0.10) B = 1;
+        else if (p < 0.24) B = 1 - (p - 0.10) / 0.14;
+        else if (p < 0.70) B = 0;
+        else if (p < 0.92) B = (p - 0.70) / 0.22;
+        else B = 1;
+        d.black.style.opacity = B.toFixed(3);
+        var ei = clampN((p - 0.10) / 0.16, 0, 1);
+        var xo = clampN((p - 0.64) / 0.30, 0, 1);
+        var ty = (7 * (1 - ei)) - (44 * xo);            // vh
+        var sc = (1.14 - 0.14 * ei) - (0.5 * xo); if (sc < 0.4) sc = 0.4;
+        d.cap.style.transform = "translateY(" + ty.toFixed(2) + "vh) scale(" + sc.toFixed(3) + ")";
+        d.cap.style.opacity = (ei * (1 - clampN((p - 0.9) / 0.08, 0, 1))).toFixed(3);
+        var onscreen = r.bottom > 0 && r.top < vh;
+        if (onscreen && B < 0.85) {
+          if (!d.loaded) { d.video.src = d.src; d.loaded = true; }
+          if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
+        } else if (!d.video.paused) { d.video.pause(); }
+      });
+      if (hint) hint.classList.toggle("hide", (window.scrollY || 0) > vh * 0.4);
     }
-    load(0);
-    // Show the first city immediately (so the giant text is visible even before
-    // the video starts / if autoplay is briefly blocked).
-    if (cityEl) { cityEl.textContent = segs[0].city || ""; cityEl.classList.add("show"); }
-    if (noteEl) { noteEl.textContent = segs[0].note || ""; noteEl.classList.add("show"); }
-    var p = v.play(); if (p && p.catch) p.catch(function () {});
-    // If autoplay is blocked, kick it off on the first interaction.
-    var kick = function () { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); };
-    ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
-      window.addEventListener(ev, kick, { once: true, passive: true });
-    });
+
+    var ticking = false;
+    function onScroll() { if (!ticking) { requestAnimationFrame(function () { update(); ticking = false; }); ticking = true; } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    scenesUpdate = update;
+    update();
   }
 
   /* ------------------------------------------------------- ROADMAP */
@@ -204,6 +221,7 @@
       });
     } else {
       window.scrollTo(0, 0);
+      if (name === "home" && scenesUpdate) { requestAnimationFrame(scenesUpdate); }
     }
     rearmReveals(active);
   }
