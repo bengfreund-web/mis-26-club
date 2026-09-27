@@ -109,7 +109,7 @@
       return '<section class="scene">' +
         '<div class="scene-stage">' +
           (s.poster ? '<img class="scene-poster" src="' + esc(s.poster) + '" alt="" aria-hidden="true">' : '') +
-          '<video class="scene-video" muted loop playsinline preload="none" aria-hidden="true"' + (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '></video>' +
+          '<video class="scene-video" muted playsinline preload="none" aria-hidden="true"' + (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '></video>' +
           '<div class="scene-dim"></div>' +
           '<div class="scene-cap">' +
             '<div class="scene-note">' + esc(s.note || "") + '</div>' +
@@ -120,8 +120,18 @@
     }).join("");
 
     var data = [].slice.call(host.querySelectorAll(".scene")).map(function (el, idx) {
-      return { el: el, video: el.querySelector(".scene-video"),
-               cap: el.querySelector(".scene-cap"), src: CLUB_HERO.scenes[idx].src, loaded: false };
+      var s = CLUB_HERO.scenes[idx];
+      var srcs = s.srcs || (s.src ? [s.src] : []);
+      var d = { el: el, video: el.querySelector(".scene-video"), cap: el.querySelector(".scene-cap"),
+                srcs: srcs, ci: 0, loaded: false };
+      // cycle through this scene's clips (rugby feel: 1-2 per city)
+      d.video.addEventListener("ended", function () {
+        if (!d.srcs.length) return;
+        d.ci = (d.ci + 1) % d.srcs.length;
+        d.video.src = d.srcs[d.ci];
+        var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {});
+      });
+      return d;
     });
     var hint = document.getElementById("scroll-hint");
 
@@ -136,20 +146,18 @@
         var r = d.el.getBoundingClientRect();
         var total = r.height - vh;
         var p = total > 0 ? clampN(-r.top / total, 0, 1) : (r.top <= 0 ? 1 : 0);
-        // No black between scenes: title is visible from the start of each scene,
-        // then rides up + fades near the end to hand off directly to the next city.
-        var xo = clampN((p - 0.72) / 0.24, 0, 1);
-        var ty = -(38 * xo);                 // vh — minimize up
-        var sc = 1 - 0.42 * xo;              // shrink
-        d.cap.style.transform = "translateY(" + ty.toFixed(2) + "vh) scale(" + sc.toFixed(3) + ")";
-        d.cap.style.opacity = (1 - clampN((p - 0.80) / 0.18, 0, 1)).toFixed(3);
+        // Title is visible from the scene start, then rides up + fades out EARLY
+        // (well before the next city) so there's a clean beat between titles.
+        var e = clampN((p - 0.42) / 0.22, 0, 1);   // exit progress
+        d.cap.style.transform = "translateY(" + (-30 * e).toFixed(2) + "vh) scale(" + (1 - 0.3 * e).toFixed(3) + ")";
+        d.cap.style.opacity = (1 - e).toFixed(3);
         var onscreen = r.bottom > 0 && r.top < vh;
         if (onscreen) {
-          if (!d.loaded) { d.video.src = d.src; d.loaded = true; }
+          if (!d.loaded && d.srcs.length) { d.video.src = d.srcs[0]; d.ci = 0; d.loaded = true; }
           if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
         } else if (!d.video.paused) { d.video.pause(); }
       });
-      if (hint) hint.classList.toggle("hide", (window.scrollY || 0) > vh * 0.4);
+      if (hint) hint.classList.toggle("hide", (window.scrollY || 0) > vh * 0.35);
     }
 
     var ticking = false;
