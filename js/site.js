@@ -181,7 +181,7 @@
 
   /* ------------------------------------------------------- TABS */
   function showTab(name) {
-    if (TABS.indexOf(name) === -1) name = "featured";
+    if (TABS.indexOf(name) === -1) name = "home";
     var active = null;
     document.querySelectorAll(".tab-panel").forEach(function (p) {
       var on = p.id === name;
@@ -208,7 +208,7 @@
     rearmReveals(active);
   }
   function tabFromHash() {
-    showTab((location.hash || "").replace("#", "") || "featured");
+    showTab((location.hash || "").replace("#", "") || "home");
   }
   function initTabs() {
     if (tabsReady) { tabFromHash(); return; }
