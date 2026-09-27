@@ -249,7 +249,6 @@ var CLUB_GALLERIES = [
       { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5766.jpg" },
-      { type: "photo", src: "images/gallery/chicago/img_5778.jpg" }
     ]
   }
 ];
