@@ -123,6 +123,7 @@
       var s = CLUB_HERO.scenes[idx];
       var srcs = s.srcs || (s.src ? [s.src] : []);
       var d = { el: el, video: el.querySelector(".scene-video"), cap: el.querySelector(".scene-cap"),
+                poster: el.querySelector(".scene-poster"), dim: el.querySelector(".scene-dim"),
                 srcs: srcs, ci: 0, loaded: false };
       // cycle through this scene's clips (rugby feel: 1-2 per city)
       d.video.addEventListener("ended", function () {
@@ -151,6 +152,14 @@
         var e = clampN((p - 0.42) / 0.22, 0, 1);   // exit progress
         d.cap.style.transform = "translateY(" + (-30 * e).toFixed(2) + "vh) scale(" + (1 - 0.3 * e).toFixed(3) + ")";
         d.cap.style.opacity = (1 - e).toFixed(3);
+        // Footage brightens as the scene reaches the center of the screen, then
+        // dims again toward the transitions — a bell curve peaking at p=0.5.
+        var c = clampN(1 - Math.abs(p - 0.5) / 0.5, 0, 1);
+        c = c * c * (3 - 2 * c);                     // smoothstep for an easier ramp
+        var bright = (0.42 + 0.73 * c).toFixed(3);   // 0.42 (edges) -> ~1.15 (center)
+        d.video.style.filter = "brightness(" + bright + ") saturate(.97)";
+        if (d.poster) d.poster.style.filter = "brightness(" + bright + ") saturate(.9) contrast(1.05)";
+        if (d.dim) d.dim.style.opacity = (1 - 0.4 * c).toFixed(3);
         var onscreen = r.bottom > 0 && r.top < vh;
         if (onscreen) {
           if (!d.loaded && d.srcs.length) { d.video.src = d.srcs[0]; d.ci = 0; d.loaded = true; }

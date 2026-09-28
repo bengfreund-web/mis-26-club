@@ -19,8 +19,9 @@
 
   --display:'Sora', system-ui, sans-serif;
   --sans:'Inter', system-ui, sans-serif;
-  --mono:'Space Mono', ui-monospace, Menlo, monospace;
   --ui:'Poppins', system-ui, sans-serif;
+  /* Small uppercase labels/eyebrows now use Poppins too (was Space Mono). */
+  --mono:'Poppins', system-ui, sans-serif;
 
   --radius:4px;
   --ease:cubic-bezier(.22,.61,.36,1);
