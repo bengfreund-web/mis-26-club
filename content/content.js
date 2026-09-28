@@ -22,8 +22,16 @@
 var CLUB_HERO = {
   scenes: [
     { srcs: ["media/baltimore/img_2006.mp4"],                              poster: "images/gallery/baltimore/img_2010.jpg", city: "Baltimore",   note: "Springboks vs All Blacks" },
-    { srcs: ["media/la/img_9587.mp4", "media/la/img_9552.mp4"],            poster: "images/gallery/la/img_9549.jpg",        city: "Los Angeles", note: "USA vs Canada" },
-    { srcs: ["media/chicago/img_5760.mp4", "media/chicago/img_5697.mp4"],  poster: "images/gallery/chicago/img_5758.jpg",   city: "Chicago",     note: "Ireland vs New Zealand" }
+    // LA = quick cut: rugby stadium, then the golf tee shot. "seconds" = how long each clip shows before cutting.
+    { srcs: [
+        { src: "media/la/img_9587.mp4", start: 0,   seconds: 3.5 },   // rugby stadium
+        { src: "media/la/img_9552.mp4", start: 1.5, seconds: 4.5 }    // golf tee, ocean backdrop
+      ], poster: "images/gallery/la/img_9549.jpg", city: "Los Angeles", note: "USA vs Canada" },
+    // Chicago = quick cut: rugby, then the Bulls game.
+    { srcs: [
+        { src: "media/chicago/img_5760.mp4", start: 0, seconds: 4 },  // rugby
+        { src: "media/chicago/img_5697.mp4", start: 0, seconds: 4 }   // Bulls game
+      ], poster: "images/gallery/chicago/img_5758.jpg", city: "Chicago", note: "Ireland vs New Zealand" }
   ]
 };
 

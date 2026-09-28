@@ -121,17 +121,41 @@
 
     var data = [].slice.call(host.querySelectorAll(".scene")).map(function (el, idx) {
       var s = CLUB_HERO.scenes[idx];
-      var srcs = s.srcs || (s.src ? [s.src] : []);
+      // Normalise each clip to { src, start, seconds }. A string = play in full.
+      // "seconds" makes it a QUICK CUT: play that long, then cut to the next clip.
+      var raw = s.srcs || (s.src ? [s.src] : []);
+      var clips = raw.map(function (c) {
+        if (typeof c === "string") return { src: c, start: 0, seconds: 0 };
+        return { src: c.src, start: c.start || 0, seconds: c.seconds || 0 };
+      });
       var d = { el: el, video: el.querySelector(".scene-video"), cap: el.querySelector(".scene-cap"),
                 poster: el.querySelector(".scene-poster"), dim: el.querySelector(".scene-dim"),
-                srcs: srcs, ci: 0, loaded: false };
-      // cycle through this scene's clips (rugby feel: 1-2 per city)
-      d.video.addEventListener("ended", function () {
-        if (!d.srcs.length) return;
-        d.ci = (d.ci + 1) % d.srcs.length;
-        d.video.src = d.srcs[d.ci];
-        var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {});
+                clips: clips, ci: 0, loaded: false };
+
+      function seekStart() {
+        var st = d.clips[d.ci].start;
+        if (st > 0 && Math.abs(d.video.currentTime - st) > 0.3) {
+          try { d.video.currentTime = st; } catch (e) {}
+        }
+      }
+      function playCur() { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
+      d.loadClip = function (i) {
+        d.ci = i;
+        d.video.src = d.clips[i].src;
+        d.video.load();
+        seekStart(); playCur();
+      };
+      d.advance = function () {
+        if (d.clips.length < 2) { d.video.currentTime = d.clips[0].start || 0; playCur(); return; }
+        d.loadClip((d.ci + 1) % d.clips.length);
+      };
+      d.video.addEventListener("loadedmetadata", seekStart);
+      // Quick-cut: once a clip has shown for its "seconds", cut to the next.
+      d.video.addEventListener("timeupdate", function () {
+        var c = d.clips[d.ci];
+        if (c.seconds && d.video.currentTime - c.start >= c.seconds) d.advance();
       });
+      d.video.addEventListener("ended", d.advance);
       return d;
     });
     var hint = document.getElementById("scroll-hint");
@@ -162,8 +186,8 @@
         if (d.dim) d.dim.style.opacity = (1 - 0.4 * c).toFixed(3);
         var onscreen = r.bottom > 0 && r.top < vh;
         if (onscreen) {
-          if (!d.loaded && d.srcs.length) { d.video.src = d.srcs[0]; d.ci = 0; d.loaded = true; }
-          if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
+          if (!d.loaded && d.clips.length) { d.loaded = true; d.loadClip(0); }
+          else if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
         } else if (!d.video.paused) { d.video.pause(); }
       });
       if (hint) hint.classList.toggle("hide", (window.scrollY || 0) > vh * 0.35);
