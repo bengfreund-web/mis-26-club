@@ -105,10 +105,8 @@ var CLUB_FILMS = [
 
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */
 var CLUB_IMPACT = [
-  { num: "252",    label: "Schools Reached",    sub: "of 812 tracked Montana schools (31%)" },
-  { num: "89,115", label: "Students Reached",   sub: "59% of the 151,580 students we track" },
-  { num: "150",    label: "Coached In-Person",  sub: "schools coached in PE — 55,066 students" },
-  { num: "81",     label: "Communities",        sub: "Montana towns reached, of 241" },
+  { num: "255",    label: "Schools",  sub: "of 812 Montana schools" },
+  { num: "89,980", label: "Students", sub: "of 151,580 Montana students" },
 ];
 
 /* -------------------- NEWSLETTER UPDATES (newest first) -------------------- */
