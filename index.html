@@ -9,8 +9,8 @@
 <link rel="icon" href="images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=40">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=41">
 </head>
 <body class="locked" id="top">
 
@@ -43,76 +43,89 @@
       </a>
       <div class="navlinks">
         <a href="#home" data-tab="home">Home</a>
-        <a href="#impact" data-tab="impact">Impact</a>
         <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
       </div>
-      <button class="signout" type="button" data-signout>Sign out</button>
+      <div class="nav-actions">
+        <a class="btn btn-yellow no-arrow nav-cta" id="signup-nav" href="#" target="_blank" rel="noopener">Sign Up</a>
+        <button class="signout" type="button" data-signout>Sign out</button>
+      </div>
     </nav>
   </header>
 
-  <!-- ===================== TAB: HOME (scroll-driven cinematic scenes) ===================== -->
+  <!-- ===================== TAB: HOME ===================== -->
   <div class="tab-panel" id="home">
-    <div class="scenes" id="scenes"><!-- one scene per city, built from content/content.js --></div>
-    <div class="scroll-hint" id="scroll-hint" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
-  </div>
 
-  <!-- ===================== TAB: IMPACT ===================== -->
-  <div class="tab-panel" id="impact">
-    <!-- IMPACT — what we've done -->
+    <!-- MONTAGE HERO (one looping video) -->
+    <section class="vhero">
+      <video class="vhero-video" id="vhero-video" autoplay muted playsinline preload="auto"
+             poster="images/gallery/chicago/img_5758.jpg" aria-hidden="true" tabindex="-1"></video>
+      <div class="vhero-scrim"></div>
+      <div class="vhero-inner">
+        <div class="vhero-kicker">The 26 Club</div>
+        <h1 class="vhero-title">Building a sustainable<br>K&ndash;12 rugby model</h1>
+        <div class="vhero-actions">
+          <a class="btn btn-yellow no-arrow vhero-cta" id="signup-hero" href="#" target="_blank" rel="noopener">Sign Up</a>
+        </div>
+      </div>
+      <div class="scroll-hint" id="scroll-hint" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
+    </section>
+
+    <!-- HOW DO WE DO THIS -->
+    <section class="section elev">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">How do we do this?</div>
+          <div class="h2">A sustainable model, built to last</div>
+        </div>
+        <div class="how-grid reveal stagger">
+          <div class="how-card"><div class="how-num">01</div><div class="how-title">Introduce it into the schools</div><div class="how-body">Bring rugby to Montana classrooms through TRY Rugby curriculum, equipment, and on-site coaching.</div></div>
+          <div class="how-card"><div class="how-num">02</div><div class="how-title">School impact</div><div class="how-body">Reach more kids in more communities every term &mdash; measured, tracked, and growing.</div></div>
+          <div class="how-card"><div class="how-num">03</div><div class="how-title">Support the creation of programs</div><div class="how-body">Help schools and clubs stand up lasting rugby programs that outlive any single season.</div></div>
+          <div class="how-card"><div class="how-num">04</div><div class="how-title">Support the governance model</div><div class="how-body">Back the structure and leadership that keep the game organized, safe, and sustainable statewide.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT (tight) -->
     <section class="section">
       <div class="wrap">
         <div class="section-head center reveal">
           <div class="mono-label center">Our Impact</div>
-          <div class="h2">What we've built together</div>
-          <p>Only 26% of Montana youth get the daily activity they need.</p>
+          <div class="h2">Only 26% of Montana youth get the daily activity they need</div>
         </div>
         <div class="impact-grid reveal stagger" id="impact-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
 
-    <!-- ABOUT THE MONTANA INSTITUTE OF SPORT -->
-    <section class="section elev">
+    <!-- WATCH -->
+    <section class="section">
       <div class="wrap">
         <div class="section-head center reveal">
-          <div class="mono-label center">The Montana Institute of Sport</div>
-          <div class="h2">Better young Montanans through physical education</div>
-          <p>The Montana Institute of Sport is a 501(c)(3) nonprofit improving physical education in Montana's public schools — through curriculum support, teaching grants, and professional development. Founded in Bozeman in 2022, it exists to get more kids moving and give their teachers the tools to keep them there. The 26 Club is its inner circle.</p>
+          <div class="mono-label center">Watch</div>
+          <div class="h2">From the field</div>
+        </div>
+        <div class="film-grid reveal stagger">
+          <button class="film-item" type="button" data-video="https://youtu.be/mIXb6OomPBo">
+            <img loading="lazy" src="https://img.youtube.com/vi/mIXb6OomPBo/hqdefault.jpg" alt="">
+            <span class="film-play" aria-hidden="true">&#9654;</span>
+            <span class="film-label">Field Flyover</span>
+          </button>
+          <button class="film-item" type="button" data-video="https://youtu.be/OviXx05EZIw">
+            <img loading="lazy" src="https://img.youtube.com/vi/OviXx05EZIw/hqdefault.jpg" alt="">
+            <span class="film-play" aria-hidden="true">&#9654;</span>
+            <span class="film-label">Chicago Weekend</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- WHERE YOUR DOLLARS GO -->
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div class="mono-label">Where Your Dollars Go</div>
-          <div class="h2">Every membership powers TRY Sport</div>
-          <p>TRY Sport introduces Montana kids to new sports and gives their teachers the tools to keep them moving.</p>
-        </div>
-        <div class="problem-list reveal stagger">
-          <div class="support-row">
-            <div class="ghost-num">01 /</div>
-            <div>
-              <div class="p-title">Into the schools</div>
-              <div class="p-body">Curriculum, equipment, and on-site clinics land directly in Montana's public schools — where physical education has been underfunded for years.</div>
-            </div>
-          </div>
-          <div class="support-row">
-            <div class="ghost-num">02 /</div>
-            <div>
-              <div class="p-title">Behind the teachers</div>
-              <div class="p-body">Teaching grants and professional development back the people in the gym, so the impact outlasts any single season.</div>
-            </div>
-          </div>
-          <div class="support-row">
-            <div class="ghost-num">03 /</div>
-            <div>
-              <div class="p-title">Onto the kids</div>
-              <div class="p-body">Only 26% of young people get the daily activity they need. Every membership helps move that number — one classroom at a time.</div>
-            </div>
-          </div>
-        </div>
+    <!-- CLOSING CTA -->
+    <section class="section elev cta-band">
+      <div class="wrap center">
+        <div class="h2 reveal">Join the 26 Club</div>
+        <p class="reveal">Be part of building the future of rugby in Montana.</p>
+        <div class="reveal"><a class="btn btn-yellow no-arrow" id="signup-foot" href="#" target="_blank" rel="noopener">Sign Up</a></div>
       </div>
     </section>
   </div>
@@ -151,7 +164,6 @@
   <!-- MOBILE TAB BAR -->
   <nav class="mobile-tabs" aria-label="Sections">
     <a href="#home" data-tab="home">Home</a>
-    <a href="#impact" data-tab="impact">Impact</a>
     <a href="#whatsnext" data-tab="whatsnext">Next</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
   </nav>
@@ -166,7 +178,6 @@
         </div>
         <div class="footer-links">
           <a href="#home" data-tab="home">Home</a>
-          <a href="#impact" data-tab="impact">Impact</a>
           <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
           <a href="#gallery" data-tab="gallery">Gallery</a>
           <a href="#" data-signout>Sign out</a>
@@ -181,8 +192,8 @@
 
 </div>
 
-<script src="js/config.js?v=40"></script>
-<script src="content/content.js?v=40"></script>
-<script src="js/site.js?v=40" defer></script>
+<script src="js/config.js?v=41"></script>
+<script src="content/content.js?v=41"></script>
+<script src="js/site.js?v=41" defer></script>
 </body>
 </html>

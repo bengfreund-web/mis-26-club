@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["home", "impact", "whatsnext", "gallery"];
+  var TABS = ["home", "whatsnext", "gallery"];
   var tabsReady = false;
   var revealIO = null;
   var scenesUpdate = null;
@@ -94,111 +94,67 @@
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
     renderRoadmap();
     renderGallery();
+    wireSignup();
     initReveals();
     initScrollFx();
-    initScenes();
+    initVhero();
     initTabs();
+  }
+
+  /* Point every "Sign Up" button at the Zeffy link from config (|| "#"). */
+  function wireSignup() {
+    var url = (typeof CLUB_CONFIG !== "undefined" && CLUB_CONFIG.signupUrl) ? CLUB_CONFIG.signupUrl : "";
+    ["signup-nav", "signup-hero", "signup-foot"].forEach(function (id) {
+      var a = document.getElementById(id);
+      if (!a) return;
+      a.setAttribute("href", url || "#");
+      if (!url) a.setAttribute("aria-disabled", "true");
+    });
   }
 
   /* ------------------------------------------------------- HERO MONTAGE */
   function clampN(v, a, b) { return v < a ? a : (v > b ? b : v); }
-  function initScenes() {
-    var host = document.getElementById("scenes");
-    if (!host || typeof CLUB_HERO === "undefined" || !CLUB_HERO.scenes || !CLUB_HERO.scenes.length) return;
-    host.innerHTML = CLUB_HERO.scenes.map(function (s) {
-      return '<section class="scene">' +
-        '<div class="scene-stage">' +
-          (s.poster ? '<img class="scene-poster" src="' + esc(s.poster) + '" alt="" aria-hidden="true">' : '') +
-          '<video class="scene-video" muted playsinline preload="none" aria-hidden="true"' + (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '></video>' +
-          '<div class="scene-dim"></div>' +
-          '<div class="scene-cap">' +
-            '<div class="scene-note">' + esc(s.note || "") + '</div>' +
-            '<h2 class="scene-city">' + esc(s.city || "") + '</h2>' +
-          '</div>' +
-        '</div>' +
-      '</section>';
-    }).join("");
-
-    var data = [].slice.call(host.querySelectorAll(".scene")).map(function (el, idx) {
-      var s = CLUB_HERO.scenes[idx];
-      // Normalise each clip to { src, start, seconds }. A string = play in full.
-      // "seconds" makes it a QUICK CUT: play that long, then cut to the next clip.
-      var raw = s.srcs || (s.src ? [s.src] : []);
-      var clips = raw.map(function (c) {
-        if (typeof c === "string") return { src: c, start: 0, seconds: 0 };
-        return { src: c.src, start: c.start || 0, seconds: c.seconds || 0 };
-      });
-      var d = { el: el, video: el.querySelector(".scene-video"), cap: el.querySelector(".scene-cap"),
-                poster: el.querySelector(".scene-poster"), dim: el.querySelector(".scene-dim"),
-                clips: clips, ci: 0, loaded: false };
-
-      function seekStart() {
-        var st = d.clips[d.ci].start;
-        if (st > 0 && Math.abs(d.video.currentTime - st) > 0.3) {
-          try { d.video.currentTime = st; } catch (e) {}
-        }
-      }
-      function playCur() { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
-      d.loadClip = function (i) {
-        d.ci = i;
-        d.video.src = d.clips[i].src;
-        d.video.load();
-        seekStart(); playCur();
-      };
-      d.advance = function () {
-        if (d.clips.length < 2) { d.video.currentTime = d.clips[0].start || 0; playCur(); return; }
-        d.loadClip((d.ci + 1) % d.clips.length);
-      };
-      d.video.addEventListener("loadedmetadata", seekStart);
-      // Quick-cut: once a clip has shown for its "seconds", cut to the next.
-      d.video.addEventListener("timeupdate", function () {
-        var c = d.clips[d.ci];
-        if (c.seconds && d.video.currentTime - c.start >= c.seconds) d.advance();
-      });
-      d.video.addEventListener("ended", d.advance);
-      return d;
+  /* ONE full-screen looping video (Invitational/GNC style): a single <video>
+     plays each montage clip for its "seconds", then cuts to the next, then loops. */
+  function initVhero() {
+    var v = document.getElementById("vhero-video");
+    if (!v || typeof CLUB_HERO === "undefined") return;
+    var clips = (CLUB_HERO.montage || []).map(function (c) {
+      return (typeof c === "string") ? { src: c, start: 0, seconds: 0 }
+                                     : { src: c.src, start: c.start || 0, seconds: c.seconds || 0 };
     });
-    var hint = document.getElementById("scroll-hint");
-
-    if (reduceMotion) {
-      data.forEach(function (d) { d.cap.style.opacity = 1; });
-      return;
+    if (!clips.length) return;
+    var ci = 0;
+    function seekStart() {
+      var st = clips[ci].start;
+      if (st > 0 && Math.abs(v.currentTime - st) > 0.3) { try { v.currentTime = st; } catch (e) {} }
     }
-
-    function update() {
-      var vh = window.innerHeight || 1;
-      data.forEach(function (d) {
-        var r = d.el.getBoundingClientRect();
-        var total = r.height - vh;
-        var p = total > 0 ? clampN(-r.top / total, 0, 1) : (r.top <= 0 ? 1 : 0);
-        // Title is visible from the scene start, then rides up + fades out EARLY
-        // (well before the next city) so there's a clean beat between titles.
-        var e = clampN((p - 0.42) / 0.22, 0, 1);   // exit progress
-        d.cap.style.transform = "translateY(" + (-30 * e).toFixed(2) + "vh) scale(" + (1 - 0.3 * e).toFixed(3) + ")";
-        d.cap.style.opacity = (1 - e).toFixed(3);
-        // Footage brightens as the scene reaches the center of the screen, then
-        // dims again toward the transitions — a bell curve peaking at p=0.5.
-        var c = clampN(1 - Math.abs(p - 0.5) / 0.5, 0, 1);
-        c = c * c * (3 - 2 * c);                     // smoothstep for an easier ramp
-        var bright = (0.42 + 0.73 * c).toFixed(3);   // 0.42 (edges) -> ~1.15 (center)
-        d.video.style.filter = "brightness(" + bright + ") saturate(.97)";
-        if (d.poster) d.poster.style.filter = "brightness(" + bright + ") saturate(.9) contrast(1.05)";
-        if (d.dim) d.dim.style.opacity = (1 - 0.4 * c).toFixed(3);
-        var onscreen = r.bottom > 0 && r.top < vh;
-        if (onscreen) {
-          if (!d.loaded && d.clips.length) { d.loaded = true; d.loadClip(0); }
-          else if (d.video.paused) { var pp = d.video.play(); if (pp && pp.catch) pp.catch(function () {}); }
-        } else if (!d.video.paused) { d.video.pause(); }
+    function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function loadClip(i) { ci = i; v.src = clips[i].src; v.load(); seekStart(); if (!reduceMotion) play(); }
+    function advance() {
+      if (clips.length < 2) { try { v.currentTime = clips[0].start || 0; } catch (e) {} if (!reduceMotion) play(); return; }
+      loadClip((ci + 1) % clips.length);
+    }
+    v.addEventListener("loadedmetadata", seekStart);
+    v.addEventListener("canplay", function () { if (!reduceMotion) play(); });
+    v.addEventListener("timeupdate", function () {
+      var c = clips[ci];
+      if (c.seconds && v.currentTime - c.start >= c.seconds) advance();
+    });
+    v.addEventListener("ended", advance);
+    // If a browser blocks muted autoplay, kick it off on the first interaction.
+    if (!reduceMotion) {
+      var kick = function () {
+        if (v.paused) play();
+        ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+          window.removeEventListener(ev, kick);
+        });
+      };
+      ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
+        window.addEventListener(ev, kick, { passive: true });
       });
-      if (hint) hint.classList.toggle("hide", (window.scrollY || 0) > vh * 0.35);
     }
-
-    var ticking = false;
-    function onScroll() { if (!ticking) { requestAnimationFrame(function () { update(); ticking = false; }); ticking = true; } }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    scenesUpdate = update;
-    update();
+    loadClip(0);   // reduced-motion: loads + shows first frame without autoplaying
   }
 
   /* ------------------------------------------------------- ROADMAP */
@@ -255,7 +211,6 @@
       });
     } else {
       window.scrollTo(0, 0);
-      if (name === "home" && scenesUpdate) { requestAnimationFrame(scenesUpdate); }
     }
     rearmReveals(active);
   }
@@ -382,7 +337,7 @@
     if (e.target.closest("#lb-close")) { closeLightbox(); return; }
     if (e.target.closest("#lb-prev")) { e.stopPropagation(); stepLightbox(-1); return; }
     if (e.target.closest("#lb-next")) { e.stopPropagation(); stepLightbox(1); return; }
-    var feat = e.target.closest(".feat-item[data-video]");
+    var feat = e.target.closest("[data-video]");
     if (feat) { e.preventDefault(); openSingleVideo(feat.getAttribute("data-video")); return; }
     var gitem = e.target.closest(".g-item");
     if (gitem) { openLightbox(parseInt(gitem.getAttribute("data-i"), 10)); return; }
@@ -546,10 +501,12 @@
     var header = document.querySelector(".siteheader");
     var progress = document.getElementById("scroll-progress");
     var heroBg = document.querySelector(".mhero-bg");
+    var hint = document.getElementById("scroll-hint");
     var ticking = false;
     function onScroll() {
       var y = window.scrollY || window.pageYOffset || 0;
       if (header) header.classList.toggle("scrolled", y > 8);
+      if (hint) hint.classList.toggle("hide", y > 80);
       if (progress) {
         var h = document.documentElement.scrollHeight - window.innerHeight;
         progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";

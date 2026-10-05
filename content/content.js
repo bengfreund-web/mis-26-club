@@ -19,19 +19,17 @@
    for "seconds", then cuts to the next and loops. Uses existing clips. */
 /* Scroll-driven hero: each scene goes black -> city title + video -> up & black -> next.
    "poster" is the still shown before/behind the video. One scene per city. */
+/* ONE looping montage (Invitational/GNC style) shown full-screen on Home.
+   Each clip plays for "seconds" from "start", then cuts to the next, then loops.
+   Lead with Chicago, then quick 1-2s cuts of the best LA + Baltimore moments.
+   (The golf tee clip was removed per the Oct 5 review.) */
 var CLUB_HERO = {
-  scenes: [
-    { srcs: ["media/baltimore/img_2006.mp4"],                              poster: "images/gallery/baltimore/img_2010.jpg", city: "Baltimore",   note: "Springboks vs All Blacks" },
-    // LA = quick cut: rugby stadium, then the golf tee shot. "seconds" = how long each clip shows before cutting.
-    { srcs: [
-        { src: "media/la/img_9587.mp4", start: 0,   seconds: 3.5 },   // rugby stadium
-        { src: "media/la/img_9552.mp4", start: 1.5, seconds: 4.5 }    // golf tee, ocean backdrop
-      ], poster: "images/gallery/la/img_9549.jpg", city: "Los Angeles", note: "USA vs Canada" },
-    // Chicago = quick cut: rugby, then the Bulls game.
-    { srcs: [
-        { src: "media/chicago/img_5760.mp4", start: 0, seconds: 4 },  // rugby
-        { src: "media/chicago/img_5697.mp4", start: 0, seconds: 4 }   // Bulls game
-      ], poster: "images/gallery/chicago/img_5758.jpg", city: "Chicago", note: "Ireland vs New Zealand" }
+  poster: "images/gallery/chicago/img_5758.jpg",
+  montage: [
+    { src: "media/chicago/img_5760.mp4",   start: 0, seconds: 3.5 },  // Chicago rugby (lead)
+    { src: "media/la/img_9587.mp4",        start: 0, seconds: 1.8 },  // LA rugby
+    { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 1.8 },  // Baltimore rugby
+    { src: "media/chicago/img_5764.mp4",   start: 0, seconds: 1.8 }   // Chicago rugby (second angle)
   ]
 };
 
@@ -224,7 +222,6 @@ var CLUB_GALLERIES = [
       { type: "photo", src: "images/gallery/la/img_9539.jpg" },
       { type: "photo", src: "images/gallery/la/img_9546.jpg" },
       { type: "photo", src: "images/gallery/la/img_9549.jpg" },
-      { type: "video", src: "media/la/img_9552.mp4", poster: "images/gallery/la/posters/img_9552.jpg" },
       { type: "photo", src: "images/gallery/la/img_9561.jpg" },
       { type: "photo", src: "images/gallery/la/img_9565.jpg" },
       { type: "photo", src: "images/gallery/la/img_9582.jpg" },

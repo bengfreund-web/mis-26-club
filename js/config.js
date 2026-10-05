@@ -10,6 +10,7 @@
    add real member logins (Google / Cloudflare Access) if you ever need that.
    ========================================================================== */
 var CLUB_CONFIG = {
-  password: "TRYRugby!",   // <-- change this to your shared club password
-  title:    "The 26 Club"
+  password:  "TRYRugby!",   // <-- change this to your shared club password
+  title:     "The 26 Club",
+  signupUrl: ""             // <-- paste the Zeffy sign-up/registration link here
 };
