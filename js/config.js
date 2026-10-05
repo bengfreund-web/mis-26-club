@@ -10,6 +10,6 @@
    add real member logins (Google / Cloudflare Access) if you ever need that.
    ========================================================================== */
 var CLUB_CONFIG = {
-  password: "TryRugby-26Club-2026",   // <-- change this to your shared club password
+  password: "TRYRugby!",   // <-- change this to your shared club password
   title:    "The 26 Club"
 };
