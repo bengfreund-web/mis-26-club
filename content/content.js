@@ -19,17 +19,25 @@
    for "seconds", then cuts to the next and loops. Uses existing clips. */
 /* Scroll-driven hero: each scene goes black -> city title + video -> up & black -> next.
    "poster" is the still shown before/behind the video. One scene per city. */
-/* ONE looping montage (Invitational/GNC style) shown full-screen on Home.
-   Each clip plays for "seconds" from "start", then cuts to the next, then loops.
-   Lead with Chicago, then quick 1-2s cuts of the best LA + Baltimore moments.
-   (The golf tee clip was removed per the Oct 5 review.) */
+/* ONE looping montage on Home. For each city the name animates up on screen while
+   TWO background clips play, then the name slides back down and the next city pops up.
+   Order: Baltimore -> Los Angeles -> Chicago, then loops. (Golf tee clip removed.)
+   Baltimore & LA have one source clip each, so their two "clips" are two shots cut
+   from that file (different start times); Chicago uses rugby + the Bulls game. */
 var CLUB_HERO = {
-  poster: "images/gallery/chicago/img_5758.jpg",
-  montage: [
-    { src: "media/chicago/img_5760.mp4",   start: 0, seconds: 3.5 },  // Chicago rugby (lead)
-    { src: "media/la/img_9587.mp4",        start: 0, seconds: 1.8 },  // LA rugby
-    { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 1.8 },  // Baltimore rugby
-    { src: "media/chicago/img_5764.mp4",   start: 0, seconds: 1.8 }   // Chicago rugby (second angle)
+  cities: [
+    { city: "Baltimore", note: "Springboks vs All Blacks", clips: [
+        { src: "media/baltimore/img_2006.mp4", start: 0,   seconds: 3.0 },
+        { src: "media/baltimore/img_2006.mp4", start: 4.6, seconds: 3.0 }
+      ] },
+    { city: "Los Angeles", note: "USA vs Canada", clips: [
+        { src: "media/la/img_9587.mp4", start: 0,   seconds: 2.8 },
+        { src: "media/la/img_9587.mp4", start: 3.6, seconds: 2.8 }
+      ] },
+    { city: "Chicago", note: "Ireland vs New Zealand", clips: [
+        { src: "media/chicago/img_5760.mp4", start: 2, seconds: 3.0 },  // rugby
+        { src: "media/chicago/img_5697.mp4", start: 2, seconds: 3.0 }   // Bulls game
+      ] }
   ]
 };
 

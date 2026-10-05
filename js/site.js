@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["home", "whatsnext", "gallery"];
+  var TABS = ["home", "model", "whatsnext", "gallery"];
   var tabsReady = false;
   var revealIO = null;
   var scenesUpdate = null;
@@ -94,67 +94,85 @@
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
     renderRoadmap();
     renderGallery();
-    wireSignup();
     initReveals();
     initScrollFx();
     initVhero();
     initTabs();
   }
 
-  /* Point every "Sign Up" button at the Zeffy link from config (|| "#"). */
-  function wireSignup() {
-    var url = (typeof CLUB_CONFIG !== "undefined" && CLUB_CONFIG.signupUrl) ? CLUB_CONFIG.signupUrl : "";
-    ["signup-nav", "signup-hero", "signup-foot"].forEach(function (id) {
-      var a = document.getElementById(id);
-      if (!a) return;
-      a.setAttribute("href", url || "#");
-      if (!url) a.setAttribute("aria-disabled", "true");
-    });
-  }
-
   /* ------------------------------------------------------- HERO MONTAGE */
   function clampN(v, a, b) { return v < a ? a : (v > b ? b : v); }
-  /* ONE full-screen looping video (Invitational/GNC style): a single <video>
-     plays each montage clip for its "seconds", then cuts to the next, then loops. */
+  /* ONE full-screen looping montage on Home. Clips from all cities are flattened
+     into a sequence; each plays for its "seconds" then cuts to the next. When a new
+     CITY begins, its name slides up on screen; at the city's end the name slides back
+     down, then the next city's name pops up. Loops forever. */
   function initVhero() {
     var v = document.getElementById("vhero-video");
-    if (!v || typeof CLUB_HERO === "undefined") return;
-    var clips = (CLUB_HERO.montage || []).map(function (c) {
-      return (typeof c === "string") ? { src: c, start: 0, seconds: 0 }
-                                     : { src: c.src, start: c.start || 0, seconds: c.seconds || 0 };
+    var cap = document.getElementById("vhero-cap");
+    var cityEl = document.getElementById("vhero-city");
+    var noteEl = document.getElementById("vhero-note");
+    if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.cities) return;
+
+    // Flatten cities -> clip list, tagging city name/note and first-of-city.
+    var clips = [];
+    CLUB_HERO.cities.forEach(function (c) {
+      (c.clips || []).forEach(function (clip, j) {
+        clips.push({ src: clip.src, start: clip.start || 0, seconds: clip.seconds || 0,
+                     city: c.city, note: c.note || "", firstOfCity: j === 0 });
+      });
     });
     if (!clips.length) return;
-    var ci = 0;
-    function seekStart() {
-      var st = clips[ci].start;
-      if (st > 0 && Math.abs(v.currentTime - st) > 0.3) { try { v.currentTime = st; } catch (e) {} }
-    }
+
+    var ci = 0, switching = false;
     function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    function loadClip(i) { ci = i; v.src = clips[i].src; v.load(); seekStart(); if (!reduceMotion) play(); }
-    function advance() {
-      if (clips.length < 2) { try { v.currentTime = clips[0].start || 0; } catch (e) {} if (!reduceMotion) play(); return; }
-      loadClip((ci + 1) % clips.length);
+    function seekTo(t) { if (Math.abs(v.currentTime - t) > 0.25) { try { v.currentTime = t; } catch (e) {} } }
+    function showCap(clip) {
+      if (noteEl) noteEl.textContent = clip.note;
+      if (cityEl) cityEl.textContent = clip.city;
+      if (cap) { cap.classList.remove("out"); cap.classList.add("in"); }
     }
-    v.addEventListener("loadedmetadata", seekStart);
+    function hideCap() { if (cap) { cap.classList.remove("in"); cap.classList.add("out"); } }
+
+    function goTo(i) {
+      var prevSrc = clips[ci] && clips[ci].src;
+      ci = i;
+      var clip = clips[i];
+      if (clip.src === prevSrc && v.src && v.src.indexOf(clip.src) !== -1) {
+        seekTo(clip.start);                 // same file -> just jump (no reload flash)
+      } else {
+        v.src = clip.src; v.load(); seekTo(clip.start);
+      }
+      if (!reduceMotion) play();
+      if (clip.firstOfCity) showCap(clip);
+    }
+    function advance() {
+      if (switching) return;
+      switching = true;
+      var next = (ci + 1) % clips.length;
+      if (clips[next].firstOfCity) {        // new city: drop the name, then raise the next
+        hideCap();
+        setTimeout(function () { switching = false; goTo(next); }, 520);
+      } else {
+        switching = false; goTo(next);
+      }
+    }
+
+    v.addEventListener("loadedmetadata", function () { seekTo(clips[ci].start); });
     v.addEventListener("canplay", function () { if (!reduceMotion) play(); });
     v.addEventListener("timeupdate", function () {
       var c = clips[ci];
-      if (c.seconds && v.currentTime - c.start >= c.seconds) advance();
+      if (!switching && c.seconds && v.currentTime - c.start >= c.seconds) advance();
     });
     v.addEventListener("ended", advance);
-    // If a browser blocks muted autoplay, kick it off on the first interaction.
+    // If a browser blocks muted autoplay, start it on the first interaction.
     if (!reduceMotion) {
       var kick = function () {
         if (v.paused) play();
-        ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
-          window.removeEventListener(ev, kick);
-        });
+        ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.removeEventListener(ev, kick); });
       };
-      ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) {
-        window.addEventListener(ev, kick, { passive: true });
-      });
+      ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.addEventListener(ev, kick, { passive: true }); });
     }
-    loadClip(0);   // reduced-motion: loads + shows first frame without autoplaying
+    goTo(0);
   }
 
   /* ------------------------------------------------------- ROADMAP */

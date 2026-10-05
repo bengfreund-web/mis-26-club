@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=41">
+<link rel="stylesheet" href="css/style.css?v=42">
 </head>
 <body class="locked" id="top">
 
@@ -43,40 +43,34 @@
       </a>
       <div class="navlinks">
         <a href="#home" data-tab="home">Home</a>
+        <a href="#model" data-tab="model">The Model</a>
         <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
-      </div>
-      <div class="nav-actions">
-        <a class="btn btn-yellow no-arrow nav-cta" id="signup-nav" href="#" target="_blank" rel="noopener">Sign Up</a>
-        <button class="signout" type="button" data-signout>Sign out</button>
       </div>
     </nav>
   </header>
 
-  <!-- ===================== TAB: HOME ===================== -->
+  <!-- ===================== TAB: HOME (locations montage only) ===================== -->
   <div class="tab-panel" id="home">
-
-    <!-- MONTAGE HERO (one looping video) -->
     <section class="vhero">
       <video class="vhero-video" id="vhero-video" autoplay muted playsinline preload="auto"
-             poster="images/gallery/chicago/img_5758.jpg" aria-hidden="true" tabindex="-1"></video>
+             poster="images/gallery/baltimore/img_2010.jpg" aria-hidden="true" tabindex="-1"></video>
       <div class="vhero-scrim"></div>
-      <div class="vhero-inner">
-        <div class="vhero-kicker">The 26 Club</div>
-        <h1 class="vhero-title">Building a sustainable<br>K&ndash;12 rugby model</h1>
-        <div class="vhero-actions">
-          <a class="btn btn-yellow no-arrow vhero-cta" id="signup-hero" href="#" target="_blank" rel="noopener">Sign Up</a>
-        </div>
+      <div class="vhero-cap" id="vhero-cap">
+        <div class="vhero-note" id="vhero-note"></div>
+        <h1 class="vhero-city" id="vhero-city"></h1>
       </div>
-      <div class="scroll-hint" id="scroll-hint" aria-hidden="true"><span class="lbl">Scroll</span><span class="ln"></span></div>
     </section>
+  </div>
 
-    <!-- HOW DO WE DO THIS -->
-    <section class="section elev">
+  <!-- ===================== TAB: THE MODEL ===================== -->
+  <div class="tab-panel" id="model">
+    <!-- CORE MESSAGE + HOW DO WE DO THIS -->
+    <section class="section">
       <div class="wrap">
         <div class="section-head center reveal">
-          <div class="mono-label center">How do we do this?</div>
-          <div class="h2">A sustainable model, built to last</div>
+          <div class="mono-label center">Our Mission</div>
+          <div class="h2">Building a sustainable K&ndash;12 rugby model</div>
         </div>
         <div class="how-grid reveal stagger">
           <div class="how-card"><div class="how-num">01</div><div class="how-title">Introduce it into the schools</div><div class="how-body">Bring rugby to Montana classrooms through TRY Rugby curriculum, equipment, and on-site coaching.</div></div>
@@ -87,8 +81,8 @@
       </div>
     </section>
 
-    <!-- IMPACT (tight) -->
-    <section class="section">
+    <!-- IMPACT -->
+    <section class="section elev">
       <div class="wrap">
         <div class="section-head center reveal">
           <div class="mono-label center">Our Impact</div>
@@ -117,15 +111,6 @@
             <span class="film-label">Chicago Weekend</span>
           </button>
         </div>
-      </div>
-    </section>
-
-    <!-- CLOSING CTA -->
-    <section class="section elev cta-band">
-      <div class="wrap center">
-        <div class="h2 reveal">Join the 26 Club</div>
-        <p class="reveal">Be part of building the future of rugby in Montana.</p>
-        <div class="reveal"><a class="btn btn-yellow no-arrow" id="signup-foot" href="#" target="_blank" rel="noopener">Sign Up</a></div>
       </div>
     </section>
   </div>
@@ -164,6 +149,7 @@
   <!-- MOBILE TAB BAR -->
   <nav class="mobile-tabs" aria-label="Sections">
     <a href="#home" data-tab="home">Home</a>
+    <a href="#model" data-tab="model">Model</a>
     <a href="#whatsnext" data-tab="whatsnext">Next</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
   </nav>
@@ -178,9 +164,9 @@
         </div>
         <div class="footer-links">
           <a href="#home" data-tab="home">Home</a>
+          <a href="#model" data-tab="model">The Model</a>
           <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
           <a href="#gallery" data-tab="gallery">Gallery</a>
-          <a href="#" data-signout>Sign out</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -192,8 +178,8 @@
 
 </div>
 
-<script src="js/config.js?v=41"></script>
-<script src="content/content.js?v=41"></script>
-<script src="js/site.js?v=41" defer></script>
+<script src="js/config.js?v=42"></script>
+<script src="content/content.js?v=42"></script>
+<script src="js/site.js?v=42" defer></script>
 </body>
 </html>
