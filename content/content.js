@@ -26,15 +26,16 @@
    from that file (different start times); Chicago uses rugby + the Bulls game. */
 var CLUB_HERO = {
   cities: [
-    // Baltimore: only one clip exists in the project -> plays once.
+    // Baltimore: two DIFFERENT clips (haka + stadium), 1080p, each once.
     { city: "Baltimore", note: "Springboks vs All Blacks", clips: [
-        { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 4.5 }
+        { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 3.6 },  // haka
+        { src: "media/baltimore/img_2005.mp4", start: 1, seconds: 3.4 }   // stadium / flags
       ] },
-    // Los Angeles: only one usable clip (golf clip was removed) -> plays once.
+    // Los Angeles: its only rugby clip (golf/dinner clips excluded) -> plays once.
     { city: "Los Angeles", note: "USA vs Canada", clips: [
         { src: "media/la/img_9587.mp4", start: 0, seconds: 4.5 }
       ] },
-    // Chicago: two DIFFERENT clips, each once.
+    // Chicago: two DIFFERENT clips (rugby + Bulls game), 1080p, each once.
     { city: "Chicago", note: "Ireland vs New Zealand", clips: [
         { src: "media/chicago/img_5760.mp4", start: 1, seconds: 3.5 },  // rugby
         { src: "media/chicago/img_5697.mp4", start: 1, seconds: 3.5 }   // Bulls game
