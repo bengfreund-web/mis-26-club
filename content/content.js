@@ -48,9 +48,9 @@ var CLUB_HERO = {
    (e.g. england.png); until then a labelled placeholder shows.
    "phase" is "past" or "future". */
 var CLUB_ROADMAP = [
-  { when: "2025",           place: "Chicago, USA",     title: "Ireland vs New Zealand",   logos: ["ireland","all-blacks"],    phase: "past" },
-  { when: "2025",           place: "Baltimore, USA",   title: "Springboks vs All Blacks", logos: ["springboks","all-blacks"], phase: "past" },
   { when: "2025",           place: "Los Angeles, USA", title: "USA vs Canada",            logos: ["usa","canada"],            phase: "past" },
+  { when: "2025",           place: "Baltimore, USA",   title: "Springboks vs All Blacks", logos: ["springboks","all-blacks"], phase: "past" },
+  { when: "2025",           place: "Chicago, USA",     title: "Ireland vs New Zealand",   logos: ["ireland","all-blacks"],    phase: "past" },
   { when: "Nov 2026",       place: "London, England",  title: "Wallabies vs England",     logos: ["wallabies","england"],     phase: "future" },
   { when: "Mar / Apr 2027", place: "Europe",           title: "Six Nations",              logos: ["six-nations"],             phase: "future" },
   { when: "Nov 2027",       place: "Australia",        title: "Rugby World Cup",          logos: ["rugby-world-cup"],         phase: "future" },

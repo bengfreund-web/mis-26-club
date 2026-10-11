@@ -94,10 +94,20 @@
     renderList("impact-grid", typeof CLUB_IMPACT !== "undefined" ? CLUB_IMPACT : [], impactCell);
     renderRoadmap();
     renderGallery();
+    wireJoin();
     initReveals();
     initScrollFx();
     initVhero();
     initTabs();
+  }
+
+  /* Point the "Join the Club" button(s) at the Zeffy link from config (|| "#"). */
+  function wireJoin() {
+    var url = (typeof CLUB_CONFIG !== "undefined" && CLUB_CONFIG.signupUrl) ? CLUB_CONFIG.signupUrl : "";
+    ["join-club"].forEach(function (id) {
+      var a = document.getElementById(id);
+      if (a) a.setAttribute("href", url || "#");
+    });
   }
 
   /* ------------------------------------------------------- HERO MONTAGE */
