@@ -451,7 +451,7 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 
 /* ---- CLOSING CTA BAND ---- */
 .cta-band{text-align:center;}
-.cta-band .h2{margin-bottom:12px;}
+.cta-band .h2{margin-bottom:12px; text-transform:uppercase; letter-spacing:.01em;}
 .cta-band p{max-width:46ch; margin:0 auto 26px;}
 .section .wrap.center{text-align:center;}
 
