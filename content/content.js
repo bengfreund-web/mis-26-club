@@ -30,10 +30,10 @@ var CLUB_HERO = {
     { city: "Baltimore", note: "Springboks vs All Blacks", clips: [
         { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 4.5 }
       ] },
-    // Los Angeles: the rugby-watch clip (user-supplied, trimmed to start 3s in),
-    // cropped to favor the field, then the golf swing.
+    // Los Angeles: the user-supplied field clip (cropped to the field, foreground
+    // seats hidden), then the golf swing.
     { city: "Los Angeles", note: "USA vs Canada", clips: [
-        { src: "media/la/img_9587h.mp4", start: 0, seconds: 4.0, pos: "center 42%" },  // rugby game
+        { src: "media/la/img_9587h.mp4", start: 0, seconds: 5.2, pos: "center 33%" },  // the field
         { src: "media/la/img_9552.mp4", start: 0, seconds: 3.5 }                         // golf swing
       ] },
     // Chicago: the rugby game first, then the Bulls game.
