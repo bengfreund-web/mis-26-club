@@ -101,10 +101,10 @@
     initTabs();
   }
 
-  /* Point the "Join the Club" button(s) at the Zeffy link from config (|| "#"). */
+  /* Point every "Become a Member" control at the Zeffy link from config (|| "#"). */
   function wireJoin() {
     var url = (typeof CLUB_CONFIG !== "undefined" && CLUB_CONFIG.signupUrl) ? CLUB_CONFIG.signupUrl : "";
-    ["join-club"].forEach(function (id) {
+    ["join-club", "join-nav", "join-mobile"].forEach(function (id) {
       var a = document.getElementById(id);
       if (a) a.setAttribute("href", url || "#");
     });
@@ -118,22 +118,25 @@
      down, then the next city's name pops up. Loops forever. */
   function initVhero() {
     var v = document.getElementById("vhero-video");
+    var imgEl = document.getElementById("vhero-img");
     var cap = document.getElementById("vhero-cap");
     var cityEl = document.getElementById("vhero-city");
     var noteEl = document.getElementById("vhero-note");
     if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.cities) return;
 
-    // Flatten cities -> clip list, tagging city name/note and first-of-city.
+    // Flatten cities -> clip list. A clip is a VIDEO by default, or an IMAGE (type:"image")
+    // which shows a still with a slow Ken Burns zoom (origin "x% y%").
     var clips = [];
     CLUB_HERO.cities.forEach(function (c) {
       (c.clips || []).forEach(function (clip, j) {
-        clips.push({ src: clip.src, start: clip.start || 0, seconds: clip.seconds || 0,
+        clips.push({ type: clip.type || "video", src: clip.src, start: clip.start || 0,
+                     seconds: clip.seconds || 0, pos: clip.pos || "center", origin: clip.origin || "50% 50%",
                      city: c.city, note: c.note || "", firstOfCity: j === 0 });
       });
     });
     if (!clips.length) return;
 
-    var ci = 0, switching = false;
+    var ci = 0, switching = false, imgTimer = null, awaitingCap = null;
     function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
     function seekTo(t) { if (Math.abs(v.currentTime - t) > 0.25) { try { v.currentTime = t; } catch (e) {} } }
     function showCap(clip) {
@@ -142,18 +145,36 @@
       if (cap) { cap.classList.remove("out"); cap.classList.add("in"); }
     }
     function hideCap() { if (cap) { cap.classList.remove("in"); cap.classList.add("out"); } }
+    // Show a new city's title only once its own media is actually on screen (prevents
+    // a title appearing over the previous clip while the new one is still loading).
+    function maybeCap() { if (awaitingCap) { showCap(awaitingCap); awaitingCap = null; } }
 
     function goTo(i) {
-      var prevSrc = clips[ci] && clips[ci].src;
+      if (imgTimer) { clearTimeout(imgTimer); imgTimer = null; }
+      var prev = clips[ci];
       ci = i;
       var clip = clips[i];
-      if (clip.src === prevSrc && v.src && v.src.indexOf(clip.src) !== -1) {
-        seekTo(clip.start);                 // same file -> just jump (no reload flash)
+      awaitingCap = clip.firstOfCity ? clip : null;
+
+      if (clip.type === "image") {
+        v.pause(); v.style.opacity = 0;
+        if (imgEl) {
+          imgEl.style.backgroundImage = "url('" + clip.src + "')";
+          imgEl.style.transformOrigin = clip.origin;
+          imgEl.style.setProperty("--kbdur", clip.seconds + "s");
+          imgEl.classList.remove("kb"); void imgEl.offsetWidth;   // restart the zoom
+          imgEl.classList.add("show"); if (!reduceMotion) imgEl.classList.add("kb");
+        }
+        maybeCap();
+        if (!reduceMotion) imgTimer = setTimeout(advance, clip.seconds * 1000);
       } else {
-        v.src = clip.src; v.load(); seekTo(clip.start);
+        if (imgEl) { imgEl.classList.remove("kb", "show"); }
+        v.style.opacity = 1; v.style.objectPosition = clip.pos;
+        var sameFile = prev && prev.type === "video" && clip.src === prev.src && v.src && v.src.indexOf(clip.src) !== -1;
+        if (sameFile) { seekTo(clip.start); } else { v.src = clip.src; v.load(); seekTo(clip.start); }
+        if (!reduceMotion) play();
+        setTimeout(maybeCap, 400);   // fallback in case 'playing' never fires
       }
-      if (!reduceMotion) play();
-      if (clip.firstOfCity) showCap(clip);
     }
     function advance() {
       if (switching) return;
@@ -167,17 +188,18 @@
       }
     }
 
-    v.addEventListener("loadedmetadata", function () { seekTo(clips[ci].start); });
-    v.addEventListener("canplay", function () { if (!reduceMotion) play(); });
+    v.addEventListener("loadedmetadata", function () { if (clips[ci].type === "video") seekTo(clips[ci].start); });
+    v.addEventListener("canplay", function () { if (!reduceMotion && clips[ci].type === "video") play(); });
+    v.addEventListener("playing", maybeCap);
     v.addEventListener("timeupdate", function () {
       var c = clips[ci];
-      if (!switching && c.seconds && v.currentTime - c.start >= c.seconds) advance();
+      if (c.type === "video" && !switching && c.seconds && v.currentTime - c.start >= c.seconds) advance();
     });
-    v.addEventListener("ended", advance);
+    v.addEventListener("ended", function () { if (clips[ci].type === "video") advance(); });
     // If a browser blocks muted autoplay, start it on the first interaction.
     if (!reduceMotion) {
       var kick = function () {
-        if (v.paused) play();
+        if (clips[ci].type === "video" && v.paused) play();
         ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.removeEventListener(ev, kick); });
       };
       ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.addEventListener(ev, kick, { passive: true }); });
@@ -387,7 +409,7 @@
   }
 
   function impactCell(s) {
-    return '<div class="impact-cell"><div class="num">' + esc(s.num) + '</div>' +
+    return '<div class="impact-cell' + (s.hero ? ' hero' : '') + '"><div class="num">' + esc(s.num) + '</div>' +
       '<div class="lab">' + esc(s.label) + '</div>' +
       (s.sub ? '<div class="sub">' + esc(s.sub) + '</div>' : '') + '</div>';
   }

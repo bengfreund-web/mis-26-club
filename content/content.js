@@ -26,16 +26,17 @@
    from that file (different start times); Chicago uses rugby + the Bulls game. */
 var CLUB_HERO = {
   cities: [
-    // Baltimore: two DIFFERENT clips (haka + stadium), 1080p, each once.
+    // Baltimore: ONE clip (the haka), plays once.
     { city: "Baltimore", note: "Springboks vs All Blacks", clips: [
-        { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 3.6 },  // haka
-        { src: "media/baltimore/img_2005.mp4", start: 1, seconds: 3.4 }   // stadium / flags
+        { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 4.5 }
       ] },
-    // Los Angeles: its only rugby clip (golf/dinner clips excluded) -> plays once.
+    // Los Angeles: the rugby-watch clip (user-supplied, trimmed to start 3s in),
+    // cropped to favor the field, then the golf swing.
     { city: "Los Angeles", note: "USA vs Canada", clips: [
-        { src: "media/la/img_9587.mp4", start: 0, seconds: 4.5 }
+        { src: "media/la/img_9587h.mp4", start: 0, seconds: 4.0, pos: "center 42%" },  // rugby game
+        { src: "media/la/img_9552.mp4", start: 0, seconds: 3.5 }                         // golf swing
       ] },
-    // Chicago: two DIFFERENT clips (rugby + Bulls game), 1080p, each once.
+    // Chicago: the rugby game first, then the Bulls game.
     { city: "Chicago", note: "Ireland vs New Zealand", clips: [
         { src: "media/chicago/img_5760.mp4", start: 1, seconds: 3.5 },  // rugby
         { src: "media/chicago/img_5697.mp4", start: 1, seconds: 3.5 }   // Bulls game
@@ -113,6 +114,7 @@ var CLUB_FILMS = [
 
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */
 var CLUB_IMPACT = [
+  { num: "60%",     label: "of all kids in Montana reached", hero: true },
   { num: "293",     label: "Schools",  sub: "of 812 Montana schools" },
   { num: "101,688", label: "Students", sub: "of 151,580 Montana students" },
 ];
@@ -233,12 +235,9 @@ var CLUB_GALLERIES = [
       { type: "photo", src: "images/gallery/la/img_9546.jpg" },
       { type: "photo", src: "images/gallery/la/img_9549.jpg" },
       { type: "photo", src: "images/gallery/la/img_9561.jpg" },
-      { type: "photo", src: "images/gallery/la/img_9565.jpg" },
       { type: "photo", src: "images/gallery/la/img_9582.jpg" },
       { type: "photo", src: "images/gallery/la/img_9583.jpg" },
-      { type: "photo", src: "images/gallery/la/img_9586.jpg" },
-      { type: "video", src: "media/la/img_9587.mp4", poster: "images/gallery/la/posters/img_9587.jpg" },
-      { type: "photo", src: "images/gallery/la/img_9588b.jpg" }
+      { type: "video", src: "media/la/img_9587.mp4", poster: "images/gallery/la/posters/img_9587.jpg" }
     ]
   },
   {
@@ -256,12 +255,10 @@ var CLUB_GALLERIES = [
     caption: "Ireland vs New Zealand — a weekend on the road.",
     items: [
       { type: "photo", src: "images/gallery/chicago/img_5660.jpg" },
-      { type: "photo", src: "images/gallery/chicago/img_5694.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5696.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5702.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
-      { type: "photo", src: "images/gallery/chicago/img_5766.jpg" },
     ]
   }
 ];

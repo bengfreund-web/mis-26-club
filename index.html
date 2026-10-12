@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=47">
+<link rel="stylesheet" href="css/style.css?v=54">
 </head>
 <body class="locked" id="top">
 
@@ -47,6 +47,7 @@
         <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
       </div>
+      <a class="btn btn-yellow no-arrow nav-cta" id="join-nav" href="#" target="_blank" rel="noopener">Become a Member</a>
     </nav>
   </header>
 
@@ -55,6 +56,7 @@
     <section class="vhero">
       <video class="vhero-video" id="vhero-video" autoplay muted playsinline preload="auto"
              poster="images/gallery/baltimore/img_2010.jpg" aria-hidden="true" tabindex="-1"></video>
+      <div class="vhero-img" id="vhero-img" aria-hidden="true"></div>
       <div class="vhero-scrim"></div>
       <div class="vhero-cap" id="vhero-cap">
         <div class="vhero-note" id="vhero-note"></div>
@@ -86,14 +88,59 @@
       <div class="wrap">
         <div class="section-head center reveal">
           <div class="mono-label center">Our Impact</div>
-          <div class="h2">We've reached 60% of all kids in Montana</div>
-          <p>Only 26% of Montana youth get the daily activity they need &mdash; here's the ground we've covered so far.</p>
+          <div class="h2">By the numbers</div>
+          <p>Only 26% of Montana youth get the daily activity they need &mdash; here's the ground we've covered.</p>
         </div>
         <div class="impact-grid reveal stagger" id="impact-grid"><!-- filled from content/content.js --></div>
       </div>
     </section>
 
-    <!-- WATCH -->
+    <!-- INITIATIVES (where the money goes) -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">Where your support goes</div>
+          <div class="h2">Every rugby initiative we run</div>
+          <p>One membership powers all of it.</p>
+        </div>
+        <div class="init-grid reveal stagger">
+          <div class="init-card"><div class="init-name">TRY Rugby</div><div class="init-desc">Rugby curriculum and Rugby In A Box kits delivered to schools across the state.</div></div>
+          <div class="init-card"><div class="init-name">Boots for All</div><div class="init-desc">Sports equipment access for Montana youth.</div></div>
+          <div class="init-card"><div class="init-name">Tackle Montana</div><div class="init-desc">Free rugby-based tackle coaching for Montana football teams.</div></div>
+          <div class="init-card"><div class="init-name">The Varsity Initiative</div><div class="init-desc">Bringing varsity rugby to Montana high schools.</div></div>
+          <div class="init-card"><div class="init-name">The College Rugby Initiative</div><div class="init-desc">A varsity rugby pathway and new enrollment channel for colleges.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BECOME A MEMBER (Zeffy) -->
+    <section class="section cta-band">
+      <div class="wrap center">
+        <div class="mono-label center reveal">Be part of it</div>
+        <div class="h2 reveal">Become a Member</div>
+        <p class="reveal">Back the mission and help build the future of rugby in Montana.</p>
+        <div class="reveal"><a class="btn btn-yellow no-arrow" id="join-club" href="#" target="_blank" rel="noopener">Become a Member</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: WHAT'S NEXT (roadmap) ===================== -->
+  <div class="tab-panel" id="whatsnext">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">What's Next</div>
+          <div class="h2">The road ahead</div>
+          <p>Where the club has been, and the run of the world's great sporting occasions still to come.</p>
+        </div>
+        <div class="roadmap" id="roadmap"><!-- filled from content/content.js --></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: GALLERY (films + trip photos) ===================== -->
+  <div class="tab-panel" id="gallery">
+    <!-- WATCH (moved here from The Model) -->
     <section class="section">
       <div class="wrap">
         <div class="section-head center reveal">
@@ -119,33 +166,6 @@
       </div>
     </section>
 
-    <!-- JOIN THE CLUB (Zeffy) -->
-    <section class="section cta-band">
-      <div class="wrap center">
-        <div class="mono-label center reveal">Be part of it</div>
-        <div class="h2 reveal">Become a Member</div>
-        <p class="reveal">Back the mission and help build the future of rugby in Montana.</p>
-        <div class="reveal"><a class="btn btn-yellow no-arrow" id="join-club" href="#" target="_blank" rel="noopener">Join the Club</a></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ===================== TAB: WHAT'S NEXT (roadmap) ===================== -->
-  <div class="tab-panel" id="whatsnext">
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <div class="mono-label center">What's Next</div>
-          <div class="h2">The road ahead</div>
-          <p>Where the club has been, and the run of the world's great sporting occasions still to come.</p>
-        </div>
-        <div class="roadmap" id="roadmap"><!-- filled from content/content.js --></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ===================== TAB: GALLERY (multiple trips) ===================== -->
-  <div class="tab-panel" id="gallery">
     <section class="section">
       <div class="wrap">
         <div id="galleries"><!-- one block per trip, filled from content/content.js --></div>
@@ -167,6 +187,7 @@
     <a href="#model" data-tab="model">Model</a>
     <a href="#whatsnext" data-tab="whatsnext">Next</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
+    <a href="#" id="join-mobile" class="mtab-cta" target="_blank" rel="noopener">Member</a>
   </nav>
 
   <!-- FOOTER -->
@@ -193,8 +214,8 @@
 
 </div>
 
-<script src="js/config.js?v=47"></script>
-<script src="content/content.js?v=47"></script>
-<script src="js/site.js?v=47" defer></script>
+<script src="js/config.js?v=54"></script>
+<script src="content/content.js?v=54"></script>
+<script src="js/site.js?v=54" defer></script>
 </body>
 </html>
