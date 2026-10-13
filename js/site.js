@@ -112,99 +112,81 @@
 
   /* ------------------------------------------------------- HERO MONTAGE */
   function clampN(v, a, b) { return v < a ? a : (v > b ? b : v); }
-  /* ONE full-screen looping montage on Home. Clips from all cities are flattened
-     into a sequence; each plays for its "seconds" then cuts to the next. When a new
-     CITY begins, its name slides up on screen; at the city's end the name slides back
-     down, then the next city's name pops up. Loops forever. */
+  /* ONE full-screen looping montage on Home, built from two stacked <video> layers that
+     CROSS-DISSOLVE. The next clip is preloaded in the hidden layer, then faded in while the
+     current fades out — no hard cut. Each clip shows for its "seconds"; a city's name slides
+     up when its first clip appears and slides down just before the next city. Muted layers
+     auto-start (no click needed). */
   function initVhero() {
-    var v = document.getElementById("vhero-video");
-    var imgEl = document.getElementById("vhero-img");
+    var v0 = document.getElementById("vhero-v0");
+    var v1 = document.getElementById("vhero-v1");
     var cap = document.getElementById("vhero-cap");
     var cityEl = document.getElementById("vhero-city");
     var noteEl = document.getElementById("vhero-note");
-    if (!v || typeof CLUB_HERO === "undefined" || !CLUB_HERO.cities) return;
+    if (!v0 || !v1 || typeof CLUB_HERO === "undefined" || !CLUB_HERO.cities) return;
 
-    // Flatten cities -> clip list. A clip is a VIDEO by default, or an IMAGE (type:"image")
-    // which shows a still with a slow Ken Burns zoom (origin "x% y%").
     var clips = [];
     CLUB_HERO.cities.forEach(function (c) {
       (c.clips || []).forEach(function (clip, j) {
-        clips.push({ type: clip.type || "video", src: clip.src, start: clip.start || 0,
-                     seconds: clip.seconds || 0, pos: clip.pos || "center", origin: clip.origin || "50% 50%",
-                     city: c.city, note: c.note || "", firstOfCity: j === 0 });
+        clips.push({ src: clip.src, start: clip.start || 0, seconds: clip.seconds || 4,
+                     pos: clip.pos || "center", city: c.city, note: c.note || "", firstOfCity: j === 0 });
       });
     });
     if (!clips.length) return;
 
-    var ci = 0, switching = false, imgTimer = null, awaitingCap = null;
-    function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    function seekTo(t) { if (Math.abs(v.currentTime - t) > 0.25) { try { v.currentTime = t; } catch (e) {} } }
+    var layers = [v0, v1];
+    layers.forEach(function (vid) { vid.muted = true; });
+    var active = 0, ci = 0, timer = null;
+
+    function play(vid) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    function seek(vid, t) { try { if (t && Math.abs(vid.currentTime - t) > 0.2) vid.currentTime = t; } catch (e) {} }
+    // Point a layer at a clip (load + seek to start); doPlay plays it now.
+    function load(vid, clip, doPlay) {
+      vid.style.objectPosition = clip.pos;
+      if (!vid.src || vid.src.indexOf(clip.src) === -1) { vid.src = clip.src; vid.load(); }
+      var ready = function () { seek(vid, clip.start); if (doPlay && !reduceMotion) play(vid); };
+      if (vid.readyState >= 1) ready(); else vid.addEventListener("loadedmetadata", ready, { once: true });
+    }
+    function preload(i) { if (clips.length > 1) load(layers[active ^ 1], clips[i % clips.length], false); }
+
     function showCap(clip) {
       if (noteEl) noteEl.textContent = clip.note;
       if (cityEl) cityEl.textContent = clip.city;
       if (cap) { cap.classList.remove("out"); cap.classList.add("in"); }
     }
     function hideCap() { if (cap) { cap.classList.remove("in"); cap.classList.add("out"); } }
-    // Show a new city's title only once its own media is actually on screen (prevents
-    // a title appearing over the previous clip while the new one is still loading).
-    function maybeCap() { if (awaitingCap) { showCap(awaitingCap); awaitingCap = null; } }
 
-    function goTo(i) {
-      if (imgTimer) { clearTimeout(imgTimer); imgTimer = null; }
-      var prev = clips[ci];
-      ci = i;
-      var clip = clips[i];
-      awaitingCap = clip.firstOfCity ? clip : null;
+    function schedule() { if (timer) clearTimeout(timer); timer = setTimeout(next, (clips[ci].seconds || 4) * 1000); }
 
-      if (clip.type === "image") {
-        v.pause(); v.style.opacity = 0;
-        if (imgEl) {
-          imgEl.style.backgroundImage = "url('" + clip.src + "')";
-          imgEl.style.transformOrigin = clip.origin;
-          imgEl.style.setProperty("--kbdur", clip.seconds + "s");
-          imgEl.classList.remove("kb"); void imgEl.offsetWidth;   // restart the zoom
-          imgEl.classList.add("show"); if (!reduceMotion) imgEl.classList.add("kb");
-        }
-        maybeCap();
-        if (!reduceMotion) imgTimer = setTimeout(advance, clip.seconds * 1000);
-      } else {
-        if (imgEl) { imgEl.classList.remove("kb", "show"); }
-        v.style.opacity = 1; v.style.objectPosition = clip.pos;
-        var sameFile = prev && prev.type === "video" && clip.src === prev.src && v.src && v.src.indexOf(clip.src) !== -1;
-        if (sameFile) { seekTo(clip.start); } else { v.src = clip.src; v.load(); seekTo(clip.start); }
-        if (!reduceMotion) play();
-        setTimeout(maybeCap, 400);   // fallback in case 'playing' never fires
-      }
-    }
-    function advance() {
-      if (switching) return;
-      switching = true;
-      var next = (ci + 1) % clips.length;
-      if (clips[next].firstOfCity) {        // new city: drop the name, then raise the next
-        hideCap();
-        setTimeout(function () { switching = false; goTo(next); }, 520);
-      } else {
-        switching = false; goTo(next);
-      }
+    function next() {
+      if (reduceMotion) return;
+      var ni = (ci + 1) % clips.length;
+      var cur = layers[active], nxt = layers[active ^ 1], clip = clips[ni];
+      load(nxt, clip, true); seek(nxt, clip.start); play(nxt);
+      if (clip.firstOfCity) { hideCap(); setTimeout(function () { showCap(clip); }, 450); }
+      nxt.classList.add("active"); cur.classList.remove("active");
+      active ^= 1; ci = ni;
+      setTimeout(function () { try { cur.pause(); } catch (e) {} preload(ci + 1); }, 1050);
+      schedule();
     }
 
-    v.addEventListener("loadedmetadata", function () { if (clips[ci].type === "video") seekTo(clips[ci].start); });
-    v.addEventListener("canplay", function () { if (!reduceMotion && clips[ci].type === "video") play(); });
-    v.addEventListener("playing", maybeCap);
-    v.addEventListener("timeupdate", function () {
-      var c = clips[ci];
-      if (c.type === "video" && !switching && c.seconds && v.currentTime - c.start >= c.seconds) advance();
+    // Safety: if a clip ends before its timer, move on.
+    layers.forEach(function (vid) { vid.addEventListener("ended", function () { if (layers[active] === vid) next(); }); });
+
+    // Init: clip 0 active + playing, caption up, clip 1 preloaded in the hidden layer.
+    load(layers[0], clips[0], true);
+    layers[0].classList.add("active");
+    showCap(clips[0]);
+    preload(1);
+    schedule();
+
+    // Auto-start robustness: muted autoplay should run on its own; also kick on any
+    // interaction and when the tab becomes visible, in case a browser held it back.
+    var kick = function () { if (!reduceMotion) play(layers[active]); };
+    ["pointerdown", "touchstart", "keydown", "scroll", "mousemove"].forEach(function (ev) {
+      window.addEventListener(ev, kick, { passive: true, once: true });
     });
-    v.addEventListener("ended", function () { if (clips[ci].type === "video") advance(); });
-    // If a browser blocks muted autoplay, start it on the first interaction.
-    if (!reduceMotion) {
-      var kick = function () {
-        if (clips[ci].type === "video" && v.paused) play();
-        ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.removeEventListener(ev, kick); });
-      };
-      ["pointerdown", "touchstart", "keydown", "scroll"].forEach(function (ev) { window.addEventListener(ev, kick, { passive: true }); });
-    }
-    goTo(0);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden && !reduceMotion) play(layers[active]); });
   }
 
   /* ------------------------------------------------------- ROADMAP */

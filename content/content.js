@@ -19,11 +19,10 @@
    for "seconds", then cuts to the next and loops. Uses existing clips. */
 /* Scroll-driven hero: each scene goes black -> city title + video -> up & black -> next.
    "poster" is the still shown before/behind the video. One scene per city. */
-/* ONE looping montage on Home. For each city the name animates up on screen while
-   TWO background clips play, then the name slides back down and the next city pops up.
-   Order: Baltimore -> Los Angeles -> Chicago, then loops. (Golf tee clip removed.)
-   Baltimore & LA have one source clip each, so their two "clips" are two shots cut
-   from that file (different start times); Chicago uses rugby + the Bulls game. */
+/* ONE looping montage on Home, cross-dissolving between clips. For each city the name
+   animates up while its clip(s) play, then the next city fades in. Order:
+   Baltimore -> Los Angeles (field -> golf swing) -> Chicago (rugby -> Bulls), then loops.
+   Clips preload and cross-fade (two stacked <video> layers), so transitions are smooth. */
 var CLUB_HERO = {
   cities: [
     // Baltimore: ONE clip (the haka), plays once.
@@ -38,8 +37,8 @@ var CLUB_HERO = {
       ] },
     // Chicago: the rugby game first, then the Bulls game.
     { city: "Chicago", note: "Ireland vs New Zealand", clips: [
-        { src: "media/chicago/img_5760.mp4", start: 1, seconds: 3.5 },  // rugby
-        { src: "media/chicago/img_5697.mp4", start: 1, seconds: 3.5 }   // Bulls game
+        { src: "media/chicago/img_5760.mp4", start: 0, seconds: 3.8 },  // rugby
+        { src: "media/chicago/img_5697.mp4", start: 0, seconds: 3.8 }   // Bulls game
       ] }
   ]
 };

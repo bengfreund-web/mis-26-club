@@ -407,7 +407,8 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 
 /* ---- MONTAGE HERO (one looping video, full screen) ---- */
 .vhero{position:relative; height:100vh; height:100svh; min-height:560px; overflow:hidden; background:#000;}
-.vhero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.82) saturate(1.03) contrast(1.02);}
+.vhero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.82) saturate(1.03) contrast(1.02); opacity:0; transition:opacity 1s ease;}
+.vhero-video.active{opacity:1;}
 .vhero-img{position:absolute; inset:0; z-index:0; background-size:cover; background-position:center; opacity:0; filter:brightness(.82) saturate(1.03); will-change:transform; transition:opacity .35s ease;}
 .vhero-img.show{opacity:1;}
 @keyframes kenburns{ from{transform:scale(1.12);} to{transform:scale(1.6);} }
