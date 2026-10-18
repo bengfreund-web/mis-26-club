@@ -243,6 +243,7 @@ var CLUB_GALLERIES = [
     title: "Baltimore",
     caption: "Rugby's Greatest Rivalry — Springboks vs All Blacks at M&T Bank Stadium.",
     items: [
+      { type: "photo", src: "images/gallery/baltimore/img_mandt.jpg" },
       { type: "photo", src: "images/gallery/baltimore/img_1982.jpg" },
       { type: "video", src: "media/baltimore/img_2006.mp4", poster: "images/gallery/baltimore/posters/img_2006.jpg" },
       { type: "photo", src: "images/gallery/baltimore/img_2010.jpg" },
@@ -254,7 +255,6 @@ var CLUB_GALLERIES = [
     caption: "Ireland vs New Zealand — a weekend on the road.",
     items: [
       { type: "photo", src: "images/gallery/chicago/img_5660.jpg" },
-      { type: "photo", src: "images/gallery/chicago/img_5696.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5702.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
