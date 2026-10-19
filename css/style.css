@@ -625,3 +625,11 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 
 /* Closing ask */
 .join-price-line{font-family:var(--ui); font-weight:500; color:var(--ink); letter-spacing:.03em; margin:0 auto 24px !important;}
+
+/* Mission: keep the three key words white (yellow stays on the title and Varsity underline only) */
+.mission-statement b{color:inherit; font-weight:inherit;}
+
+/* Logo-only program image (Tackle Montana) */
+.prog-photo-logo{background:#fff;}
+.prog-photo-logo img{object-fit:contain; padding:6px;}
+.prog summary:hover .prog-photo-logo img{transform:none;}
