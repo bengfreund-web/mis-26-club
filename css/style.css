@@ -581,17 +581,6 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 .mission-statement b{font-weight:700; color:var(--yellow);}
 .mission-sub{margin:22px auto 0; max-width:46ch; color:var(--muted); font-size:clamp(14.5px,1.7vw,17px); line-height:1.55;}
 
-/* Side rail (desktop only) */
-.chapter-rail{display:none;}
-@media (min-width:1180px){
-  .chapter-rail{display:flex; flex-direction:column; gap:6px; position:fixed; right:28px; top:50%; transform:translateY(-50%); z-index:40;}
-  .chapter-rail button{display:flex; align-items:center; gap:10px; justify-content:flex-end; background:none; border:0; color:var(--faint); font-family:var(--ui); font-weight:500; font-size:12px; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; padding:6px 0; transition:color .25s var(--ease);}
-  .chapter-rail button span{font-family:var(--display); font-size:13px; letter-spacing:.06em;}
-  .chapter-rail button::after{content:""; width:18px; height:1px; background:currentColor; transition:width .25s var(--ease);}
-  .chapter-rail button:hover{color:var(--ink);}
-  .chapter-rail button.on{color:#fff;}
-  .chapter-rail button.on::after{width:34px;}
-}
 
 /* Programs: one list, photo + name + one line; blurb opens on tap */
 .prog-list{max-width:1040px; margin:6px auto 0; border-top:1px solid var(--line-2);}

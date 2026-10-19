@@ -97,7 +97,6 @@
     wireJoin();
     initReveals();
     initScrollFx();
-    initChapters();
     initVhero();
     initTabs();
   }
@@ -188,29 +187,6 @@
       window.addEventListener(ev, kick, { passive: true, once: true });
     });
     document.addEventListener("visibilitychange", function () { if (!document.hidden && !reduceMotion) play(layers[active]); });
-  }
-
-  /* ------------------------------------------------------- CHAPTER RAIL (Why Join) */
-  function initChapters() {
-    var rail = document.getElementById("chapter-rail");
-    if (!rail || !("IntersectionObserver" in window)) return;
-    var btns = [].slice.call(rail.querySelectorAll("button[data-ch]"));
-    var secs = btns.map(function (b) { return document.getElementById(b.getAttribute("data-ch")); });
-    btns.forEach(function (b, i) {
-      b.addEventListener("click", function () {
-        var el = secs[i]; if (!el) return;
-        var y = el.getBoundingClientRect().top + window.scrollY - 70;
-        window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
-      });
-    });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var i = secs.indexOf(en.target);
-        btns.forEach(function (b, j) { b.classList.toggle("on", i === j); });
-      });
-    }, { rootMargin: "-40% 0px -50% 0px" });
-    secs.forEach(function (el) { if (el) io.observe(el); });
   }
 
   /* ------------------------------------------------------- ROADMAP */
