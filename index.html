@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=57">
+<link rel="stylesheet" href="css/style.css?v=59">
 </head>
 <body class="locked" id="top">
 
@@ -43,11 +43,11 @@
       </a>
       <div class="navlinks">
         <a href="#home" data-tab="home">Home</a>
-        <a href="#model" data-tab="model">The Model</a>
+        <a href="#model" data-tab="model">Why Join</a>
         <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
         <a href="#gallery" data-tab="gallery">Gallery</a>
       </div>
-      <a class="btn btn-yellow no-arrow nav-cta" id="join-nav" href="#" target="_blank" rel="noopener">Become a Member</a>
+      <a class="btn btn-yellow no-arrow nav-cta" href="#join" data-tab="join">Become a Member</a>
     </nav>
   </header>
 
@@ -73,7 +73,7 @@
       <div class="wrap">
         <div class="section-head center reveal">
           <div class="mono-label center">Our Mission</div>
-          <div class="h2">Building a sustainable K&ndash;12 rugby model</div>
+          <div class="h2">Building a sustainable, replicable and scalable <span class="nowrap">K&ndash;12</span> <u>Varsity</u> rugby model</div>
         </div>
         <div class="how-grid reveal stagger">
           <div class="how-card"><div class="how-num">01</div><div class="how-title">Introduce it into the schools</div><div class="how-body">Bring rugby to Montana classrooms through TRY Rugby curriculum, equipment, and on-site coaching.</div></div>
@@ -120,7 +120,35 @@
         <div class="mono-label center reveal">Be part of it</div>
         <div class="h2 reveal">Become a Member</div>
         <p class="reveal">Back the mission and help build the future of rugby in Montana.</p>
-        <div class="reveal"><a class="btn btn-yellow no-arrow" id="join-club" href="#" target="_blank" rel="noopener">Become a Member</a></div>
+        <div class="reveal"><a class="btn btn-yellow no-arrow" href="#join" data-tab="join">Become a Member</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: BECOME A MEMBER ===================== -->
+  <div class="tab-panel" id="join">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <div class="mono-label center">The 26 Club</div>
+          <div class="h2">Become a Member</div>
+          <p>Membership is <strong>$4,999.99 annually</strong> or <strong>$416.66 per month</strong>. Contributions are tax-deductible to the extent allowed by law.</p>
+        </div>
+        <div class="join-grid reveal stagger">
+          <div class="join-card">
+            <div class="join-plan">Annual</div>
+            <div class="join-price">$4,999.99<span>&thinsp;/&thinsp;year</span></div>
+            <div class="join-desc">One payment for the full year.</div>
+            <a class="btn btn-yellow no-arrow" id="join-annual" href="#" target="_blank" rel="noopener">Join Annually</a>
+          </div>
+          <div class="join-card">
+            <div class="join-plan">Monthly</div>
+            <div class="join-price">$416.66<span>&thinsp;/&thinsp;month</span></div>
+            <div class="join-desc">Spread it across the year.</div>
+            <a class="btn btn-outline no-arrow" id="join-monthly" href="#" target="_blank" rel="noopener">Join Monthly</a>
+          </div>
+        </div>
+        <p class="join-fine reveal">Contributions are tax-deductible to the extent allowed by law.</p>
       </div>
     </section>
   </div>
@@ -185,10 +213,10 @@
   <!-- MOBILE TAB BAR -->
   <nav class="mobile-tabs" aria-label="Sections">
     <a href="#home" data-tab="home">Home</a>
-    <a href="#model" data-tab="model">Model</a>
+    <a href="#model" data-tab="model">Why Join</a>
     <a href="#whatsnext" data-tab="whatsnext">Next</a>
     <a href="#gallery" data-tab="gallery">Gallery</a>
-    <a href="#" id="join-mobile" class="mtab-cta" target="_blank" rel="noopener">Member</a>
+    <a href="#join" data-tab="join" class="mtab-cta">Member</a>
   </nav>
 
   <!-- FOOTER -->
@@ -201,7 +229,7 @@
         </div>
         <div class="footer-links">
           <a href="#home" data-tab="home">Home</a>
-          <a href="#model" data-tab="model">The Model</a>
+          <a href="#model" data-tab="model">Why Join</a>
           <a href="#whatsnext" data-tab="whatsnext">What's Next</a>
           <a href="#gallery" data-tab="gallery">Gallery</a>
         </div>
@@ -215,8 +243,8 @@
 
 </div>
 
-<script src="js/config.js?v=57"></script>
-<script src="content/content.js?v=57"></script>
-<script src="js/site.js?v=57" defer></script>
+<script src="js/config.js?v=59"></script>
+<script src="content/content.js?v=59"></script>
+<script src="js/site.js?v=59" defer></script>
 </body>
 </html>

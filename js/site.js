@@ -11,7 +11,7 @@
   // initializer further down would reset them AFTER they were populated.
   var galleryItems = [];
   var lbIndex = -1;
-  var TABS = ["home", "model", "whatsnext", "gallery"];
+  var TABS = ["home", "model", "whatsnext", "gallery", "join"];
   var tabsReady = false;
   var revealIO = null;
   var scenesUpdate = null;
@@ -101,13 +101,13 @@
     initTabs();
   }
 
-  /* Point every "Become a Member" control at the Zeffy link from config (|| "#"). */
+  /* Point the two membership checkout buttons at their Zeffy links from config. */
   function wireJoin() {
-    var url = (typeof CLUB_CONFIG !== "undefined" && CLUB_CONFIG.signupUrl) ? CLUB_CONFIG.signupUrl : "";
-    ["join-club", "join-nav", "join-mobile"].forEach(function (id) {
-      var a = document.getElementById(id);
-      if (a) a.setAttribute("href", url || "#");
-    });
+    var cfg = (typeof CLUB_CONFIG !== "undefined") ? CLUB_CONFIG : {};
+    var annual = document.getElementById("join-annual");
+    var monthly = document.getElementById("join-monthly");
+    if (annual && cfg.signupAnnual) annual.setAttribute("href", cfg.signupAnnual);
+    if (monthly && cfg.signupMonthly) monthly.setAttribute("href", cfg.signupMonthly);
   }
 
   /* ------------------------------------------------------- HERO MONTAGE */
