@@ -561,3 +561,18 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 .impact-compact .impact-cell.hero .num{color:#fff;}
 .impact-compact .impact-cell .lab{color:var(--muted);}
 .impact-compact .impact-cell.hero .lab{color:var(--muted);}
+
+/* ---- Initiatives: uniform size, name beside a longer blurb ---- */
+.init-list{max-width:1040px;}
+.init-list .init-feature{display:grid; grid-template-columns:minmax(200px, 1fr) 2fr; column-gap:clamp(24px,5vw,64px); align-items:start; padding:clamp(24px,3.2vw,40px) 4px;}
+.init-list .init-feature:nth-child(n) .init-feature-name{font-size:clamp(1.35rem, 2.6vw, 1.9rem); line-height:1.1;}
+.init-list .init-feature-desc{font-size:clamp(14.5px, 1.5vw, 16.5px); line-height:1.65; max-width:none; color:var(--muted);}
+@media (max-width:760px){ .init-list .init-feature{grid-template-columns:1fr; row-gap:10px;} }
+
+/* ---- Our Mission: smaller, with the yellow back ---- */
+.mission-section{padding:clamp(44px, 7vw, 84px) 0;}
+.mission-section .section-title{color:var(--yellow); border-bottom-color:var(--yellow); font-size:clamp(1.15rem, 2.6vw, 1.6rem); letter-spacing:.2em; padding-bottom:12px; margin-bottom:20px;}
+.mission-statement{font-size:clamp(1.5rem, 4vw, 2.7rem); max-width:24ch;}
+.mission-statement u{text-decoration-color:var(--yellow);}
+@media (min-width:900px){ .mission-statement{max-width:30ch;} }
+.mission-statement{text-wrap:balance;}
