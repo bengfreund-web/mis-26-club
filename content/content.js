@@ -113,9 +113,9 @@ var CLUB_FILMS = [
 
 /* -------------------- IMPACT NUMBERS (top of page) -------------------- */
 var CLUB_IMPACT = [
-  { num: "60%",     label: "of all kids in Montana reached", hero: true },
-  { num: "293",     label: "Schools",  sub: "of 812 Montana schools" },
-  { num: "101,688", label: "Students", sub: "of 151,580 Montana students" },
+  { num: "101,688", label: "Students reached", hero: true },
+  { num: "293",     label: "Schools" },
+  { num: "60%",     label: "of all kids in Montana" },
 ];
 
 /* -------------------- NEWSLETTER UPDATES (newest first) -------------------- */
