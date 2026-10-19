@@ -115,7 +115,7 @@ var CLUB_FILMS = [
 var CLUB_IMPACT = [
   { num: "101,688", label: "Students reached", hero: true },
   { num: "293",     label: "Schools" },
-  { num: "60%",     label: "of all kids in Montana" },
+  { num: "60%",     label: "of all kids in Montana", bar: 60 },
 ];
 
 /* -------------------- NEWSLETTER UPDATES (newest first) -------------------- */
