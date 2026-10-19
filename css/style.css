@@ -539,3 +539,25 @@ h1,h2,h3,.disp,.h2,.rm-title,.feat-title{letter-spacing:-0.005em;}
 .impact-compact .impact-cell.hero .num{font-size:clamp(3.4rem, 13vw, 7rem); color:var(--yellow);}
 .impact-compact .impact-cell.hero .lab{font-size:clamp(12px, 2.2vw, 15px); margin-top:8px;}
 .impact-compact .impact-cell:not(.hero){display:flex; flex-direction:column; align-items:center;}
+
+/* ---- Why Join, no-yellow revision ---- */
+.section-title{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:#fff; font-size:clamp(1.9rem, 5.4vw, 3.4rem); line-height:1.05; margin:0 auto 26px; padding-bottom:18px; border-bottom:2px solid rgba(255,255,255,.85); display:inline-block;}
+.section-head .section-title{margin-bottom:6px;}
+.mission-statement u{text-decoration-color:#fff;}
+
+/* Initiatives: one column, in order, each a step smaller than the one above */
+.init-list{display:flex; flex-direction:column; gap:0; max-width:980px; margin:10px auto 0;}
+.init-list .init-feature{grid-column:auto; background:transparent; border:0; border-top:1px solid var(--line-2); border-radius:0; min-height:0; padding:clamp(22px,3.4vw,38px) 4px; gap:10px;}
+.init-list .init-feature:last-child{border-bottom:1px solid var(--line-2);}
+.init-list .init-feature-name{color:#fff;}
+.init-list .init-feature:nth-child(1) .init-feature-name{font-size:clamp(2.8rem, 9vw, 6.4rem);}
+.init-list .init-feature:nth-child(2) .init-feature-name{font-size:clamp(2.4rem, 7.6vw, 5.2rem);}
+.init-list .init-feature:nth-child(3) .init-feature-name{font-size:clamp(2.1rem, 6.4vw, 4.3rem);}
+.init-list .init-feature:nth-child(4) .init-feature-name{font-size:clamp(1.8rem, 5.2vw, 3.5rem);}
+.init-list .init-feature:nth-child(5) .init-feature-name{font-size:clamp(1.55rem, 4.2vw, 2.8rem);}
+.init-list .init-feature-desc{font-size:clamp(14px, 1.6vw, 17px); max-width:60ch;}
+
+/* Impact: no gold */
+.impact-compact .impact-cell.hero .num{color:#fff;}
+.impact-compact .impact-cell .lab{color:var(--muted);}
+.impact-compact .impact-cell.hero .lab{color:var(--muted);}
