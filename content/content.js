@@ -26,7 +26,7 @@
 var CLUB_HERO = {
   cities: [
     // Baltimore: ONE clip (the haka), plays once.
-    { city: "Baltimore", note: "Springboks vs All Blacks", clips: [
+    { city: "Baltimore", note: "South Africa vs New Zealand", clips: [
         { src: "media/baltimore/img_2006.mp4", start: 0, seconds: 4.5 }
       ] },
     // Los Angeles: the user-supplied field clip (cropped to the field, foreground
@@ -49,10 +49,10 @@ var CLUB_HERO = {
    (e.g. england.png); until then a labelled placeholder shows.
    "phase" is "past" or "future". */
 var CLUB_ROADMAP = [
-  { when: "2025",           place: "Los Angeles, USA", title: "USA vs Canada",            logos: ["usa","canada"],            phase: "past" },
-  { when: "2025",           place: "Baltimore, USA",   title: "Springboks vs All Blacks", logos: ["springboks","all-blacks"], phase: "past" },
-  { when: "2025",           place: "Chicago, USA",     title: "Ireland vs New Zealand",   logos: ["ireland","all-blacks"],    phase: "past" },
-  { when: "Nov 2026",       place: "London, England",  title: "Wallabies vs England",     logos: ["wallabies","england"],     phase: "future" },
+  { when: "2025",           place: "Los Angeles, USA", title: "USA vs Canada",               logos: ["usa","canada"],            phase: "past" },
+  { when: "2025",           place: "Chicago, USA",     title: "Ireland vs New Zealand",      logos: ["ireland","all-blacks"],    phase: "past" },
+  { when: "2025",           place: "Baltimore, USA",   title: "South Africa vs New Zealand", logos: ["springboks","all-blacks"], phase: "past" },
+  { when: "Nov 2026",       place: "London, England",  title: "Australia vs England",      logos: ["wallabies","england"],     phase: "future" },
   { when: "Mar / Apr 2027", place: "Europe",           title: "Six Nations",              logos: ["six-nations"],             phase: "future" },
   { when: "Nov 2027",       place: "Australia",        title: "Rugby World Cup",          logos: ["rugby-world-cup"],         phase: "future" },
   { when: "Jul 2028",       place: "Los Angeles, USA", title: "Olympic Games",            logos: ["olympics"],                phase: "future" }
@@ -240,17 +240,6 @@ var CLUB_GALLERIES = [
     ]
   },
   {
-    title: "Baltimore",
-    caption: "Rugby's Greatest Rivalry — Springboks vs All Blacks at M&T Bank Stadium.",
-    items: [
-      { type: "photo", src: "images/gallery/baltimore/img_mandt.jpg" },
-      { type: "photo", src: "images/gallery/baltimore/img_1982.jpg" },
-      { type: "video", src: "media/baltimore/img_2006.mp4", poster: "images/gallery/baltimore/posters/img_2006.jpg" },
-      { type: "photo", src: "images/gallery/baltimore/img_2010.jpg" },
-      { type: "photo", src: "images/gallery/baltimore/img_2015.jpg" }
-    ]
-  },
-  {
     title: "Chicago Weekend",
     caption: "Ireland vs New Zealand — a weekend on the road.",
     items: [
@@ -258,6 +247,17 @@ var CLUB_GALLERIES = [
       { type: "photo", src: "images/gallery/chicago/img_5702.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5710.jpg" },
       { type: "photo", src: "images/gallery/chicago/img_5758.jpg" },
+    ]
+  },
+  {
+    title: "Baltimore",
+    caption: "Rugby's Greatest Rivalry — South Africa vs New Zealand at M&T Bank Stadium.",
+    items: [
+      { type: "photo", src: "images/gallery/baltimore/img_mandt.jpg" },
+      { type: "photo", src: "images/gallery/baltimore/img_1982.jpg" },
+      { type: "video", src: "media/baltimore/img_2006.mp4", poster: "images/gallery/baltimore/posters/img_2006.jpg" },
+      { type: "photo", src: "images/gallery/baltimore/img_2010.jpg" },
+      { type: "photo", src: "images/gallery/baltimore/img_2015.jpg" }
     ]
   }
 ];
