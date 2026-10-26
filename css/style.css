@@ -652,3 +652,4 @@ html{max-width:100%;}
 .scroll-hint .ln::after{background:#fff;}
 @media (max-width:900px){ .scroll-hint{bottom:84px;} }
 .vhero{height:calc(100vh - var(--hdr,65px)); height:calc(100svh - var(--hdr,65px)); min-height:480px;}
+.who-section, .who-section.elev{background:#040506;}
