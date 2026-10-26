@@ -643,3 +643,12 @@ html{max-width:100%;}
   .reveal.reveal-l, .reveal.reveal-r{transform:translateY(24px);}
   .reveal.reveal-l.is-visible, .reveal.reveal-r.is-visible{transform:none;}
 }
+
+/* ---- Home: Who We Are + scroll cue ---- */
+.who-section{padding:clamp(64px,10vw,120px) 0;}
+.who-statement{max-width:24ch; font-size:clamp(1.6rem,4.6vw,3.3rem);}
+@media (min-width:900px){ .who-statement{max-width:28ch;} }
+.scroll-hint{position:absolute; bottom:26px; z-index:3;}
+.scroll-hint .ln::after{background:#fff;}
+@media (max-width:900px){ .scroll-hint{bottom:84px;} }
+.vhero{height:calc(100vh - var(--hdr,65px)); height:calc(100svh - var(--hdr,65px)); min-height:480px;}

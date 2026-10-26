@@ -532,6 +532,9 @@
   /* Hero parallax + scroll progress + header shadow */
   function initScrollFx() {
     var header = document.querySelector(".siteheader");
+    // Let CSS size the Home hero to the screen minus the header.
+    function setHdr() { if (header) document.documentElement.style.setProperty("--hdr", header.offsetHeight + "px"); }
+    setHdr(); window.addEventListener("resize", setHdr);
     var progress = document.getElementById("scroll-progress");
     var heroBg = document.querySelector(".mhero-bg");
     var hint = document.getElementById("scroll-hint");
