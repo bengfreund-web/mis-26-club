@@ -20,6 +20,29 @@
   // from restoring/overriding scroll on reload or hash navigation.
   try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
 
+  // Jump (not glide) to a scroll position. The page has CSS smooth scrolling, and a glide can be
+  // cut short when the layout changes under it, leaving the page parked partway down.
+  function jumpTo(y) {
+    var d = document.documentElement, prev = d.style.scrollBehavior;
+    d.style.scrollBehavior = "auto";
+    window.scrollTo(0, y);
+    d.style.scrollBehavior = prev;
+  }
+  // Land on the very top of Home, and keep it there while the video/layout settles,
+  // unless the visitor has already started scrolling themselves.
+  var userMoved = false;
+  ["touchstart", "wheel", "keydown", "mousedown"].forEach(function (ev) {
+    window.addEventListener(ev, function () { userMoved = true; }, { passive: true });
+  });
+  function landOnTop() {
+    userMoved = false;
+    jumpTo(0);
+    requestAnimationFrame(function () { jumpTo(0); });
+    [150, 450, 1000].forEach(function (ms) {
+      setTimeout(function () { if (!userMoved) jumpTo(0); }, ms);
+    });
+  }
+
   var STORAGE_KEY = "club26_unlocked";
   var body = document.body;
   var gate = document.getElementById("gate");
@@ -28,9 +51,11 @@
   var gateError = document.getElementById("gate-error");
 
   function unlock() {
+    try { if (gateInput) gateInput.blur(); } catch (e) {}   // close the iPhone keyboard first
     body.classList.remove("locked");
     if (gate) gate.setAttribute("hidden", "");
     buildSite();
+    if (!location.hash || location.hash === "#home") landOnTop();
   }
 
   var alreadyIn = false;
@@ -236,13 +261,15 @@
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           var now = document.getElementById("rm-now");
-          if (!now) { window.scrollTo(0, 0); return; }
+          if (!now) { jumpTo(0); return; }
           var y = now.getBoundingClientRect().top + window.scrollY - 120;
-          window.scrollTo(0, Math.max(0, y));
+          jumpTo(Math.max(0, y));
         });
       });
+    } else if (name === "home") {
+      landOnTop();
     } else {
-      window.scrollTo(0, 0);
+      jumpTo(0);
     }
     rearmReveals(active);
   }

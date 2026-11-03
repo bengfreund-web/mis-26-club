@@ -28,7 +28,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth; -webkit-text-size-adjust:100%; text-size-adjust:100%;}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 body{font-family:var(--sans); color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
 .nowrap{white-space:nowrap;}
 h1,h2,h3,.disp{font-family:var(--display); font-weight:700; letter-spacing:-0.02em; color:var(--ink);}
